@@ -1,2 +1,4 @@
-<em><%= link_to recipient.name, recipient_path(recipient), class: "home-recipient-name" %></em></p>
-  <%= button_to "Sponsor me", carts_path({recipient_id: recipient.id}), class: "btn btn-recipient" %>
+
+<em><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug), class: "home-recipient-name" %></em></p>
+<em><%= recipient.description %></em></p>
+  <%= button_to "Lend", carts_path({recipient_id: recipient.id}), class: "btn btn-recipient" %>

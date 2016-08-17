@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160817210827) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160817210827) do
     t.datetime "updated_at",              null: false
     t.integer  "status",      default: 0
     t.text     "description"
+    t.string   "slug"
+    t.string   "image_path"
   end
 
   create_table "recipient_fundings", id: false, force: :cascade do |t|
@@ -59,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160817210827) do
     t.string   "image_path"
     t.integer  "organization_id"
     t.integer  "country_id"
+    t.string   "slug"
   end
 
   add_index "recipients", ["country_id"], name: "index_recipients_on_country_id", using: :btree

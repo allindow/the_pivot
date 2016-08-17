@@ -25,6 +25,6 @@ class Admin::RecipientsController < Admin::BaseController
   private
   
   def recipient_params
-    params.require(:recipient).permit(:name, :price, :description, :retired, :image_path)
+    params.require(:recipient).permit(:name, :description, :country, :image_path, :amount_received)
   end
 end
