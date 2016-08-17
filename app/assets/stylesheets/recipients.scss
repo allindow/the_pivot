@@ -7,7 +7,7 @@
   padding-left: 140px;
 }
 
-.home-creature-wrapper {
+.home-recipient-wrapper {
   padding-right: 50px;
   margin-bottom: 50px;
   max-height: 1000px;
@@ -20,22 +20,22 @@
   max-width: 100%;
 }
 
-.home-creature-img {
+.home-recipient-img {
   height: 400px;
   width: 250px;
 }
 
-.home-creature-name {
+.home-recipient-name {
   color: $primary-color;
 }
 
-.btn-creature {
+.btn-recipient {
   background-color: transparent;
   border: 1px solid $btn-color;
   color: $btn-color;
 }
 
-.btn-creature:hover {
+.btn-recipient:hover {
   background-color: $btn-color;
   border: 1px solid $btn-color;
   color: $btn-hover;
@@ -47,6 +47,6 @@
 
 //*** SHOW PAGE ***/
 
-.creature-show {
+.recipient-show {
   padding-left: 40px;
 }

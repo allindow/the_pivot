@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   def create_order
     @order = current_user.orders.create
     params[:contents].each do |key, value|
-      @order.creatures_orders.create(creature_id: key, quantity: value)
+      @order.recipients_orders.create(recipient_id: key, quantity: value)
     end
     session[:cart].clear
     @order.assign_total_price

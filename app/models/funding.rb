@@ -1,15 +1,15 @@
 class Order < ActiveRecord::Base
-  has_many :creatures_orders
-  has_many :creatures, through: :creatures_orders
+  has_many :recipients_orders
+  has_many :recipients, through: :recipients_orders
   belongs_to :user  
   # after_update :assign_total_price
   
   def order_details
-    order_items = CreaturesOrder.where(order_id: self.id)
+    order_items = RecipientsOrder.where(order_id: self.id)
     order_details = {}
     order_items.each do |item|
-      name = Creature.find(item.creature_id).name
-      price = Creature.find(item.creature_id).price
+      name = Recipient.find(item.recipient_id).name
+      price = Recipient.find(item.recipient_id).price
       qty = item.quantity
       order_details[name] = [price, qty] unless qty == 0 
     end

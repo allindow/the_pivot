@@ -1,16 +1,16 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
-  before_action :set_creature, only: [:create, :destroy]
+  before_action :set_recipient, only: [:create, :destroy]
   
   def create
-    @cart.add_creature(@creature.id)
+    @cart.add_recipient(@recipient.id)
     session[:cart] = @cart.contents
-    flash[:notice] = "You now have selected #{pluralize(@cart.count_of(@creature.id), @creature.name)}."
+    flash[:notice] = "You now have selected #{pluralize(@cart.count_of(@recipient.id), @recipient.name)}."
     redirect_to root_path
   end
   
   def index
-    @creatures = @cart.creatures
+    @recipients = @cart.recipients
   end
   
   def update
@@ -26,14 +26,14 @@ class CartsController < ApplicationController
   
   def destroy
     session[:cart] = @cart.contents
-    session[:cart][@creature.id] = 0
-    session[:removed_creature] = @creature.id
-    delete_link = "<a href=\"#{url_for(@creature)}\">#{@creature.name}</a>"
+    session[:cart][@recipient.id] = 0
+    session[:removed_recipient] = @recipient.id
+    delete_link = "<a href=\"#{url_for(@recipient)}\">#{@recipient.name}</a>"
     flash[:delete] = "Successfully removed #{delete_link} from your cart"
     redirect_to cart_path
   end
   
-  def set_creature
-    @creature = Creature.find(params[:creature_id])
+  def set_recipient
+    @recipient = Recipient.find(params[:recipient_id])
   end
 end

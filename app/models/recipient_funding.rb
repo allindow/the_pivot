@@ -1,4 +1,4 @@
-class CreaturesOrder < ActiveRecord::Base
-  belongs_to :creature
+class RecipientsOrder < ActiveRecord::Base
+  belongs_to :recipient
   belongs_to :order
 end

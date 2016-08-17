@@ -1,9 +1,9 @@
-<h1 class="page-type-title"><%= @type.name %> Creatures</h1>
+<h1 class="page-type-title"><%= @type.name %> Recipients</h1>
 
-<% @creatures.each do |creature| %>
-<div class="container col-md-4 home-creature-wrapper">
-    <%= render partial: "shared/creatures_img", locals: { creature: creature } %>
-    <%= render partial: "shared/creatures_details", locals: { creature: creature } %>
+<% @recipients.each do |recipient| %>
+<div class="container col-md-4 home-recipient-wrapper">
+    <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
+    <%= render partial: "shared/recipients_details", locals: { recipient: recipient } %>
   </div>
 </div>
 <% end %>

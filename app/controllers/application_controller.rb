@@ -3,18 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :set_cart
-  helper_method :creature_types,
-                :creature,
+  helper_method :recipient_types,
+                :recipient,
                 :current_user,
                 :current_admin?,
-                :find_creature,
+                :find_recipient,
                 :non_admin?
   
   def set_cart
     @cart = Cart.new(session[:cart])
   end
   
-  def creature_types
+  def recipient_types
     Type.all
   end
   
@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
   
-  def find_creature(name)
-    Creature.find_by(name: name)
+  def find_recipient(name)
+    Recipient.find_by(name: name)
   end
   
   def current_order
