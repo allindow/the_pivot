@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "recipients#index"
 
   resources :recipients, only: [:index, :show]
-  resources :organizations, only: [:show, :new]  
+  resources :organizations, only: [:new]
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]
   resources :fundings, only: [:index, :create, :show, :new, :create]
@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     resources :recipients, only: [:index, :edit, :update]
   end
 
+  namespace :organizations, path: ':organization_slug' do
+    resources :recipients, param: :slug, only: [:show]
+  end
+
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"
   delete "/logout", to: "sessions#destroy"
@@ -25,6 +29,7 @@ Rails.application.routes.draw do
   put "/cart", to: "carts#update"
   delete "/cart", to: "carts#destroy"
   get "/cart", to: "carts#index"
-  get "/:name", to: "types#show"
+  get "/:slug", to: "organizations#show"
+  get "/:organization_slug/:slug", to: "organizations/recipients#show"
   # get "*path" => redirect('/')
 end

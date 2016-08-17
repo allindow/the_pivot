@@ -1,4 +1,6 @@
-<h1 class="page-organization-title"><%= @organization.name %> Recipients</h1>
+<h1 class="page-organization-title"><%= @organization.name %></h1>
+<h1 class="page-organization-title"><%= @organization.description %></h1>
+<h1 class="page-organization-title">Recipients</h1>
 <% @recipients.each do |recipient| %>
 <div class="container col-md-4 home-recipient-wrapper">
     <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
