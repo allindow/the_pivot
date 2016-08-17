@@ -1,7 +1,7 @@
-class TypesController < ApplicationController
-  
+class OrganizationsController < ApplicationController
+
   def show
-    @type = Type.find_by(name: params[:name])
-    @creatures = @type.creatures
+    @organization = Organization.find_by(name: params[:name])
+    @creatures = @organization.creatures
   end
 end
