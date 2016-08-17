@@ -1,24 +1,24 @@
-class Order < ActiveRecord::Base
+<<<<<<< HEAD
+class Funding < ActiveRecord::Base
   has_many :recipient_fundings
-  has_many :creatures, through: :recipient_fundings
+  has_many :recipients, through: :recipient_fundings
   belongs_to :user
-  # after_update :assign_total_price
 
-  def order_details
-    order_items = CreaturesOrder.where(order_id: self.id)
-    order_details = {}
-    order_items.each do |item|
-      name = Creature.find(item.creature_id).name
-      price = Creature.find(item.creature_id).price
+  def funding_details
+    funding_items = RecipientFundings.where(funding_id: self.id)
+    funding_details = {}
+    funding_items.each do |item|
+      username = Recipient.find(item.recipient_id).username
+      amount_received = Recipient.find(item.recipient_id).amount_received
       qty = item.quantity
-      order_details[name] = [price, qty] unless qty == 0
+      funding_details[name] = [price, qty] unless qty == 0
     end
-    order_details
+    funding_details
   end
 
   def total_price
     total_price = 0
-    order_details.each do |key, value|
+    funding_details.each do |key, value|
       total_price += value.reduce(:*)
     end
     total_price
@@ -36,7 +36,7 @@ class Order < ActiveRecord::Base
     status == "canceled"
   end
 
-  def self.order_status(status)
+  def self.funding_status(status)
     self.all.where(status: status).count
   end
 

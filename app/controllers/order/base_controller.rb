@@ -1,3 +1,3 @@
-class Order::BaseController < ApplicationController
+class Funding::BaseController < ApplicationController
 
 end

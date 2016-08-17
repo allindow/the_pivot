@@ -1,13 +1,13 @@
-<h2>Order <%= order.id %> Summary</h2>  
+<h2>Funding <%= funding.id %> Summary</h2>
 <table class="table">
   <tr>
-    <th>Creature</th>
+    <th>Recipient</th>
     <th>Quantity</th>
     <th>Price</th>
   </tr>
-  <% order.order_details.each do |key, value| %>
+  <% funding.funding_details.each do |key, value| %>
     <tr>
-      <th><%= link_to key, creature_path(find_creature(key)) %></th>
+      <th><%= link_to key, recipient_path(find_recipient(key)) %></th>
       <th><%= value.last %></th>
       <th><%= number_to_currency(value.first) %></th>
     </tr>
@@ -15,7 +15,6 @@
   <tr>
     <th><strong>Total</strong></th>
     <th></th>
-    <th><strong><%= number_to_currency(order.total_price) %></strong></th>
+    <th><strong><%= number_to_currency(funding.total_price) %></strong></th>
   </tr>
 </table>
-
