@@ -1,0 +1,10 @@
+<ul id="recipients">
+  <% @recipients.each do |recipient| %>
+    <li>
+      <%= recipient.image_path %>
+      <p><%= recipient.name %></p>
+      <p><%= recipient.description %></p>
+      <p>With: <%= recipient.organization.name %></p>
+    </li>
+  <% end %>
+</ul>

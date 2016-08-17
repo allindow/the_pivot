@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817193605) do
+ActiveRecord::Schema.define(version: 20160817210827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+  end
 
   create_table "fundings", force: :cascade do |t|
     t.datetime "created_at",                               null: false
@@ -52,11 +59,12 @@ ActiveRecord::Schema.define(version: 20160817193605) do
     t.datetime "updated_at",      null: false
     t.text     "description"
     t.string   "image_path"
-    t.string   "country"
     t.integer  "organization_id"
+    t.integer  "country_id"
     t.string   "slug"
   end
 
+  add_index "recipients", ["country_id"], name: "index_recipients_on_country_id", using: :btree
   add_index "recipients", ["organization_id"], name: "index_recipients_on_organization_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -73,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160817193605) do
   add_foreign_key "fundings", "users"
   add_foreign_key "recipient_fundings", "fundings"
   add_foreign_key "recipient_fundings", "recipients"
+  add_foreign_key "recipients", "countries"
   add_foreign_key "recipients", "organizations"
   add_foreign_key "users", "organizations"
 end
