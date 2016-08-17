@@ -1,4 +1,5 @@
-class RecipientsOrder < ActiveRecord::Base
+class RecipientFunding < ActiveRecord::Base
   belongs_to :recipient
-  belongs_to :order
+  belongs_to :funding
 end
+
