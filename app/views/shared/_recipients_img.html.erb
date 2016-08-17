@@ -1,0 +1,6 @@
+<div class="col-md-4 home-recipient-img media">
+  <% if recipient.image_path %>  
+    <img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="...">
+  <% else %>
+    <img class="media img-index" src="<%="../assets/#{recipient.name}.png" %>" alt="...">
+  <% end %>

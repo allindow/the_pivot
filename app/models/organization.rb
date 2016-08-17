@@ -1,4 +1,4 @@
 class Organization < ActiveRecord::Base
-  has_many :creatures
+  has_many :recipients
   validates :name, presence: true, uniqueness: true
 end

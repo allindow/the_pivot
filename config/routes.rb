@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  root to: "creatures#index"
+  root to: "recipients#index"
 
-  resources :creatures, only: [:index, :show]
-  resources :types, only: [:show]
+  resources :recipients, only: [:index, :show]
+  resources :organizations, only: [:show]  
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]
   resources :fundings, only: [:index, :create, :show, :new, :create]
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: [:index, :edit, :update, :new, :create]
-    resources :creatures, only: [:index, :edit, :update]
+    resources :recipients, only: [:index, :edit, :update]
   end
 
   post "/login", to: "sessions#create"

@@ -1,0 +1,6 @@
+<em><%= link_to recipient.name, recipient_path(recipient), class: "home-recipient-name" %></em></p>    
+<% if recipient.retired %>
+  <p>This recipient can no longer be sponsored!</p>
+<% else %>
+  <%= button_to "Sponsor me", carts_path({recipient_id: recipient.id}), class: "btn btn-recipient" %>
+<% end %>

@@ -4,18 +4,19 @@
 //   color: $organization-color;
 // }
 
-.btn-organization-creature {
+.btn-organization-recipient {
   background-color: $organization-color;
   border: 1px solid $grey-color;
   color: $organization-text-color;
 }
 
-.btn-organization-creature:hover {
+
+.btn-organization-recipient:hover {
   background-color: $btn-color;
   border: 1px solid $btn-color;
   color: $btn-hover;
 }
 
-.organization-creature-name {
+.organization-recipient-name {
   color: $organization-color;
 }

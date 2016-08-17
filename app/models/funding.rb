@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class Funding < ActiveRecord::Base
   has_many :recipient_fundings
   has_many :recipients, through: :recipient_fundings
