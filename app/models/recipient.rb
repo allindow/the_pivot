@@ -4,7 +4,7 @@ class Recipient < ActiveRecord::Base
   belongs_to :organization
   # validates :organization, presence: true
   has_many :recipient_fundings
-  has_many :orders, through: :recipient_fundings
+  has_many :fundings, through: :recipient_fundings
 
   def retire
     update_attribute(:retired, true)

@@ -1,0 +1,17 @@
+<%= link_to "My Fundings", fundings_path %>
+<%= render partial: "funding_table", locals: { funding: @funding } %>
+
+<p>Funding created on: <%= @funding.created_at.strftime("%A, %d %b %Y %l:%M %p") %>
+
+<% if @funding.completed? %>
+  <p>Funding completed on: <%= @funding.updated_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
+<% elsif @funding.canceled? %>
+  <p>Funding canceled on: <%= @funding.updated_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
+<% else %>
+  <p>Current status: <%= @funding.status.capitalize %></p>
+<% end %>
+
+
+<% if @funding.status == "awaiting payment" %>
+  <%= render partial: "charges" %>
+<% end %>
