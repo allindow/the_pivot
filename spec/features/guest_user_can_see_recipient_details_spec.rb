@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Guest User Sees Recipient Details" do
   scenario "guest clicks on recipient and sees their information" do
     # As a guest user,
-    organization = create(:organization) do |organization|
+    organization = create(:organization, status: 1) do |organization|
       organization.recipients.create(attributes_for(:recipient))
     end
     organization.recipients.create(attributes_for(:recipient,
@@ -13,7 +13,6 @@ RSpec.feature "Guest User Sees Recipient Details" do
                                                   country: "USA"))
     # When I visit /organizationname,
     visit root_path
-    # save_and_open_page
     click_link organization.name
     expect(current_path).to eq "/#{organization.slug}"
     # I should see the organization name and description

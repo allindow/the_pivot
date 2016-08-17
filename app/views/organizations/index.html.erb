@@ -6,7 +6,7 @@
 <em><h1 class="page-title">Lending Hands</h1></em>
 <em><h2 class="page-subtitle">Our Mission Statement</h2></em>
 <em><h3>Lending Hands is a microlending service that believes in creating opportunities for individuals around the world.</em>
-<% if current_admin? %>
+<% if current_platform_admin? %>
   <h4><%= link_to "Manage Recipients", admin_recipients_path %></h4>
 <% end %>
 </br>
@@ -20,7 +20,6 @@
 <h1 class="page-organization-title">Organizations</h1>
 <% @organizations.each do |organization| %>
   <div class="container col-md-4 home-recipient-wrapper">
-    <%= organization.name %>
     <%= render partial: "shared/organizations_img", locals: { organization: organization } %>
     <%= render partial: "shared/organizations_details", locals: { organization: organization } %>
   </div>
