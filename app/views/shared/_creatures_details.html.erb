@@ -1,6 +1,0 @@
-<em><%= link_to creature.name, creature_path(creature), class: "home-creature-name" %></em></p>    
-<% if creature.retired %>
-  <p>This creature can no longer be sponsored!</p>
-<% else %>
-  <%= button_to "Sponsor me", carts_path({creature_id: creature.id}), class: "btn btn-creature" %>
-<% end %>

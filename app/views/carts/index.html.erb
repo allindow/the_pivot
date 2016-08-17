@@ -14,18 +14,18 @@
         <td>Subtotal</td>
       </tr>
     </thead>
-    <% @creatures.each do |creature| %>
+    <% @recipients.each do |recipient| %>
     <tr>
-      <td class="col-md-2"><%= image_tag("#{creature.name}.png", width: 100) %></br>
-        <%= creature.name %></br>
-        <%= link_to "Remove From Cart", cart_path(creature_id: creature.id), method: :delete, class: "remove-cart" %>
+      <td class="col-md-2"><%= image_tag("#{recipient.name}.png", width: 100) %></br>
+        <%= recipient.name %></br>
+        <%= link_to "Remove From Cart", cart_path(recipient_id: recipient.id), method: :delete, class: "remove-cart" %>
       </td>
-      <td class="col-md-4"><%= creature.description %></td>
-      <td class="col-md-2"><%= @cart.count_of(creature.id) %>
-        <%= button_to "+", cart_path(add: creature.id), method: :put, class: "btn btn-success" %>
-        <%= button_to "-", cart_path(remove: creature.id), method: :put, class: "btn btn-danger"  %></td>
-        <td class="col-md-2"><%= number_to_currency(creature.price) %></td>
-      <td class="col-md-2"><%= number_to_currency(@cart.subtotal(creature.id)) %></td>
+      <td class="col-md-4"><%= recipient.description %></td>
+      <td class="col-md-2"><%= @cart.count_of(recipient.id) %>
+        <%= button_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-success" %>
+        <%= button_to "-", cart_path(remove: recipient.id), method: :put, class: "btn btn-danger"  %></td>
+        <td class="col-md-2"><%= number_to_currency(recipient.price) %></td>
+      <td class="col-md-2"><%= number_to_currency(@cart.subtotal(recipient.id)) %></td>
     </tr>
     <% end %>
     <tr>
@@ -47,7 +47,7 @@
 
 <div class="col-md-6 offset-md-3">
   <% if current_user %>
-    <%= button_to "Checkout", orders_path(contents: session[:cart]), method: :create, class: "btn-checkout" %>
+    <%= button_to "Checkout", fundings_path(contents: session[:cart]), method: :create, class: "btn-checkout" %>
   <% else %>
     <%= button_to "Login to Checkout", login_path, method: :get, class: "btn-checkout" %></br>
     <%= button_to "Register to Checkout", new_user_path, method: :get,  class: "btn-checkout" %>
