@@ -3,15 +3,16 @@
   Your browser does not support the audio element.
 </audio>
 
-<em><h1 class="page-title">Alicorn Adoption</h1></em>
-<em><h2 class="page-subtitle">All Recipients</h2></em>
+<em><h1 class="page-title">Lending Hands</h1></em>
+<em><h2 class="page-subtitle">Our Mission Statement</h2></em>
+<em><h3>Lending Hands is a microlending service that believes in creating opportunities for individuals around the world.</em>
 <% if current_admin? %>
   <h4><%= link_to "Manage Recipients", admin_recipients_path %></h4>
 <% end %>
 </br>
 
 <div class="search-bar">
-  <label>Search By Name</label>
+  <label>Search By Country</label>
   <%= text_field :recipient, :filter_name %>
 </div>
 </br>

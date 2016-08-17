@@ -17,14 +17,13 @@ RSpec.feature 'Guest user can view homepage' do
     visit root_path
     
     expect(page).to have_content("Lending Hand")
-    save_and_open_page
     expect(page).to have_css(:img) #this is for the logo
     expect(page).to have_content("Our Mission Statement")
+    expect(page).to_not have_content("My Account")
+    expect(page).to have_content("Search By Country") 
     expect(page).to have_content("Homes for Humanity") #need to write method for setting status as active or 0? 
     expect(page).to_not have_content("Inactive Organization") #in test I'll write the create methods for these organizations
-    expect(page).to_not have_content("My Account")
-    expect(page).to have_content("Sort by Country") 
-    response.body.should have_css("a.dropdown", :text => "Sort by Country")#not sure if this will work 
+    # response.body.should have_css("a.dropdown", :text => "Sort by Country")#not sure if this will work 
     expect(page).to have_content("My Cart: 0")
     expect(page).to have_content("Login")
     expect(page).to have_content("Register Organization")
