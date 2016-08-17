@@ -2,11 +2,11 @@ require 'faker'
 
 FactoryGirl.define do
 
-  factory :user do
-    username "MyString"
-    password "MyString"
-  end
-  
+  # factory :user do
+  #   username "MyString"
+  #   password "MyString"
+  # end
+
   factory :organization do
     name "Hope for Veterans"
     description "At Hope for Veterans, we strive to make the transition from military life to civilian life as smooth as possible. We help veterans from militaries across the world discover their passions and achieve their dreams by providing resources for them to receive funding for their new life ventures."
