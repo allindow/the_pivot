@@ -1,23 +1,23 @@
 $(document).ready(function () {
-  
-  var $orders = $('.order')
-  
-  $('#order_filter_status').on('change', function() {
+
+  var $fundings = $('.funding')
+
+  $('#funding_filter_status').on('change', function() {
     var currentStatus = this.value;
-    $orders.each(function (index, order) {
-      $order = $(order);
-        if ($order.data('status') === currentStatus) {
-          $order.show();  
+    $fundings.each(function (index, funding) {
+      $funding = $(funding);
+        if ($funding.data('status') === currentStatus) {
+          $funding.show();
         } else {
-          $order.hide();
-      }  
+          $funding.hide();
+      }
     });
   });
-  
-  $("#admin-orders").click(function () {
-    $("#admin-orders-target").slideToggle(400)
+
+  $("#admin-fundings").click(function () {
+    $("#admin-fundings-target").slideToggle(400)
   });
-  
+
   $("#admin-account").click( function () {
     $("#admin-account-target").slideToggle(400)
   });
