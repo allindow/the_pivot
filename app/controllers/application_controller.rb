@@ -34,4 +34,8 @@ class ApplicationController < ActionController::Base
     current_user.fundings.last
   end
 
+  def countries
+    Country.all
+  end
+
 end
