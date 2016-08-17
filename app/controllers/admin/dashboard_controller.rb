@@ -36,6 +36,6 @@ class Admin::DashboardController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:password, :username, :email)
+    params.require(:user).permit(:password, :username)
   end
 end

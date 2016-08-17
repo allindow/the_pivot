@@ -3,7 +3,7 @@
 
 		<div class="navbar-header">
       <h4 class="home-link">
-      <%= link_to "Alicorn Adoption", recipients_path %></h4>
+      <%= link_to "Lending Hands", recipients_path %></h4>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
@@ -13,7 +13,7 @@
             <li class="sidebar-list" role="presentation"><%= link_to organization.name.capitalize, "/#{organization.name}" %></li>
           <% end %>
 
-        <% if current_admin? %>
+        <% if current_platform_admin? %>
           <li><%= link_to "Admin Account", admin_dashboard_index_path %></li>
         <% elsif current_user %>
           <li><%= link_to "My Account", dashboard_path %></li>
