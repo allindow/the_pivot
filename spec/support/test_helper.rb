@@ -20,7 +20,6 @@
 #     admin: true
 #   )
 #
->>>>>>> develop
 #   visit root_path
 #   click_on "Login"
 #   fill_in "session_username", with: "admin"
