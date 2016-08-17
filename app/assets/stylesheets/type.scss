@@ -1,21 +1,21 @@
 @import 'variables';
 
-// .type-title {
-//   color: $type-color;
+// .organization-title {
+//   color: $organization-color;
 // }
 
-.btn-type-creature {
-  background-color: $type-color;
+.btn-organization-creature {
+  background-color: $organization-color;
   border: 1px solid $grey-color;
-  color: $type-text-color;
+  color: $organization-text-color;
 }
 
-.btn-type-creature:hover {
+.btn-organization-creature:hover {
   background-color: $btn-color;
   border: 1px solid $btn-color;
   color: $btn-hover;
 }
 
-.type-creature-name {
-  color: $type-color;
+.organization-creature-name {
+  color: $organization-color;
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Funding < ActiveRecord::Base
   has_many :recipient_fundings
   has_many :recipients, through: :recipient_fundings
@@ -9,8 +10,8 @@ class Funding < ActiveRecord::Base
     funding_items.each do |item|
       username = Recipient.find(item.recipient_id).username
       amount_received = Recipient.find(item.recipient_id).amount_received
-      # qty = item.quantity
-      # funding_details[name] = [price, qty] unless qty == 0
+      qty = item.quantity
+      funding_details[name] = [price, qty] unless qty == 0
     end
     funding_details
   end

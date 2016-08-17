@@ -1,4 +1,4 @@
-class CreaturesOrder < ActiveRecord::Base
-  belongs_to :creature
+class RecipientFunding < ActiveRecord::Base
+  belongs_to :recipient
   belongs_to :funding
 end

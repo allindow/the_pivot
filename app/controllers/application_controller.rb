@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :set_cart
-  helper_method :creature_types,
+  helper_method :creature_organizations,
                 :creature,
                 :current_user,
                 :current_admin?,
@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     @cart = Cart.new(session[:cart])
   end
 
-  def creature_types
-    Type.all
+  def creature_organizations
+    Organization.all
   end
 
   def current_user
