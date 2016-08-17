@@ -1,5 +1,10 @@
 <h1 class="page-organization-title"><%= @organization.name if @organization.status == 1 %> Organizations</h1>
 <% @organization.each do |organization| %>
+
+<h1 class="page-organization-title"><%= @organization.name %></h1>
+<h1 class="page-organization-title"><%= @organization.description %></h1>
+<h1 class="page-organization-title">Recipients</h1>
+<% @recipients.each do |recipient| %>
 <div class="container col-md-4 home-recipient-wrapper">
     <%= render partial: "shared/organizations_img", locals: { organization: organization } %>
     <%= render partial: "shared/organizations_details", locals: { organization: organization } %>

@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160817193605) do
     t.integer  "status",      default: 0
     t.text     "description"
     t.string   "image_path"
+    t.string   "slug"
   end
 
   create_table "recipient_fundings", id: false, force: :cascade do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160817193605) do
     t.string   "image_path"
     t.string   "country"
     t.integer  "organization_id"
+    t.string   "slug"
   end
 
   add_index "recipients", ["organization_id"], name: "index_recipients_on_organization_id", using: :btree

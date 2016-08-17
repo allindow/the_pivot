@@ -28,6 +28,8 @@ class OrganizationsController < ApplicationController
   
   def organization_params
     params.require(:organization).permit(:name, :description, :image_path)
+    @organization = Organization.find_by(slug: params[:slug])
+    @recipients = @organization.recipients
   end
 end
 

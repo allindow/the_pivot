@@ -11,12 +11,10 @@
 			<ul class="nav navbar-nav">
         <li><%= link_to "All Recipients", "/" %></li>
           <% recipient_organizations.each do |organization| %>
-                <% if organization.status == 1 %>
-                  <li class="sidebar-list" role="presentation"><%= link_to organization.name.capitalize, "/#{organization.name}" %></li>
-                <% end %>
+            <li class="sidebar-list" role="presentation"><%= link_to organization.name, "/#{organization.slug}" %></li>
           <% end %>
 
-        <% if current_admin? %>
+        <% if current_platform_admin? %>
           <li><%= link_to "Admin Account", admin_dashboard_index_path %></li>
         <% elsif current_user %>
           <li><%= link_to "My Account", dashboard_path %></li>

@@ -29,6 +29,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'turbolinks'
 gem 'faker'
 gem 'stripe'
+gem 'email_validator', require: 'email_validator/strict'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -45,6 +46,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'awesome_print'
+  gem 'shoulda-matchers'
 end
 
 group :development do

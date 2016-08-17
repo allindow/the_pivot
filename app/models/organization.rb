@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+  before_validation :generate_slug
   has_many :recipients
   validates :name, presence: true, uniqueness: true
   enum status: %w(pending, active, inactive, denied)
@@ -18,4 +19,9 @@ class Organization < ActiveRecord::Base
   def self.active_only
     where(status: 1)
   end
+
+  private
+    def generate_slug
+      self.slug = name.parameterize
+    end
 end
