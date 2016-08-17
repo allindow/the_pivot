@@ -13,21 +13,21 @@ require 'rails_helper'
 
 RSpec.feature 'Guest user can view homepage' do
   scenario 'they can see the logo and page contents' do
+    active_organization = Organization.create!(name: "Homes for Humanity", status: 1)
+    inactive_organization = Organization.create!(name: "Diseases for Humanity", status: 2)
+    pending_organization = Organization.create!(name: "Drones for Humanity", status: 0)
     
     visit root_path
     
-    expect(page).to have_content("Lending Hand")
-    expect(page).to have_css(:img) #this is for the logo
+    expect(page).to have_content("Lending Hands")
+    expect(page).to have_css(:img) 
     expect(page).to have_content("Our Mission Statement")
     expect(page).to_not have_content("My Account")
-    expect(page).to have_content("Search By Country") 
-    expect(page).to have_content("Homes for Humanity") #need to write method for setting status as active or 0? 
-    expect(page).to_not have_content("Inactive Organization") #in test I'll write the create methods for these organizations
-    # response.body.should have_css("a.dropdown", :text => "Sort by Country")#not sure if this will work 
-    expect(page).to have_content("My Cart: 0")
+    expect(page).to have_content("Homes for Humanity") 
+    expect(page).to_not have_content("Drones for Humanity") 
+    expect(page).to_not have_content("Diseases for Humanity") 
+    expect(page).to have_content("Cart: 0")
     expect(page).to have_content("Login")
     expect(page).to have_content("Register Organization")
-    # find('a.dropdown-toggle').click 
-    # click_on 'Manage Users'
   end
 end

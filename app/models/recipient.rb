@@ -1,6 +1,5 @@
 class Recipient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
-  validates :price, presence: true
   belongs_to :organization
   # validates :organization, presence: true
   has_many :recipient_fundings

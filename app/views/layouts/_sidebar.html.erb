@@ -4,14 +4,16 @@
 		<div class="navbar-header">
       <%= image_tag("logo.png", alt: "Lending Hand logo with two hands holding a heart-shaped world") %>
       <h4 class="home-link">
-      <%= link_to "Lending Hand", recipients_path %></h4>
+      <%= link_to "Lending Hands", recipients_path %></h4>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
         <li><%= link_to "All Recipients", "/" %></li>
           <% recipient_organizations.each do |organization| %>
-            <li class="sidebar-list" role="presentation"><%= link_to organization.name.capitalize, "/#{organization.name}" %></li>
+                <% if organization.status == 1 %>
+                  <li class="sidebar-list" role="presentation"><%= link_to organization.name.capitalize, "/#{organization.name}" %></li>
+                <% end %>
           <% end %>
 
         <% if current_admin? %>
