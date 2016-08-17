@@ -1,0 +1,22 @@
+@import 'variables';
+
+// .organization-title {
+//   color: $organization-color;
+// }
+
+.btn-organization-recipient {
+  background-color: $organization-color;
+  border: 1px solid $grey-color;
+  color: $organization-text-color;
+}
+
+
+.btn-organization-recipient:hover {
+  background-color: $btn-color;
+  border: 1px solid $btn-color;
+  color: $btn-hover;
+}
+
+.organization-recipient-name {
+  color: $organization-color;
+}
