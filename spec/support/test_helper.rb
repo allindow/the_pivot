@@ -26,13 +26,14 @@
 #   fill_in "session_password", with: "adminpw"
 #   click_button "Login"
 # end
-#
+
+# 
 # def user_login
 #   create_user
-#
+# 
 #   visit root_path
 #   click_link "Login"
-#
+# 
 #   fill_in "session_username", with: "Casey"
 #   fill_in "session_password", with: "password"
 #   click_button "Login"
@@ -59,35 +60,24 @@
 #   create_user
 #   create_user_2
 #
-#   user1_order1 = User.first.orders.create(status: "ordered")
-#   user1_order2 = User.first.orders.create(status: "paid")
-#   user1_order3 = User.first.orders.create(status: "completed")
-#   user2_order1 = User.last.orders.create(status: "paid")
-#   user2_order2 = User.last.orders.create(status: "canceled")
-#
-#   user1_order1.creatures_orders.create!(
-#     creature_id: Creature.first.id,
-#     quantity: 1
-#   )
-#
+#   
 #   user1_order2.creatures_orders.create!(
 #     creature_id: Creature.first.id,
 #     quantity: 1
-#   )
-#
+
 #   user1_order3.creatures_orders.create!(
 #     creature_id: Creature.first.id,
 #     quantity: 1
 #   )
-#
+
 #   user2_order1.creatures_orders.create!(
 #     creature_id: Creature.first.id,
 #     quantity: 1
 #   )
-#
+#     
 #   user2_order2.creatures_orders.create!(
 #     creature_id: Creature.first.id,
 #     quantity: 1
-#   )
+#   )    
 # end
-#
+# 

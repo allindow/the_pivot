@@ -1,0 +1,6 @@
+<em><%= link_to organization.name, organization_path(organization), class: "home-organization-name" %></em></p>    
+<% if organization.status == 2 %>
+  <p>This organization is no longer active.</p>
+<% else %>
+  <%= button_to "Learn More", organization_path(organization), class: "btn btn-recipient" %>
+<% end %>
