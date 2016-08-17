@@ -1,11 +1,10 @@
 require 'faker'
 
-FactoryGirl.define do
-  factory :user do
-    username "MyString"
-    password "MyString"
-    email "MyString"
-  end
+# FactoryGirl.define do
+#   factory :user do
+#     username "MyString"
+#     password "MyString"
+#   end
   # factory :order do
   #
   # end
@@ -25,4 +24,4 @@ FactoryGirl.define do
   #   name type_names.sample
   # end
 
-end
+# end

@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root to: "recipients#index"
 
   resources :recipients, only: [:index, :show]
-  resources :organizations, only: [:show]  
+  resources :organizations, only: [:show, :new]  
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]
   resources :fundings, only: [:index, :create, :show, :new, :create]
-  
+
   namespace :funding do
     resources :charges, only: [:new, :create]
   end
