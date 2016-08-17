@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
 
   def show
-    @organization = Organization.find_by(name: params[:name])
-    @creatures = @organization.creatures
+    @organization = Organization.find_by(slug: params[:slug])
+    @recipients = @organization.recipients
   end
 end

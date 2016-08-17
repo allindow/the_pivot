@@ -5,7 +5,7 @@
 
 <em><h1 class="page-title">Alicorn Adoption</h1></em>
 <em><h2 class="page-subtitle">All Recipients</h2></em>
-<% if current_admin? %>
+<% if current_platform_admin? %>
   <h4><%= link_to "Manage Recipients", admin_recipients_path %></h4>
 <% end %>
 </br>
@@ -23,4 +23,3 @@
     </div>
   </div>
 <% end %>
-

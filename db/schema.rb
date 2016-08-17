@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816231946) do
+ActiveRecord::Schema.define(version: 20160817173229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160816231946) do
     t.datetime "updated_at",              null: false
     t.integer  "status",      default: 0
     t.text     "description"
+    t.string   "slug"
   end
 
   create_table "recipient_fundings", id: false, force: :cascade do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160816231946) do
     t.string   "image_path"
     t.string   "country"
     t.integer  "organization_id"
+    t.string   "slug"
   end
 
   add_index "recipients", ["organization_id"], name: "index_recipients_on_organization_id", using: :btree
