@@ -1,6 +1,9 @@
 require 'faker'
 
 # FactoryGirl.define do
+  # factory :country do
+  #   name "MyString"
+  # end
 #   factory :user do
 #     username "MyString"
 #     password "MyString"

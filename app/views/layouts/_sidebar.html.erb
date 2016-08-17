@@ -10,9 +10,19 @@
 			<ul class="nav navbar-nav">
         <li><%= link_to "All Recipients", "/" %></li>
           <% recipient_organizations.each do |organization| %>
-            <li class="sidebar-list" role="presentation"><%= link_to organization.name.capitalize, "/#{organization.name}" %></li>
+            <li class="sidebar-list" role="presentation"><%= link_to organization.name, "/#{organization.name}" %></li>
           <% end %>
-
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Needs by Country
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="countries">
+            <% countries.each do |country| %>
+              <li><%= link_to country.name, country_needs_path(country_slug: country.slug) %></li>
+            <% end %>
+          </ul>
+        </div>
         <% if current_platform_admin? %>
           <li><%= link_to "Admin Account", admin_dashboard_index_path %></li>
         <% elsif current_user %>

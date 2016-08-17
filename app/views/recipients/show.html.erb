@@ -1,12 +1,7 @@
 <div class="thumbnail col-md-12">
 <div class="row">
-  <div class="recipient-show col-md-6">  
+  <div class="recipient-show col-md-6">
     <h2><%= @recipient.name %></h2>
-    <% if @recipient.retired %>
-      <p>This recipient can no longer be sponsored!</p>
-    <% else %>
-      <h4><%=button_to "Sponsor me for #{number_to_currency(@recipient.price)}!", carts_path(recipient_id: @recipient.id), class: "btn btn-recipient" %></h4>
-    <% end %>
     <p>
       Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og har i tillegg til å bestå gjennom fem århundrer også tålt spranget over til elektronisk typografi uten vesentlige endringer. Lorem Ipsum ble gjort allment kjent i 1960-årene ved lanseringen av Letraset-ark med avsnitt fra Lorem Ipsum, og senere med sideombrekkingsprogrammet Aldus PageMaker som tok i bruk nettopp Lorem Ipsum for dummytekst.
     </p>
@@ -20,4 +15,3 @@
   </div>
 </div>
 </div>
-
