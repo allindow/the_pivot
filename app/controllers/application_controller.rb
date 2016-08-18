@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize?
+    PermissionService.new(current_user).allow?(params[:controller], params[:action])
+  end
+
   def set_cart
     @cart = Cart.new(session[:cart])
   end

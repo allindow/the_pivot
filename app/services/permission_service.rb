@@ -33,15 +33,30 @@ attr_reader :user
       return true if controller == "fundings"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
+      return true if controller == "organizations/dashboard"
       return true if controller == "country/recipients"
       return true if controller == "admin/recipients"
-      return true if controller == "admin/dashboard"
     end
 
     def registered_user_permissions(controller)
+      return true if controller == "sessions"
+      return true if controller == "recipients" && action.in?(%w(index show))
+      return true if controller == "organizations" && action.in?(%w(index show))
+      return true if controller == "fundings"
+      return true if controller == "carts"
+      return true if controller == "organizations/recipients"
+      return true if controller == "organizations/dashboard"
+      return true if controller == "country/recipients"
+      return true if controller == "admin/recipients"
     end
 
     def guest_permissions(controller)
+      return true if controller == "sessions"
+      return true if controller == "recipients"
+      return true if controller == "organizations"
+      return true if controller == "carts"
+      return true if controller == "organizations/recipients"
+      return true if controller == "country/recipients"
     end
 
 end

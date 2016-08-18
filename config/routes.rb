@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   namespace :organizations, path: ':organization_slug' do
+    resources :dashboard, only: [:index]
     resources :recipients, param: :slug, only: [:show]
   end
 
