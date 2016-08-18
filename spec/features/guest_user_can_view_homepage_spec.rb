@@ -20,12 +20,11 @@ RSpec.feature 'Guest user can view homepage' do
     visit root_path
     expect(page).to have_content("Lending Hands")
     expect(page).to have_css(:img)
-    expect(page).to have_content("Our Mission Statement")
     expect(page).to_not have_content("My Account")
     expect(page).to have_content("Homes for Humanity")
     expect(page).to_not have_content("Drones for Humanity")
     expect(page).to_not have_content("Diseases for Humanity")
-    expect(page).to have_content("Cart: 0")
+    expect(page).to have_content("Cart: $0")
     expect(page).to have_content("Login")
     expect(page).to have_content("Register Organization")
   end
