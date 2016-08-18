@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "Guest User Sees Recipient Details" do
   scenario "guest clicks on recipient and sees their information" do
+
     organization = create(:organization, status: 1)
     organization.recipients << create(:recipient)
     organization.recipients << create(:recipient)
-    
+
     visit root_path
     click_link organization.name
     expect(current_path).to eq "/#{organization.slug}"
