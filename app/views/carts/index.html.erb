@@ -7,10 +7,10 @@
     <thead>
     <tbody>
       <tr>
-        <td>Creature</td>
+        <td>Recipient</td>
         <td>Description</td>
-        <td>Quantity</td>
-        <td>Price</td>
+        <td>Loan Amount</td>
+        <!-- <td>Price</td> -->
         <td>Subtotal</td>
       </tr>
     </thead>
@@ -24,18 +24,18 @@
       <td class="col-md-2"><%= @cart.count_of(recipient.id) %>
         <%= button_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-success" %>
         <%= button_to "-", cart_path(remove: recipient.id), method: :put, class: "btn btn-danger"  %></td>
-        <td class="col-md-2"><%= number_to_currency(recipient.price) %></td>
-      <td class="col-md-2"><%= number_to_currency(@cart.subtotal(recipient.id)) %></td>
+        <!-- <td class="col-md-2"><%#= number_to_currency(recipient.price) %></td> -->
+      <td class="col-md-2"><%#= number_to_currency(@cart.subtotal(recipient.id)) %></td>
     </tr>
     <% end %>
     <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
+      <!-- <td></td> -->
       <td>
       <% if @cart %>
-        Total: <%= number_to_currency(@cart.total_price) %>
+        Total: <%#= number_to_currency(@cart.total_price) %>
       <% else %>
         Total: $0.00
       <% end %>

@@ -5,9 +5,9 @@ class Cart
     @contents = contents ||= {}
   end
 
-  def add_recipient(recipient_id)
+  def add_recipient(recipient_id, loan_amount)
     contents[recipient_id.to_s] ||= 0
-    contents[recipient_id.to_s] += 1
+    contents[recipient_id.to_s] += loan_amount.to_i
   end
 
   def count_of(recipient_id)
