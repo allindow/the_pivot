@@ -1,6 +1,8 @@
 <% @recipients.each do |recipient| %>
   <div class="container col-md-4 home-recipient-wrapper" data-name="<%= recipient.name %>">
-    <p align="right"><%= recipient.organization.name %></p>
+    <div class="organization-title-list">    
+      <p align="right"><%= recipient.organization.name %></p>
+    </div>
     <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
     <%= render partial: "shared/recipients_details", locals: { recipient: recipient } %>
   </div>
