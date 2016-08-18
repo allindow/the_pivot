@@ -6,7 +6,8 @@ class Seed
   def generate
     generate_organizations
     generate_countries
-    generate_recipients
+    generate_male_recipients
+    generate_female_recipients
   end
 
   def generate_organizations
@@ -33,10 +34,18 @@ class Seed
   end
 end
 
-  def generate_recipients
+  def generate_male_recipients
     Country.all.each do |country|
-      50.times do |n|
-        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://robohash.org/#{n}", organization: Organization.all.sample)
+      25.times do |n|
+        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/men/#{rand(0..99)}.jpg", organization: Organization.all.sample)
+      end
+    end
+  end
+  
+  def generate_female_recipients
+    Country.all.each do |country|
+      25.times do |n|
+        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg", organization: Organization.all.sample)
       end
     end
   end
