@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20160817210827) do
     t.datetime "updated_at",              null: false
     t.integer  "status",      default: 0
     t.text     "description"
-    t.string   "slug"
     t.string   "image_path"
+    t.string   "slug"
   end
 
   create_table "recipient_fundings", id: false, force: :cascade do |t|
