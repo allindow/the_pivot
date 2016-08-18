@@ -2,11 +2,13 @@ class Seed
   def self.start
     new.generate
   end
-  
+
   def generate
     generate_organizations
+    generate_countries
+    generate_recipients
   end
-  
+
   def generate_organizations
     org_1 = Organization.create(name: "Women International", description: "An organization aimed toward helping women around the world in all endeavors. Whether it's education, career improvement, or starting a business, Women International is here to help, and you can help too!", status: 1, image_path: "../assets/women.jpg")
     org_2 = Organization.create(name: "It Takes A Village", description: "Raising a child is difficult enough, but doing it alone is almost impossible. It Takes A Village offers help to single parents around the world, giving them the resources they need in order to give their children a better, happier life.", status: 1, image_path: "../assets/village.jpg")
@@ -30,5 +32,26 @@ class Seed
     org_20 = Organization.create(name: "Childcare Everywhere", description: "We believe childcare should be affordable for everyone. Help provide funding for a childcare facility that so families can continue to work.", status: 1, image_path: "../assets/childcare.jpg")
   end
 end
-  
+
+  def generate_recipients
+    Country.all.each do |country|
+      50.times do |n|
+        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://robohash.org/#{n}", organization: Organization.all.sample)
+      end
+    end
+  end
+
+  def generate_countries
+    Country.create(name:"Ghana")
+    Country.create(name:"Japan")
+    Country.create(name:"Brazil")
+    Country.create(name:"Italy")
+    Country.create(name:"Jamaica")
+    Country.create(name:"Australia")
+    Country.create(name:"Ireland")
+    Country.create(name:"Mexico")
+    Country.create(name:"India")
+    Country.create(name:"Kenya")
+  end
+
 Seed.start

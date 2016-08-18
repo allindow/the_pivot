@@ -15,15 +15,10 @@ RSpec.feature "Guest user can view recipients by country" do
 
     expect(current_path).to eq '/ghana/needs'
 
-    within("#recipients li:nth-child(1)") do
       expect(page).to have_content("Haysha")
       expect(page).to have_content("need a sewing machine")
-      expect(page).to have_content("With: Hope for Veterans")
-    end
-    within("#recipients li:nth-child(2)") do
+      expect(page).to have_content("Hope for Veterans")
       expect(page).to have_content("Kaya")
       expect(page).to have_content("want a restaurant")
-      expect(page).to have_content("With: Hope for Veterans")
-    end
   end
 end
