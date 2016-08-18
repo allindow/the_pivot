@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -30,6 +30,7 @@ gem 'turbolinks'
 gem 'faker'
 gem 'stripe'
 gem 'email_validator', require: 'email_validator/strict'
+gem 'rails_12factor'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
