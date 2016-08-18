@@ -9,9 +9,8 @@
 
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-        <li><%= link_to "All Recipients", "/" %></li>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <button class="btn btn-default dropdown-toggle" type="button" id="countries" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Needs by Country
             <span class="caret"></span>
           </button>
@@ -21,6 +20,7 @@
             <% end %>
           </ul>
         </div>
+        <li><%= link_to "All Recipients", "/recipients" %></li>
         <% if current_platform_admin? %>
           <li><%= link_to "Admin Account", admin_dashboard_index_path %></li>
         <% elsif current_user %>
