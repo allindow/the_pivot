@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   root "organizations#index"
 
   resources :recipients, only: [:index, :show]
-  resources :organizations, only: [:new, :create, :index]  
+  resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]
   resources :fundings, only: [:index, :create, :show, :new, :create]
+
+  namespace :country, path: ":country_slug", as: :country do
+    get '/needs', to: "recipients#index"
+  end
 
   namespace :funding do
     resources :charges, only: [:new, :create]
