@@ -6,7 +6,6 @@
   border-radius: 3px;
   background-color: $pink-color;
   color: $btn-text-color;
-  margin-left: 880px;
 }
 
 .btn.btn-success,
@@ -22,9 +21,14 @@
   color: $btn-text-color;
 }
 
-.btn.btn-danger, 
+.btn.btn-danger,
 .btn.btn-success {
   margin-top: 5px;
   padding-bottom: 0;
   padding-top: 0;
+}
+
+#cart-table {
+  border: 1px;
+  color: #000;
 }
