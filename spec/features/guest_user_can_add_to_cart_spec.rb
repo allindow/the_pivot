@@ -9,11 +9,11 @@ RSpec.feature "GuestUserCanAddToCart", type: :feature do
 
   visit recipients_path
   expect(page).to have_content("Bob")
-  expect(page).to have_content("Cart: 0")
+  expect(page).to have_content("Cart: $0")
 
   select("20")
   click_button("Lend")
-  expect(page).to have_content("Cart: 20")
+  expect(page).to have_content("Cart: $20")
   expect(page).to have_content("You're helping Bob")
   end
 end
