@@ -1,0 +1,54 @@
+@import "variables";
+
+//*** HOMEPAGE GRID ***/
+
+.main {
+  margin-top: 60px;
+  padding-left: 140px;
+}
+
+.home-recipient-wrapper {
+  padding-right: 20px;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  margin-top: 30px;
+  max-height: 400px;
+}
+
+.img-index {
+  height: 250px;
+  width: 300px;
+  border-bottom: 1px solid $grey-color;
+  max-width: 100%;
+}
+
+.home-recipient-img {
+  height: 250px;
+  width: 320px;
+}
+
+.home-recipient-name {
+  color: $primary-color;
+}
+
+.btn-recipient {
+  background-color: transparent;
+  border: 1px solid $btn-color;
+  color: $btn-color;
+}
+
+.btn-recipient:hover {
+  background-color: $btn-color;
+  border: 1px solid $btn-color;
+  color: $btn-hover;
+}
+
+.form, .flash {
+  margin-top: 5%;
+}
+
+//*** SHOW PAGE ***/
+
+.recipient-show {
+  padding-left: 40px;
+}

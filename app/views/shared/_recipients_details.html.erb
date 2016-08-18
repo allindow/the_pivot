@@ -1,0 +1,9 @@
+<div class="home-recipient-wrapper">
+  <em><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug), class: "home-recipient-name" %></em></p>
+  <em><%= recipient.description %></em></p>
+  <%= form_tag("/carts", method: "post") do %>
+    <%= hidden_field_tag :recipient_id, recipient.id %>
+    <%= select_tag(:loan_amount, options_for_select([20, 30, 40, 50, 60, 70, 80, 90, 100])) %>
+    <%= submit_tag "Lend", class: "btn btn-recipient" %>
+  <% end %>
+</div>

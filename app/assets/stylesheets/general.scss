@@ -20,13 +20,22 @@ h1 {
   text-align: center;
 }
 
-.page-type-title {
-  margin-bottom: 80px;
+.page-organization-title {
+  margin-top: 30px;
   text-align: center;
 }
 
+.organization-title-list {
+  color: $organization-title-color;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.mission-text{
+  text-align: center;
+  color: $btn-color;
+}
 .page-subtitle {
-  margin-bottom: 80px;
   text-align: center;
 }
 

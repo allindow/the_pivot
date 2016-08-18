@@ -1,29 +1,39 @@
 require 'faker'
 
+
 FactoryGirl.define do
-  factory :user do
-    username "MyString"
-    password "MyString"
-    email "MyString"
-    admin false
-  end
-  factory :order do
-    
-  end
-  
-  creature_names = ["Unicorn", "Centaur", "Alicorn"]
-  creature_prices = [200.00, 300.00, 100.00]
-  creature_description = Faker::Hipster.paragraphs(1)
-  type_names = ["Terrestrial", "Aquatic", "Aerial"]
 
-  factory :creature do
-    name creature_names.sample
-    price creature_prices.sample
-    description creature_description
+  # factory :user do
+  #   username "MyString"
+  #   password "MyString"
+  # end
+
+  factory :organization do
+    name
+    description "At Hope for Veterans, we strive to make the transition from military life to civilian life as smooth as possible. We help veterans from militaries across the world discover their passions and achieve their dreams by providing resources for them to receive funding for their new life ventures."
   end
 
-  factory :type do
-    name type_names.sample
+  factory :country do
+    name
   end
 
+  factory :recipient do
+    name
+    amount_received 25.00
+    description
+    organization
+    country
+  end
+
+  sequence :description do |n|
+    "Description_#{n}"
+  end
+
+  sequence :organization do |n|
+    "Organization_#{n}"
+  end
+
+  sequence :name do |n|
+    "Name_#{n}"
+  end
 end

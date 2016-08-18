@@ -1,30 +1,39 @@
 Rails.application.routes.draw do
 
-  root to: "creatures#index"
+  root "organizations#index"
 
-  resources :creatures, only: [:index, :show]
-  resources :types, only: [:show]  
+  resources :recipients, only: [:index, :show]
+  resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]
-  resources :orders, only: [:index, :create, :show, :new, :create]
-  
-  namespace :order do 
+  resources :fundings, only: [:index, :create, :show, :new, :create]
+
+  namespace :country, path: ":country_slug", as: :country do
+    get '/needs', to: "recipients#index"
+  end
+
+  namespace :funding do
     resources :charges, only: [:new, :create]
   end
-  
+
   namespace :admin do
     resources :dashboard, only: [:index, :edit, :update, :new, :create]
-    resources :creatures, only: [:index, :edit, :update]
+    resources :recipients, only: [:index, :edit, :update]
   end
-  
+
+  namespace :organizations, path: ':organization_slug' do
+    resources :recipients, param: :slug, only: [:show]
+  end
+
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"
   delete "/logout", to: "sessions#destroy"
   get '/dashboard', to: "users#show"
-  
+
   put "/cart", to: "carts#update"
   delete "/cart", to: "carts#destroy"
   get "/cart", to: "carts#index"
-  get "/:name", to: "types#show"
+  get "/:slug", to: "organizations#show"
+  get "/:organization_slug/:slug", to: "organizations/recipients#show"
   # get "*path" => redirect('/')
 end

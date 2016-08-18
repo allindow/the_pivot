@@ -1,14 +1,14 @@
-class Admin::DashboardController < Admin::BaseController 
-  
+class Admin::DashboardController < Admin::BaseController
+
   def index
-    @orders = Order.all
-    @status = @orders.pluck(:status).uniq
+    @fundings = Funding.all
+    @status = @fundings.pluck(:status).uniq
   end
-  
+
   def edit
     @user = current_user
   end
-  
+
   def update
     current_user.update_attributes(user_params)
     if current_user.save
@@ -18,10 +18,10 @@ class Admin::DashboardController < Admin::BaseController
       flash[:notice] = "Invalid"
     end
   end
-  
+
   def new
   end
-  
+
   def create
     user = User.find_by(username: params[:user][:username])
     if user
@@ -32,10 +32,10 @@ class Admin::DashboardController < Admin::BaseController
     end
     redirect_to admin_dashboard_index_path
   end
-  
+
   private
-  
+
   def user_params
-    params.require(:user).permit(:password, :username, :email)
+    params.require(:user).permit(:password, :username)
   end
 end

@@ -48,6 +48,10 @@
   margin-left: 5px;
 }
 
+#cartCounter {
+  text-align: right;
+}
+
 //*** SIDEBAR NAV ***/
 
 nav.sidebar.navbar {
@@ -74,7 +78,7 @@ nav.sidebar, .main {
   width: calc(100% - 40px);
 }
 
-nav.sidebar .navbar-brand, 
+nav.sidebar .navbar-brand,
 nav.sidebar .navbar-header {
   margin-left: 0;
   text-align: center;
@@ -93,15 +97,16 @@ nav.sidebar .navbar-nav > li {
   border-bottom: 0.5px $secondary-color solid;
 }
 
-nav.sidebar .navbar-collapse, 
+nav.sidebar .navbar-collapse,
 nav.sidebar .container-fluid {
   padding: 0;
 }
 
 nav.sidebar {
-  background-image: url("sidebar.jpg");
+  // background-image: url("sidebar.jpg");
   color: $sidebar-text-color;
-  float: left;
+  // float: left;
+  text-align: center;
   height: 100%;
   margin-bottom: 0;
   position: fixed;
@@ -122,7 +127,7 @@ nav.sidebar:hover {
 
 .main {
   margin-left: 200px;
-  width: calc(100% - 200px); 
+  width: calc(100% - 200px);
 }
 
 nav.sidebar {
@@ -137,4 +142,23 @@ section {
 
 .navbar-inverse .navbar-nav > li > a {
   color: $secondary-color;
+}
+
+.btn-default {
+  width: 160px;
+  color: $secondary-color;
+  background: none;
+  border: none;
+}
+.btn-default:hover {
+  width: 160px;
+  color: white;
+  background: none;
+  border: none;
+}
+.btn-default.active {
+  width: 160px;
+  color: $secondary-color;
+  background: none;
+  border: none;
 }

@@ -11,34 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803230603) do
+ActiveRecord::Schema.define(version: 20160817210827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "creatures", force: :cascade do |t|
+  create_table "countries", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "price"
-    t.integer  "type_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.text     "description"
-    t.boolean  "retired",     default: false
-    t.string   "image_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
-  add_index "creatures", ["type_id"], name: "index_creatures_on_type_id", using: :btree
-
-  create_table "creatures_orders", id: false, force: :cascade do |t|
-    t.integer "creature_id", null: false
-    t.integer "order_id",    null: false
-    t.integer "quantity"
-  end
-
-  add_index "creatures_orders", ["creature_id", "order_id"], name: "index_creatures_orders_on_creature_id_and_order_id", using: :btree
-  add_index "creatures_orders", ["order_id", "creature_id"], name: "index_creatures_orders_on_order_id_and_creature_id", using: :btree
-
-  create_table "orders", force: :cascade do |t|
+  create_table "fundings", force: :cascade do |t|
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.decimal  "total_price"
@@ -46,23 +31,57 @@ ActiveRecord::Schema.define(version: 20160803230603) do
     t.string   "status",      default: "awaiting payment"
   end
 
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "fundings", ["user_id"], name: "index_fundings_on_user_id", using: :btree
 
-  create_table "types", force: :cascade do |t|
+  create_table "organizations", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "status",      default: 0
+    t.text     "description"
+    t.string   "image_path"
+    t.string   "slug"
   end
+
+  create_table "recipient_fundings", id: false, force: :cascade do |t|
+    t.decimal "microloan_amount"
+    t.integer "recipient_id"
+    t.integer "funding_id"
+  end
+
+  add_index "recipient_fundings", ["funding_id"], name: "index_recipient_fundings_on_funding_id", using: :btree
+  add_index "recipient_fundings", ["recipient_id"], name: "index_recipient_fundings_on_recipient_id", using: :btree
+
+  create_table "recipients", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "amount_received"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.text     "description"
+    t.string   "image_path"
+    t.integer  "organization_id"
+    t.string   "slug"
+    t.integer  "country_id"
+  end
+
+  add_index "recipients", ["country_id"], name: "index_recipients_on_country_id", using: :btree
+  add_index "recipients", ["organization_id"], name: "index_recipients_on_organization_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.string   "email"
-    t.boolean  "admin",           default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "role",            default: 0
+    t.integer  "organization_id"
   end
 
-  add_foreign_key "creatures", "types"
-  add_foreign_key "orders", "users"
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
+
+  add_foreign_key "fundings", "users"
+  add_foreign_key "recipient_fundings", "fundings"
+  add_foreign_key "recipient_fundings", "recipients"
+  add_foreign_key "recipients", "countries"
+  add_foreign_key "recipients", "organizations"
+  add_foreign_key "users", "organizations"
 end

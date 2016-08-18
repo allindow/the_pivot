@@ -14,7 +14,9 @@
 
 # Ignore SimpleCov
 coverage
-byebug_history
+.byebug_history
 
 # Ignore secrets.yml
 config/secrets.yml
+
+/spec_archive/*
