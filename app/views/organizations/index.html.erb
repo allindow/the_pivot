@@ -3,14 +3,12 @@
   Your browser does not support the audio element.
 </audio>
 
-<em><h1 class="page-title">Lending Hands</h1></em>
-<em><h2 class="page-subtitle">Our Mission Statement</h2></em>
-<em><h3>Lending Hands is a microlending service that believes in creating opportunities for individuals around the world.</em>
+<strong><h1 class="page-title">Lending Hands</h1></strong>
+<em><h4 class="mission-text">Lending Hands is a microlending service that believes in creating opportunities for individuals around the world.</em></h4>
 <% if current_platform_admin? %>
   <h4><%= link_to "Manage Recipients", admin_recipients_path %></h4>
 <% end %>
 
-<h1 class="page-organization-title">Organizations</h1>
 <% @organizations.each do |organization| %>
   <div class="container col-md-4 home-recipient-wrapper">
     <%= render partial: "shared/organizations_img", locals: { organization: organization } %>
