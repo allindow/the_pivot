@@ -9,13 +9,6 @@
 <% if current_platform_admin? %>
   <h4><%= link_to "Manage Recipients", admin_recipients_path %></h4>
 <% end %>
-</br>
-
-<div class="search-bar">
-  <label>Search By Country</label>
-  <%= text_field :recipient, :filter_name %>
-</div>
-</br>
 
 <h1 class="page-organization-title">Organizations</h1>
 <% @organizations.each do |organization| %>
