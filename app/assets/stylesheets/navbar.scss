@@ -48,6 +48,10 @@
   margin-left: 5px;
 }
 
+#cartCounter {
+  text-align: right;
+}
+
 //*** SIDEBAR NAV ***/
 
 nav.sidebar.navbar {
@@ -101,7 +105,8 @@ nav.sidebar .container-fluid {
 nav.sidebar {
   // background-image: url("sidebar.jpg");
   color: $sidebar-text-color;
-  float: left;
+  // float: left;
+  text-align: center;
   height: 100%;
   margin-bottom: 0;
   position: fixed;
