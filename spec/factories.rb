@@ -10,10 +10,10 @@ FactoryGirl.define do
     name "MyString"
   end
 
-  # factory :user do
-  #   username "MyString"
-  #   password "MyString"
-  # end
+  factory :user do
+    username "mystring@mystring.com"
+    password "MyString"
+  end
 
   factory :organization do
     name

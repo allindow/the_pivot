@@ -17,10 +17,7 @@ RSpec.feature "Registered user can checkout" do
     role = Role.create!(name: "registered_user")
     user.roles << role
 
-    visit '/login'
-    fill_in 'Username', with: 'angela@example.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     organization = Organization.create(name:"Homes for Humanity", description: "We build homes", status: 1)
     country = Country.create(name:"Ghana")
