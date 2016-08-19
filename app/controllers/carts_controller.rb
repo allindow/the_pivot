@@ -6,7 +6,7 @@ class CartsController < ApplicationController
     @cart.add_recipient(@recipient.id, params[:loan_amount])
     session[:cart] = @cart.contents
     flash[:notice] = "You're helping #{@recipient.name}."
-    redirect_to root_path
+    redirect_to request.referrer
   end
 
   def index
