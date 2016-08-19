@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of :username }
   it { should have_many :fundings }
   it { should have_secure_password }
-  it { should have_db_column :role }
   it { should belong_to :organization }
 
   it "should validate the format of an email address" do
