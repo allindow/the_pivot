@@ -2,7 +2,7 @@ class FundingsController < ApplicationController
   helper_method :fundings
 
   def index
-    fundings
+    @fundings = current_user.fundings
   end
 
   def create

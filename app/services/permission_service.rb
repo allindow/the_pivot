@@ -48,6 +48,7 @@ attr_reader :user
       return true if controller == "organizations/dashboard"
       return true if controller == "country/recipients"
       return true if controller == "admin/recipients"
+      return true if controller == "users" && action.in?(%w(show))
     end
 
     def guest_permissions(controller, action)
