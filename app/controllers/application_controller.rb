@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
     current_user && current_user.roles.include?("platform_admin")
   end
 
+
+
   def find_recipient(name)
     Recipient.find_by(name: name)
   end

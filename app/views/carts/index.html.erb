@@ -47,7 +47,7 @@
         <td></td>
         <td></td>
         <td style="text-align: center">
-          <% if current_user %>
+          <% if registered_user? %>
             <%= button_to "Checkout", fundings_path(contents: session[:cart]), method: :create, class: "btn-checkout" %>
           <% else %>
             <%= button_to "Login to Checkout", login_path, method: :get, class: "btn-checkout" %></br>

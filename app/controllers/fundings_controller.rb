@@ -31,7 +31,7 @@ class FundingsController < ApplicationController
   def create_funding
     @funding = current_user.fundings.create
     params[:contents].each do |key, value|
-      @funding.creatures_fundings.create(creature_id: key, quantity: value)
+      @funding.recipient_fundings.create(recipient_id: key, microloan_amount: value)
     end
     session[:cart].clear
     @funding.assign_total_price
