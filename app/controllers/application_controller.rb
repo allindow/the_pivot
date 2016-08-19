@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
 
   def authorize!
     unless authorize?
-      redirect_to root_url, flash[:warning] = "Couldn't find what you're looking for!"
+      redirect_to root_url
+      flash.now[:warning] = "Couldn't find what you're looking for!"
     end
   end
 
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_platform_admin?
-    current_user && current_user.role == 1
+    current_user && current_user.roles.include?("platform_admin")
   end
 
   def find_recipient(name)
