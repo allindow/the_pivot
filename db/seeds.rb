@@ -41,7 +41,7 @@ end
       end
     end
   end
-  
+
   def generate_female_recipients
     Country.all.each do |country|
       25.times do |n|
@@ -62,5 +62,9 @@ end
     Country.create(name:"India")
     Country.create(name:"Kenya")
   end
+
+  # user = User.create!(username: "angela@example.com", password: "password")
+  # role = Role.create!(name: "registered_user")
+  # user.roles << role
 
 Seed.start

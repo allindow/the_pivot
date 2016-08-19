@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.roles << Role.create(name: "registered_user")
       session[:user_id] = @user.id
       redirect_to dashboard_path(@user)
       flash.now[:sucess] = "You have successfully created an account!"
