@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   put "/cart", to: "carts#update"
   delete "/cart", to: "carts#destroy"
   get "/cart", to: "carts#index"
-  get "/:slug", to: "organizations#show"
+  get "/:slug", to: "organizations#show", as: 'organization'
   get "/:organization_slug/:slug", to: "organizations/recipients#show"
   # get "*path" => redirect('/')
 end

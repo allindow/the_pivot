@@ -4,13 +4,14 @@ class Funding < ActiveRecord::Base
   belongs_to :user
 
   def funding_details
-    funding_items = RecipientFundings.where(funding_id: self.id)
+    funding_recipients = RecipientFunding.where(funding_id: self.id)
     funding_details = {}
-    funding_items.each do |item|
-      username = Recipient.find(item.recipient_id).username
-      amount_received = Recipient.find(item.recipient_id).amount_received
-      qty = item.quantity
-      funding_details[name] = [price, qty] unless qty == 0
+    funding_recipients.each do |funding|
+      recipient = Recipient.find(funding.recipient_id)
+      update_amount_received(recipient, funding)
+      name = recipient.name
+      funding_amount = funding.microloan_amount.to_i
+      funding_details[name] = [funding_amount] unless funding_amount == 0
     end
     funding_details
   end
@@ -41,5 +42,10 @@ class Funding < ActiveRecord::Base
 
   def update_status(status)
     update_attributes(status: status.downcase)
+  end
+
+  def update_amount_received(recipient, funding)
+    new_amount = recipient.amount_received.to_i + funding.microloan_amount.to_i
+    recipient.update(amount_received: new_amount)
   end
 end

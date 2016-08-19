@@ -6,8 +6,7 @@ class Seed
   def generate
     generate_organizations
     generate_countries
-    generate_male_recipients
-    generate_female_recipients
+    generate_recipients
   end
 
   def generate_organizations
@@ -34,18 +33,25 @@ class Seed
   end
 end
 
-  def generate_male_recipients
-    Country.all.each do |country|
-      25.times do |n|
-        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/men/#{rand(0..99)}.jpg", organization: Organization.all.sample)
-      end
-    end
+  def gender
+    ["women", "men"].sample
   end
-  
-  def generate_female_recipients
+
+  def org_without_women
+    Organization.where('name != ?', "Women International").sample
+  end
+
+  def women_int
+    Organization.find_by(name: "Women International")
+  end
+
+  def generate_recipients
     Country.all.each do |country|
-      25.times do |n|
-        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg", organization: Organization.all.sample)
+      48.times do |n|
+        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/#{gender}/#{rand(0..99)}.jpg", organization: org_without_women)
+      end
+      2.times do |n|
+        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg", organization: women_int)
       end
     end
   end
@@ -62,5 +68,9 @@ end
     Country.create(name:"India")
     Country.create(name:"Kenya")
   end
+
+  # user = User.create!(username: "angela@example.com", password: "password")
+  # role = Role.create!(name: "registered_user")
+  # user.roles << role
 
 Seed.start
