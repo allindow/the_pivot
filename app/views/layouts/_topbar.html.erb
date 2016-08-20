@@ -1,4 +1,3 @@
-
 <nav class="top-nav navbar navbar-default navbar-fixed-top">
   <div class="row">
 
@@ -9,9 +8,10 @@
       <ul class="top-nav-list">
         <% if current_user %>
           <li><%= "Logged in as #{current_user.username}" %></li>
+          <li><%= link_to "Register Organization", new_organization_path %></li>
           <li id="cartCounter"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><%= link_to "Cart: $#{@cart.total}", cart_path %> <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span><%= link_to "Logout", logout_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to "Register |", new_user_path %> <%= link_to "Register Organization", new_organization_path %></li>
+          <li><%= link_to "Register", new_user_path %></li>
           <li id="cartCounter"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><%= link_to "Cart: $#{@cart.total}", cart_path %> <%= link_to "Login ", login_path %></li>
         <% end %>
       </ul>
