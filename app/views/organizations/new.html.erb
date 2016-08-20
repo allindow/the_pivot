@@ -1,25 +1,27 @@
 <body class="login">
   
 <div class="form-horizontal">
-  
+  <h3>We invite you to register your cause here. We will review your application and be in touch soon.</h3>
   <%= form_for(@organization) do |f| %>
     <div class="form-group">
-      <%= f.label :name, { :class => "col-sm-1 form-label" } %>
-      <div class="col-sm-3">
+      <%= f.label :name, { :class => "col-sm-4 form-label" } %>
+      <div class="col-sm-4">
         <%= f.text_field :name %>
       </div>
     </div>
     
     <div class="form-group">
-      <%= f.label :description, { :class => "col-sm-1 form-label" } %>
-      <div class="col-sm-3">
+      <%= f.label :description, { :class => "col-sm-4 form-label" } %>
+      <div class="col-sm-8">
         <%= f.text_field :description %>
       </div>
     </div>
     
-    <div class="col-sm-offset-1 col-sm-10">
-      <%= submit_tag ("Submit Organization Application") %>
-      <!-- <%#= f.submit btn, { class: "btn-login" } %> -->
+    <div class="col-sm-10">
+      <center>
+        <%= hidden_field_tag :organization_slug, f.object.slug %>
+        <%= f.submit "Submit Organization Application", { class: "btn-recipient" } %> 
+      </center>
     </div>
   <% end %>
 
