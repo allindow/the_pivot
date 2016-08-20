@@ -15,7 +15,7 @@ RSpec.feature "Registered user can view account" do
 
     expect(page).to have_content("Your Account")
     expect(page).to have_link("Personal Information")
-    expect(page).to have_link("My Orders")
+    expect(page).to have_link("My Fundings")
     expect(page).to have_content("Welcome angela@example.com!")
   end
 end

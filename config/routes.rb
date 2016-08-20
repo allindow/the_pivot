@@ -22,9 +22,11 @@ Rails.application.routes.draw do
   end
 
   namespace :organizations, path: ':organization_slug' do
-    resources :dashboard, only: [:index]
+    # resources :dashboard, only: [:index]
     resources :recipients, param: :slug, only: [:show]
   end
+  
+  get '/:organization_slug/dashboard', to: "organizations/dashboard#index" 
 
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"
