@@ -56,6 +56,7 @@ attr_reader :user
       return true if controller == "users" && action.in?(%w(new show create))
       return true if controller == "recipients"
       return true if controller == "organizations"
+      return true if controller == "organizations/dashboard"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
       return true if controller == "country/recipients"

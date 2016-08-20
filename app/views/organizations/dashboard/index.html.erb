@@ -1,0 +1,3 @@
+<h2> <%= @organization.name%>'s Status Page </h2>
+<h3> Status: <%= @organization.status.capitalize %></h3>
+<h3><%= link_to "Manage My Team", admin_dashboard_index_path if org_admin? %> </h3>

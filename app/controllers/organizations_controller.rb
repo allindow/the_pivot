@@ -16,7 +16,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     if @organization.save
-      redirect_to organizations_dashboard_index_path
+      redirect_to "/#{@organization.slug}/dashboard"
       flash[:success] = "You have submitted your organization application. We'll be in touch once we review it."
     else
       flash[:failure] = "Invalid Information"
@@ -27,7 +27,7 @@ class OrganizationsController < ApplicationController
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :image_path)
+    params.require(:organization).permit(:name, :description, :image_path, :slug)
     # @organization = Organization.find_by(slug: params[:slug])
     # @recipients = @organization.recipients if @organization.recipients
   end
