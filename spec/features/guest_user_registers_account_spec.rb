@@ -13,7 +13,7 @@ RSpec.feature "Guest User Registers Account" do
     fill_in 'Username', with: 'angela@example.com'
     fill_in 'Password', with: 'password'
     click_on 'Create Account'
-    
+
     expect(current_path).to eq '/dashboard'
     expect(page).to have_link 'Logout'
     expect(page).to_not have_link 'Login'
