@@ -1,22 +1,26 @@
 @import "variables";
 
-.login {
-background-image: url("unicorn.jpg");
-}
+
 
 .btn-login {
   text-align: center;
-  border: 1px solid $pink-color;
+  border: 1px solid $blue-color;
   border-radius: 3px;
-  background-color: $pink-color;
+  background-color: $blue-color;
   color: $btn-text-color;
   padding: 5px 10px 5px 10px;
 }
 
 .form-label {
-  color: #fff;
+  color: $primary-color;
+  text-align: right;
 }
 
 .form-horizontal {
   margin-top: 40px;
+}
+
+.session-links {
+  margin-right: 200px;
+  margin-top: 70px;
 }
