@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Org admin visits homepage" do
-  scenario "org admin can login" do
+RSpec.feature "Organization admin can view their org dashboard" do
+  scenario "they can see their organization and link to manage team" do
 
     organization = Organization.create!(name:"Homes for Humanity", description: "We build homes", status: 1)
     user = organization.users.create(username: 'fiona@cat.com', password: 'password')
@@ -16,10 +16,14 @@ RSpec.feature "Org admin visits homepage" do
 
     expect(User.last.roles.pluck(:name)).to include('org_admin')
     expect(current_path).to eq(dashboard_path)
-    # expect(page).to have_content("Homes for Humanity")
-    expect(page).to have_link("Logout")
     expect(page).to have_link("My Organization")
-    expect(page).to have_link("My Account")
 
+    click_link "My Organization"
+
+    expect(page).to have_content("Homes for Humanity")
+    expect(page).to have_content("Status: Active")
+    expect(page).to have_link("Manage Organization")
+    expect(page).to have_link("Manage Recipients")
+    expect(page).to have_link("Manage Admins")
   end
 end
