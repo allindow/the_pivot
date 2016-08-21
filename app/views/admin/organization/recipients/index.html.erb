@@ -1,0 +1,5 @@
+<%= link_to "Add Recipient", "/#{@organization.slug}/recipients/new" %>
+<% @organization.recipients.each do |recipient| %>
+  <%= recipient.name %>
+  <%= recipient.description %>
+<% end %>
