@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  var $fundings = $('.funding')
+  var $fundings = $('.funding');
 
   $('#funding_filter_status').on('change', function() {
     var currentStatus = this.value;
@@ -15,10 +15,10 @@ $(document).ready(function () {
   });
 
   $("#admin-fundings").click(function () {
-    $("#admin-fundings-target").slideToggle(400)
+    $("#admin-fundings-target").slideToggle(400);
   });
 
   $("#admin-account").click( function () {
-    $("#admin-account-target").slideToggle(400)
+    $("#admin-account-target").slideToggle(400);
   });
 });
