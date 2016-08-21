@@ -48,10 +48,19 @@ end
   def generate_recipients
     Country.all.each do |country|
       48.times do |n|
-        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/#{gender}/#{rand(0..99)}.jpg", organization: org_without_women)
+        name = Faker::Name.name
+        country.recipients << Recipient.create(name: name,
+        description: "#{name} is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
+        amount_received: rand(0..800),
+        image_path:"https://randomuser.me/api/portraits/#{gender}/#{rand(0..99)}.jpg",
+        organization: org_without_women)
       end
       2.times do |n|
-        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg", organization: women_int)
+        name = Faker::Name.name
+        country.recipients << Recipient.create(name: name,
+        description: "#{name} is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
+        amount_received: rand(0..800), image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg",
+        organization: women_int)
       end
     end
   end
