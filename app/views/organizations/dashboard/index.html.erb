@@ -1,3 +1,8 @@
 <h2> <%= @organization.name%> Status Page </h2>
 <h3> Status: <%= @organization.status.capitalize %></h3>
-<h3><%= link_to "Manage My Team", admin_dashboard_index_path if org_admin? %> </h3>
+
+<ul class="nav nav-tabs" role="navigation">
+  <li id="user-info" class="user-tab"><%= link_to "Manage Organization", "/#{@organization.slug}/dashboard" if org_admin? %></li>
+  <li id="user-fundings" class="user-tab"><%= link_to "Manage Admins", admin_dashboard_index_path if org_admin? %></li>
+  <li id="user-fundings" class="user-tab"><%= link_to "Manage Recipients", admin_recipients_path if org_admin? %></li>
+</ul>

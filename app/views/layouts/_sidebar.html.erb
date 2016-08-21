@@ -28,7 +28,8 @@
           <li><%= link_to "Admin Account", admin_dashboard_index_path %></li>
         <% elsif org_admin? %>
           <li><%= link_to "My Organization", "/#{current_user.organization.slug}/dashboard" %></li>
-        <% else current_user %>
+          <li><%= link_to "My Account", dashboard_path %></li>
+        <% elsif current_user %>
           <li><%= link_to "My Account", dashboard_path %></li>
         <% end %>
 			</ul>
