@@ -1,13 +1,9 @@
 <div class="thumbnail col-md-12">
 <div class="row">
   <div class="recipient-show col-md-6">
-    <h2><%= @recipient.name %></h2>
-    <p>
-      <h4><%=button_to "Lend", carts_path(recipient_id: @recipient.id), class: "btn btn-recipient" %></h4>
-    <p>
-      <%= @recipient.description %>
-    </p>
     <h3><%= @recipient.organization.name %></h3>
+    <%= render partial: "shared/recipients_details", locals: { recipient: @recipient } %>
+    <%= @recipient.amount_received %>
   </div>
   <div class="col-md-4">
     <% if @recipient.image_path %>

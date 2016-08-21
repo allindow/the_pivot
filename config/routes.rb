@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root "organizations#index"
+  get "/api/v1/progress", to: "api/v1/progress#index"
 
   resources :recipients, only: [:index, :show]
   resources :organizations, only: [:new, :create, :index]
@@ -25,8 +26,8 @@ Rails.application.routes.draw do
     # resources :dashboard, only: [:index]
     resources :recipients, param: :slug, only: [:show]
   end
-  
-  get '/:organization_slug/dashboard', to: "organizations/dashboard#index" 
+
+  get '/:organization_slug/dashboard', to: "organizations/dashboard#index"
 
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"

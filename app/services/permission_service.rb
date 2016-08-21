@@ -41,7 +41,7 @@ attr_reader :user
     def registered_user_permissions(controller, action)
       return true if controller == "sessions"
       return true if controller == "recipients" && action.in?(%w(index show))
-      return true if controller == "organizations" && action.in?(%w(index show))
+      return true if controller == "organizations" && action.in?(%w(index show new create))
       return true if controller == "fundings"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
@@ -55,11 +55,12 @@ attr_reader :user
       return true if controller == "sessions"
       return true if controller == "users" && action.in?(%w(new show create))
       return true if controller == "recipients"
-      return true if controller == "organizations"
+      return true if controller == "organizations" && action.in?(%w(index show))
       return true if controller == "organizations/dashboard"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
       return true if controller == "country/recipients"
+      return true if controller == "api/v1/progress"
     end
 
 end
