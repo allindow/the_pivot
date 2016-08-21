@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20160818195019) do
     t.text     "description"
     t.string   "image_path"
     t.integer  "organization_id"
-    t.integer  "country_id"
     t.string   "slug"
+    t.integer  "country_id"
   end
 
   add_index "recipients", ["country_id"], name: "index_recipients_on_country_id", using: :btree
