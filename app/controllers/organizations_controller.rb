@@ -23,6 +23,17 @@ class OrganizationsController < ApplicationController
       redirect_to new_organization_path
     end
   end
+  
+  def update
+    @organization = Organization.find(params[:id])
+    if @organization
+      @organization.update_attributes(organization_params)
+      flash[:success] = "Your organization has been updated"
+    else
+      flash[:failure] = "Information is not valid."
+    end
+      redirect_to "/#{@organization.slug}/dashboard"
+  end
 
   private
 
