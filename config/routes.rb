@@ -49,5 +49,6 @@ Rails.application.routes.draw do
   get "/cart", to: "carts#index"
   get "/:slug", to: "organizations#show", as: 'organization'
   get "/:organization_slug/:slug", to: "organizations/recipients#show"
+  patch "/organizations/:id", to: "organizations#update"
   # get "*path" => redirect('/')
 end
