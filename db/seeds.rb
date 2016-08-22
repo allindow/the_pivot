@@ -78,8 +78,20 @@ end
     Country.create(name:"Kenya")
   end
 
-  # user = User.create!(username: "angela@example.com", password: "password")
-  # role = Role.create!(name: "registered_user")
-  # user.roles << role
+  registered = Role.create(name: "registered_user")
+  org_admin = Role.create(name: "org_admin")
+  platform_admin = Role.create(name: "platform_admin")
+
+  angela = User.create!(username: "angela@example.com", password: "password")
+  caleb = User.create!(username: "caleb@example.com", password: "password")
+  lin = User.create!(username: "lin@example.com", password: "password")
+  tommasina = User.create!(username: "tommasina@example.com", password: "password")
+  sally = User.create!(username: "sally@example.com", password: "password")
+
+  angela.roles << [registered, org_admin]
+  lin.roles << [registered, org_admin]
+  caleb.roles << [registered, org_admin]
+  tommasina.roles << [registered, org_admin]
+  sally.roles << [registered, org_admin]
 
 Seed.start
