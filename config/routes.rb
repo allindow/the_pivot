@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root "organizations#index"
   get "/api/v1/progress", to: "api/v1/progress#index"
 
-  resources :recipients, only: [:index, :show, :create]
+  # resources :recipients, only: [:index, :show, :create, :destroy]
+  resources :recipients
   resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"
   patch '/users', to: "users#update"
+  # get '/admin/:organization_slug/recipients/:id/edit', to: "admin/organization/recipients#edit"
   get '/:organization_slug/recipients/new', to: "organizations/recipients#new"
 
   namespace :organizations, path: ':organization_slug' do

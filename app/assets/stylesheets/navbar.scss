@@ -13,7 +13,7 @@
 
 .top-nav.navbar.navbar-default.navbar-fixed-top {
   background-color: $top-nav-color;
-  opacity: 0.8;
+  opacity: 10;
   vertical-align: top;
   z-index: 1;
 }
@@ -22,7 +22,7 @@
   color: $blue-color;
   display: inline-block;
   list-style: none;
-  text-align: center;
+  text-align: right;
 }
 
 .top-nav-list > li > a {

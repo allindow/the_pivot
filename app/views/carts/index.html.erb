@@ -16,10 +16,10 @@
       <% @recipients.each do |recipient| %>
       <tr>
         <td class="col-md-2">
-          <a href='<%= recipient_path(recipient.id) %>'><img src='<%= recipient.image_path %>' style="width: 150px; height: 150px;"></a>
+          <a href='<%= organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %>'><img src='<%= recipient.image_path %>' style="width: 150px; height: 150px;"></a>
         </td>
         <td class="col-md-8">
-          <b><%= link_to recipient.name, recipient_path(recipient.id) %></b>
+          <b><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %></b>
           <br><br>
           <p><%= recipient.description %></p>
         </td>

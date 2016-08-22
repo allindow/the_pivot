@@ -1,0 +1,16 @@
+<br><br>
+<h1>Edit <%= @recipient.name %></h1>
+
+<%= form_for(@recipient) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+<br>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+<br>
+  <%= f.label :image_path %>
+  <%= f.text_field :image_path %>
+<br>
+<br><br>
+  <%= f.submit "Save", class: "btn btn-info" %>
+<% end %>
