@@ -6,11 +6,16 @@
     <%= @recipient.amount_received %>
   </div>
   <div class="col-md-4">
-    <% if @recipient.image_path %>
-      <%= image_tag("#{@recipient.image_path}", width: 400) %>
-    <% else %>
-      <%= image_tag("#{@recipient.name}.png", width: 400) %>
-    <% end %>
+    <%= image_tag("#{@recipient.image_path}", width: 400) %>
+  </div>
+  <p class="alignleft">$0</p>
+  <p class="alignright">Goal: $1,000</p>
+  <div style="clear: both;"></div>
+
+  <div id="myProgress" data-id="<%= @recipient.amount_received %>">
+    <div id="myBar">
+      <div id="label"></div>
+    </div>
   </div>
 </div>
 </div>

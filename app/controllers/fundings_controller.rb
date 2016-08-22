@@ -32,6 +32,7 @@ class FundingsController < ApplicationController
     @funding = current_user.fundings.create
     params[:contents].each do |key, value|
       @funding.recipient_fundings.create(recipient_id: key, microloan_amount: value)
+      @funding.update_recipient_total(key, value)
     end
     session[:cart].clear
     @funding.assign_total_price

@@ -18,14 +18,6 @@ class Cart
     contents.values.sum
   end
 
-  def total_price
-    total_price = 0
-    contents.each do |id, qty|
-      total_price += qty * Recipient.find(id).price
-    end
-    total_price
-  end
-
   def recipients
     recipients = []
     contents.keys.each do |id|

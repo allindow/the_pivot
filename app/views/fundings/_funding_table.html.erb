@@ -4,10 +4,10 @@
     <th>Recipient</th>
     <th>Loan Amount</th>
   </tr>
-  <% funding.funding_details.each do |key, value| %>
+  <% funding.recipient_fundings.each do |funding| %>
     <tr>
-      <td><%= link_to key, recipient_path(find_recipient(key)) %></td>
-      <td><%= number_to_currency(value.first) %></td>
+      <td><%= link_to funding.recipient.name, organizations_recipient_path(organization_slug: funding.recipient.organization.slug, slug: funding.recipient.slug) %></td>
+      <td><%= number_to_currency(funding.microloan_amount.to_i) %></td>
     </tr>
   <% end %>
   <tr>

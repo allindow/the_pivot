@@ -1,29 +1,34 @@
 $(document).ready(function(){
 
   function move(progress_amount) {
-
     var elem = document.getElementById("myBar");
-    var width = (progress_amount / 500) * 100;
-    var id = setInterval(frame, 10);
+    var progress = (progress_amount/1000) * 100
+    var width = 1;
+    var id = setInterval(frame, 20);
     function frame() {
-      if (width >= 500) {
+      if (width >= progress) {
         clearInterval(id);
       } else {
+        width++;
         elem.style.width = width + '%';
+        document.getElementById("label").innerHTML = progress + '%';
       }
     }
   }
-  var divId = getId();
-  $.ajax(
-    {url: "/api/v1/progress",
-    method: "GET", data: {id: divId}, success: function(data) {
-      move(data);
-    }
-    // $("#div1").html(result);
-  });
+  var progress = getId();
+  // $.ajax(
+  //   {url: "/api/v1/progress",
+  //   method: "GET", data: {id: divId}, success: function(data) {
+  //     debugger
+  //     move(data);
+  //   }
+  //   // $("#div1").html(result);
+  // });
 
   function getId() {
     var progressDiv = $("#myProgress");
-    return progressDiv.data("id");
+    return parseInt(progressDiv.data("id"));
   }
+
+  move(progress);
 });
