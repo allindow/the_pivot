@@ -1,6 +1,7 @@
 class Organization < ActiveRecord::Base
   before_validation :generate_slug
   has_many :recipients
+  has_many :users
   validates :name, presence: true, uniqueness: true
   enum status: %w(pending active inactive denied)
 
