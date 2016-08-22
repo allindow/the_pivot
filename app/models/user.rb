@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  validates :password, presence: true
+  validates :password, length: { minimum: 1 }, allow_nil: true
   validates :username, presence: true, uniqueness: true, email: { strict_mode: true }
   has_many :fundings
   belongs_to :organization
