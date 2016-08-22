@@ -100,5 +100,6 @@ end
     tommasina.roles << [registered, org_admin]
     sally.roles << [registered, org_admin]
   end
+end
 
 Seed.start

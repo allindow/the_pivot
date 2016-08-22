@@ -12,6 +12,6 @@
       <li><img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="..."></li>
     </ul>
       <%= link_to "Edit #{recipient.name}", edit_recipient_path(recipient.id)%>
-      <%= link_to "Delete #{recipient.name}", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to "Delete #{recipient.name}", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} unless recipient.has_funds?%>
     <% end %>
   </div>

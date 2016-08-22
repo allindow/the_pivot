@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root "organizations#index"
 
-  # resources :recipients, only: [:index, :show, :create, :destroy]
   resources :recipients
   resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
@@ -26,13 +25,11 @@ Rails.application.routes.draw do
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"
   patch '/users', to: "users#update"
-  # get '/admin/:organization_slug/recipients/:id/edit', to: "admin/organization/recipients#edit"
   get '/:organization_slug/recipients/new', to: "organizations/recipients#new"
 
   namespace :organizations, path: ':organization_slug' do
     resources :recipients, param: :slug, only: [:show]
   end
-
 
   get '/:organization_slug/dashboard', to: "organizations/dashboard#index"
 
@@ -48,5 +45,4 @@ Rails.application.routes.draw do
   get "/:organization_slug/:slug", to: "organizations/recipients#show"
   patch "/organizations/:id", to: "organizations#update"
   get "*path" => redirect('/')
-  
 end

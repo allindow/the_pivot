@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     if user
       user.roles << role
       user.update!(organization_id: organization.id)
-      # flash[:success] = "You've added #{user.username} as an admin"
+      flash[:success] = "You've added #{user.username} as an admin"
       redirect_to "/admin/#{organization.slug}/users"
     else
       flash.now[:failure] = "Could not find user: #{params[:user][:username]}"

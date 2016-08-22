@@ -16,7 +16,6 @@ RSpec.feature "Org admin visits homepage" do
 
     expect(User.last.roles.pluck(:name)).to include('org_admin')
     expect(current_path).to eq(dashboard_path)
-    # expect(page).to have_content("Homes for Humanity")
     expect(page).to have_link("Logout")
     expect(page).to have_link("My Organization")
     expect(page).to have_link("My Account")
