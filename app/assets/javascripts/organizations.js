@@ -1,15 +1,16 @@
 $(document).ready(function(){
-  
-  var $organizations = $('.home-organization-wrapper');
-  
-  $('#organization_filter_name').on("keyup", function(){
-    var $currentName = this.value;
-        
-    $organizations.each(function(index, organization){
-      if ($(organization).data("name").toLowerCase().indexOf($currentName) !== -1 ){
-        $(organization).show();
+  var $recipients = $('.recipient');
+
+  $('#recipient_filter_all').on("keyup", function(){
+    var currentData = this.value;
+
+    $recipients.each(function(index, recipient){
+      debugger
+      $recipient = $(recipient);
+      if ($(recipient).data("all").toLowerCase().indexOf(currentData.toLowerCase()) !== -1 ){
+        $(recipient).show();
       } else {
-        $(organization).hide();
+        $(recipient).hide();
       }
     });
   });
