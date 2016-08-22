@@ -1,5 +1,4 @@
 class RecipientsController < ApplicationController
-
   def index
     @recipients = Recipient.all
   end
@@ -22,7 +21,7 @@ class RecipientsController < ApplicationController
       redirect_to "/#{@recipient.organization.slug}/recipients/new"
     end
   end
-  
+
   def destroy
     recipient = Recipient.find(params[:id])
     recipient.delete

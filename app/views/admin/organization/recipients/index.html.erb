@@ -11,7 +11,6 @@
       <li>Country: <%= recipient.country_id %></li>
       <li><img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="..."></li>
     </ul>
-      <%#= link_to "Edit #{recipient.name}", edit_recipient_path(recipient)%>
       <%= link_to "Delete #{recipient.name}", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} %>
     <% end %>
   </div>

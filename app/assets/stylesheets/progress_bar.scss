@@ -12,10 +12,10 @@
     height: 100%;
     background-color: green;
 }
-/* If you want the label inside the progress bar */
+
 #label {
-    text-align: center; /* If you want to center it */
-    line-height: 30px; /* Set the line-height to the same as the height of the progress bar container, to center it vertically */
+    text-align: center;
+    line-height: 30px;
     color: white;
 }
 
