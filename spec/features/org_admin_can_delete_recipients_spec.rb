@@ -8,7 +8,7 @@ RSpec.feature "Org admin can change recipients in an organization " do
     role = Role.create(name: 'org_admin')
     user.roles << role
     country = Country.create!(name: "USA")
-    recipient = organization.recipients.create!(name: "Ollie", description: "need a home", country: country)
+    recipient = organization.recipients.create!(name: "Ollie", description: "needs a home", country: country)
 
     visit root_path
     click_link 'Login'
@@ -21,14 +21,14 @@ RSpec.feature "Org admin can change recipients in an organization " do
 
     expect(current_path).to eq "/admin/cats-for-humanity/recipients"
     expect(page).to have_content("Name: Ollie")
-    expect(page).to have_content("Description: need a home")
-    
+    expect(page).to have_content("Description: Ollie needs a home")
+
     expect(page).to have_link("Delete Ollie")
-    
+
     click_link "Delete Ollie"
 
     expect(current_path).to eq "/admin/cats-for-humanity/recipients"
     expect(page).to_not have_content("Name: Ollie")
-    expect(page).to_not have_content("Description: need a home")
+    expect(page).to_not have_content("Description: Ollie needs a home")
   end
 end
