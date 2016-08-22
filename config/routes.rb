@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "organizations#index"
   get "/api/v1/progress", to: "api/v1/progress#index"
 
-  resources :recipients, only: [:index, :show, :create]
+  resources :recipients, only: [:index, :show, :create, :destroy]
   resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
   resources :users, only: [:new, :create, :show, :destroy]

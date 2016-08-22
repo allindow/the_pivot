@@ -1,15 +1,17 @@
-<div class="page-subtitle"> 
-  <br> 
+<div class="page-subtitle">
+  <br>
   <%= link_to "Add Recipient", "/#{@organization.slug}/recipients/new" %>
-</div>  
-  
+</div>
+
   <div class="home-recipient-wrapper recipient-list">
     <% @organization.recipients.each do |recipient| %>
     <ul style="list-style-type:none">
-      <li>Name: <%= recipient.name %></li>  
+      <li>Name: <%= recipient.name %></li>
       <li>Description: <%= recipient.description %></li>
       <li>Country: <%= recipient.country_id %></li>
       <li><img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="..."></li>
     </ul>
+      <%#= link_to "Edit #{recipient.name}", edit_recipient_path(recipient)%>
+      <%= link_to "Delete #{recipient.name}", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} %>
     <% end %>
   </div>
