@@ -11,19 +11,11 @@ $(document).ready(function(){
       } else {
         width++;
         elem.style.width = width + '%';
-        document.getElementById("label").innerHTML = progress + '%';
+        document.getElementById("label").innerHTML = parseInt(progress) + '%';
       }
     }
   }
   var progress = getId();
-  // $.ajax(
-  //   {url: "/api/v1/progress",
-  //   method: "GET", data: {id: divId}, success: function(data) {
-  //     debugger
-  //     move(data);
-  //   }
-  //   // $("#div1").html(result);
-  // });
 
   function getId() {
     var progressDiv = $("#myProgress");

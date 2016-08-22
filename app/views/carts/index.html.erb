@@ -21,7 +21,7 @@
         <td class="col-md-8">
           <b><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %></b>
           <br><br>
-          <p><%= recipient.description %></p>
+          <p><%= recipient.name %> <%= recipient.description %></p>
         </td>
         <td class="col-md-2" style="text-align: center">
           <%= link_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-sm" %>
