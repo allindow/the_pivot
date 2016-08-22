@@ -22,6 +22,13 @@ class RecipientsController < ApplicationController
       redirect_to "/#{@recipient.organization.slug}/recipients/new"
     end
   end
+  
+  def destroy
+    recipient = Recipient.find(params[:id])
+    recipient.delete
+    params.delete("id")
+    redirect_to(:back)
+  end
 
   private
 
