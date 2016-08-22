@@ -29,6 +29,21 @@ class RecipientsController < ApplicationController
     redirect_to(:back)
   end
 
+  def edit
+    @recipient = Recipient.find(params[:id])
+  end
+
+  def update
+    @recipient = Recipient.find(params[:id])
+    @recipient.update_attributes(recipient_params)
+    if @recipient.save
+      redirect_to recipient_path
+    else
+      render :edit
+      flash[:notice] = "Invalid"
+    end
+  end
+
   private
 
     def recipient_params
