@@ -1,0 +1,5 @@
+<h2>Admins in your Organization</h2>
+<% @admins.each do |admin| %>
+  <%= admin.username %>
+<% end %><br>
+<%= link_to "Add Admin", "/admin/#{@organization.slug}/users/new" %>
