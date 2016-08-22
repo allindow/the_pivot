@@ -15,12 +15,28 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.roles << Role.create(name: "registered_user")
       session[:user_id] = @user.id
       redirect_to dashboard_path(@user)
       flash.now[:sucess] = "You have successfully created an account!"
     else
       flash[:failure] = "Invalid Information"
       redirect_to new_user_path
+    end
+  end
+
+  def update
+    organization = Organization.find_by(slug: params[:organization_slug])
+    role = Role.find_or_create_by(name: "org_admin")
+    user = User.find_by(username: params[:user][:username])
+    if user
+      user.roles << role
+      user.update!(organization_id: organization.id)
+      flash[:success] = "You've added #{user.username} as an admin"
+      redirect_to "/admin/#{organization.slug}/users"
+    else
+      flash.now[:failure] = "Could not find user: #{params[:user][:username]}"
+      render :new
     end
   end
 

@@ -16,7 +16,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     if @organization.save
-      redirect_to root_path
+      redirect_to "/#{@organization.slug}/dashboard"
       flash[:success] = "You have submitted your organization application. We'll be in touch once we review it."
     else
       flash[:failure] = "Invalid Information"
@@ -24,11 +24,20 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def update
+    @organization = Organization.find(params[:id])
+    if @organization
+      @organization.update_attributes(organization_params)
+      flash[:success] = "Your organization has been updated"
+    else
+      flash[:failure] = "Information is not valid."
+    end
+      redirect_to "/#{@organization.slug}/dashboard"
+  end
+
   private
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :image_path)
-    @organization = Organization.find_by(slug: params[:slug])
-    @recipients = @organization.recipients
+    params.require(:organization).permit(:name, :description, :image_path, :slug)
   end
 end

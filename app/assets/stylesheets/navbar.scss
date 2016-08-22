@@ -13,20 +13,20 @@
 
 .top-nav.navbar.navbar-default.navbar-fixed-top {
   background-color: $top-nav-color;
-  opacity: 0.8;
+  opacity: 10;
   vertical-align: top;
   z-index: 1;
 }
 
 .top-nav-list {
-  color: $pink-color;
+  color: $blue-color;
   display: inline-block;
   list-style: none;
-  text-align: center;
+  text-align: right;
 }
 
 .top-nav-list > li > a {
-  color: $pink-color;
+  color: $blue-color;
   text-decoration: none;
 }
 
@@ -40,11 +40,11 @@
 
 .glyphicon-shopping-cart {
   margin-right: 5px;
-  color: $pink-color;
+  color: $blue-color;
 }
 
 .glyphicon-log-out {
-  color: $pink-color;
+  color: $blue-color;
   margin-left: 5px;
 }
 
