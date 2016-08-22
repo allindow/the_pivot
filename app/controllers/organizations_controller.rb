@@ -23,7 +23,7 @@ class OrganizationsController < ApplicationController
       redirect_to new_organization_path
     end
   end
-  
+
   def update
     @organization = Organization.find(params[:id])
     if @organization
@@ -39,8 +39,6 @@ class OrganizationsController < ApplicationController
 
   def organization_params
     params.require(:organization).permit(:name, :description, :image_path, :slug)
-    # @organization = Organization.find_by(slug: params[:slug])
-    # @recipients = @organization.recipients if @organization.recipients
   end
-  
+
 end
