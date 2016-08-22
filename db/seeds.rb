@@ -7,6 +7,7 @@ class Seed
     generate_organizations
     generate_countries
     generate_recipients
+    generate_users
   end
 
   def generate_organizations
@@ -78,20 +79,26 @@ end
     Country.create(name:"Kenya")
   end
 
-  registered = Role.create(name: "registered_user")
-  org_admin = Role.create(name: "org_admin")
-  platform_admin = Role.create(name: "platform_admin")
+  def generate_users
+    registered = Role.create(name: "registered_user")
+    org_admin = Role.create(name: "org_admin")
+    platform_admin = Role.create(name: "platform_admin")
+    women = Organization.find_by(name: "Women International")
+    village = Organization.find_by(name: "It Takes A Village")
+    green = Organization.find_by(name: "Green for Green Agriculture")
+    educare = Organization.find_by(name: "Educare")
+    health = Organization.find_by(name: "Health Now!")
 
-  angela = User.create!(username: "angela@example.com", password: "password")
-  caleb = User.create!(username: "caleb@example.com", password: "password")
-  lin = User.create!(username: "lin@example.com", password: "password")
-  tommasina = User.create!(username: "tommasina@example.com", password: "password")
-  sally = User.create!(username: "sally@example.com", password: "password")
-
-  angela.roles << [registered, org_admin]
-  lin.roles << [registered, org_admin]
-  caleb.roles << [registered, org_admin]
-  tommasina.roles << [registered, org_admin]
-  sally.roles << [registered, org_admin]
+    angela = women.users.create!(username: "angela@example.com", password: "password")
+    caleb = village.users.create!(username: "caleb@example.com", password: "password")
+    lin = green.users.create!(username: "lin@example.com", password: "password")
+    tommasina = educare.users.create!(username: "tommasina@example.com", password: "password")
+    sally = health.users.create!(username: "sally@example.com", password: "password")
+    angela.roles << [registered, org_admin]
+    lin.roles << [registered, org_admin]
+    caleb.roles << [registered, org_admin]
+    tommasina.roles << [registered, org_admin]
+    sally.roles << [registered, org_admin]
+  end
 
 Seed.start
