@@ -3,6 +3,7 @@ class Admin::Organization::UsersController < ApplicationController
   def index
     @organization = Organization.find_by(slug: params[:organization_slug])
     @admins = @organization.users
+    # require "pry"; binding.pry
   end
 
   def new
@@ -16,7 +17,8 @@ class Admin::Organization::UsersController < ApplicationController
     user = User.find_by(username: params[:user][:username])
     if user
       user.roles << role
-      organization.users << user
+      org_users = organization.users
+      org_users << user
       # flash[:success] = "You've added #{user.username} as an admin"
       redirect_to "/admin/#{organization.slug}/users"
     else
