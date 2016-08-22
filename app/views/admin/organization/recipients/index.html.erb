@@ -1,5 +1,15 @@
-<%= link_to "Add Recipient", "/#{@organization.slug}/recipients/new" %>
-<% @organization.recipients.each do |recipient| %>
-  <%= recipient.name %>
-  <%= recipient.description %>
-<% end %>
+<div class="page-subtitle"> 
+  <br> 
+  <%= link_to "Add Recipient", "/#{@organization.slug}/recipients/new" %>
+</div>  
+  
+  <div class="home-recipient-wrapper recipient-list">
+    <% @organization.recipients.each do |recipient| %>
+    <ul style="list-style-type:none">
+      <li>Name: <%= recipient.name %></li>  
+      <li>Description: <%= recipient.description %></li>
+      <li>Country: <%= recipient.country_id %></li>
+      <li><img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="..."></li>
+    </ul>
+    <% end %>
+  </div>
