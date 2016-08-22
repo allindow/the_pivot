@@ -6,7 +6,7 @@ class CartsController < ApplicationController
     @cart.add_recipient(@recipient.id, params[:loan_amount])
     session[:cart] = @cart.contents
     flash[:notice] = "You're helping #{@recipient.name}."
-    redirect_to root_path
+    redirect_to request.referrer
   end
 
   def index
@@ -28,7 +28,7 @@ class CartsController < ApplicationController
     session[:cart] = @cart.contents
     session[:cart][@recipient.id] = 0
     session[:removed_recipient] = @recipient.id
-    delete_link = "<a href=\"#{url_for(@recipient)}\">#{@recipient.name}</a>"
+    delete_link = "<a href=#{organizations_recipient_path(organization_slug: @recipient.organization.slug, slug: @recipient.slug)}>#{@recipient.name}</a>"
     flash[:delete] = "Successfully removed #{delete_link} from your cart"
     redirect_to cart_path
   end

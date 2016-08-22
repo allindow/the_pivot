@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       elsif session[:cart]
         redirect_to '/cart'
       else
-        redirect_to dashboard_path(@user)
+        redirect_to dashboard_path
       end
     else
       flash.now[:notice] = "Invalid Login"

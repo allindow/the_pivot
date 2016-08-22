@@ -2,11 +2,18 @@ require 'faker'
 
 
 FactoryGirl.define do
+  factory :user_role do
+    user nil
+    role nil
+  end
+  factory :role do
+    name "MyString"
+  end
 
-  # factory :user do
-  #   username "MyString"
-  #   password "MyString"
-  # end
+  factory :user do
+    username "mystring@mystring.com"
+    password "MyString"
+  end
 
   factory :organization do
     name

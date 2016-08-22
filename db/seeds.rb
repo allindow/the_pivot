@@ -7,6 +7,7 @@ class Seed
     generate_organizations
     generate_countries
     generate_recipients
+    generate_users
   end
 
   def generate_organizations
@@ -33,10 +34,34 @@ class Seed
   end
 end
 
+  def gender
+    ["women", "men"].sample
+  end
+
+  def org_without_women
+    Organization.where('name != ?', "Women International").sample
+  end
+
+  def women_int
+    Organization.find_by(name: "Women International")
+  end
+
   def generate_recipients
     Country.all.each do |country|
-      50.times do |n|
-        country.recipients << Recipient.create(name: Faker::Name.name, description: Faker::Hipster.paragraph(2), amount_received: 0, image_path:"https://robohash.org/#{n}", organization: Organization.all.sample)
+      48.times do |n|
+        name = Faker::Name.name
+        country.recipients << Recipient.create(name: name,
+        description: " is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
+        amount_received: rand(0..800),
+        image_path:"https://randomuser.me/api/portraits/#{gender}/#{rand(0..99)}.jpg",
+        organization: org_without_women)
+      end
+      2.times do |n|
+        name = Faker::Name.name
+        country.recipients << Recipient.create(name: name,
+        description: " is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
+        amount_received: rand(0..800), image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg",
+        organization: women_int)
       end
     end
   end
@@ -53,5 +78,28 @@ end
     Country.create(name:"India")
     Country.create(name:"Kenya")
   end
+
+  def generate_users
+    registered = Role.create(name: "registered_user")
+    org_admin = Role.create(name: "org_admin")
+    platform_admin = Role.create(name: "platform_admin")
+    women = Organization.find_by(name: "Women International")
+    village = Organization.find_by(name: "It Takes A Village")
+    green = Organization.find_by(name: "Green for Green Agriculture")
+    educare = Organization.find_by(name: "Educare")
+    health = Organization.find_by(name: "Health Now!")
+
+    angela = women.users.create!(username: "angela@example.com", password: "password")
+    caleb = village.users.create!(username: "caleb@example.com", password: "password")
+    lin = green.users.create!(username: "lin@example.com", password: "password")
+    tommasina = educare.users.create!(username: "tommasina@example.com", password: "password")
+    sally = health.users.create!(username: "sally@example.com", password: "password")
+    angela.roles << [registered, org_admin]
+    lin.roles << [registered, org_admin]
+    caleb.roles << [registered, org_admin]
+    tommasina.roles << [registered, org_admin]
+    sally.roles << [registered, org_admin]
+  end
+end
 
 Seed.start

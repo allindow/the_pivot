@@ -1,0 +1,44 @@
+<h2> <%= @organization.name%> Status Page </h2>
+<h3> Status: <%= @organization.status.capitalize %></h3>
+
+<ul class="nav nav-tabs" role="navigation">
+  <li id="user-info" class="user-tab"><%= link_to "Manage Organization", "/#{@organization.slug}/dashboard" if org_admin? %></li>
+  <li id="user-fundings" class="user-tab"><%= link_to "Manage Admins", "/admin/#{@organization.slug}/users" if org_admin? %></li>
+  <li id="user-fundings" class="user-tab"><%= link_to "Manage Recipients", "/admin/#{@organization.slug}/recipients" if org_admin? %></li>
+</ul>
+
+<body class="login">
+
+<div class="form-horizontal">
+
+  <%= form_for(@organization, url: "/organizations/#{@organization.id}") do |f| %>
+    <div class="form-group">
+      <%= f.label :name, { :class => "col-sm-4 form-label" } %>
+      <div class="col-sm-4">
+        <%= f.text_field :name, placeholder: @organization.name %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, { :class => "col-sm-4 form-label" } %>
+      <div class="col-sm-8">
+        <%= f.text_area :description, placeholder: @organization.description %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image_path, { :class => "col-sm-4 form-label" } %>
+      <div class="col-sm-8">
+        <%= f.password_field :image_path %>
+      </div>
+    </div>
+
+    <div class="col-sm-10">
+      <center>
+      <%= f.submit "Save", { class: "btn-recipient", method: :put } %>
+    </center>
+    </div>
+  <% end %>
+
+</div>
+</body>

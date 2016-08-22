@@ -3,24 +3,19 @@ class Funding < ActiveRecord::Base
   has_many :recipients, through: :recipient_fundings
   belongs_to :user
 
-  def funding_details
-    funding_items = RecipientFundings.where(funding_id: self.id)
-    funding_details = {}
-    funding_items.each do |item|
-      username = Recipient.find(item.recipient_id).username
-      amount_received = Recipient.find(item.recipient_id).amount_received
-      qty = item.quantity
-      funding_details[name] = [price, qty] unless qty == 0
-    end
-    funding_details
+  def update_recipient_total(id, microloan)
+    recipient = Recipient.find(id)
+    recipient.update(amount_received: new_total(recipient, microloan))
+  end
+
+  def new_total(recipient, microloan)
+    recipient.amount_received.to_i + microloan.to_i
   end
 
   def total_price
-    total_price = 0
-    funding_details.each do |key, value|
-      total_price += value.reduce(:*)
-    end
-    total_price
+    recipient_fundings.map do |funding|
+      funding.microloan_amount
+    end.sum
   end
 
   def assign_total_price
@@ -41,5 +36,10 @@ class Funding < ActiveRecord::Base
 
   def update_status(status)
     update_attributes(status: status.downcase)
+  end
+
+  def update_amount_received(recipient, funding)
+    new_amount = recipient.amount_received.to_i + funding.microloan_amount.to_i
+    recipient.update(amount_received: new_amount)
   end
 end
