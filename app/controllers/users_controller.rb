@@ -25,6 +25,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    organization = Organization.find_by(slug: params[:organization_slug])
+    role = Role.find_or_create_by(name: "org_admin")
+    user = User.find_by(username: params[:user][:username])
+    if user
+      user.roles << role
+      user.update!(organization_id: organization.id)
+      # flash[:success] = "You've added #{user.username} as an admin"
+      redirect_to "/admin/#{organization.slug}/users"
+    else
+      flash.now[:failure] = "Could not find user: #{params[:user][:username]}"
+      render :new
+    end
+  end
+
   def show
     if session[:user_id]
       @user = current_user

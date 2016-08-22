@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get '/admin/:organization_slug/recipients', to: "admin/organization/recipients#index"
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"
-  post '/admin/:organization_slug/users', to: "admin/organization/users#create"
+  patch '/users', to: "users#update"
   get '/:organization_slug/recipients/new', to: "organizations/recipients#new"
 
   namespace :organizations, path: ':organization_slug' do
