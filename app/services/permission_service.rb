@@ -36,6 +36,8 @@ attr_reader :user
       return true if controller == "organizations/dashboard"
       return true if controller == "country/recipients"
       return true if controller == "admin/recipients"
+      return true if controller == "users"
+      return true if controller == "admin/organization/recipients"
     end
 
     def registered_user_permissions(controller, action)
