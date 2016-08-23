@@ -7,6 +7,5 @@
 <% @organizations.each do |organization| %>
   <div class="container col-md-4 home-organization-wrapper" data-name=" <%= organization.name %> ">
     <%= render partial: "shared/organizations_img", locals: { organization: organization } %>
-    <%= render partial: "shared/organizations_details", locals: { organization: organization } %>
   </div>
 <% end %>
