@@ -21,6 +21,10 @@ class Organization < ActiveRecord::Base
     where(status: 1)
   end
 
+  def funds_raised
+    recipients.sum(:amount_received).to_i
+  end
+
   private
     def generate_slug
       self.slug = name.parameterize
