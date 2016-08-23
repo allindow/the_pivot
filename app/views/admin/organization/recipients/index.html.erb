@@ -1,25 +1,28 @@
-<center><h1 class="page-title"><%= @organization.name %></h1>
-<h4 class="mission-text">Recipient List</h3>
-<%= link_to "Add Recipient", "/#{@organization.slug}/recipients/new", class: "btn btn-success" %>
-</center>
-<br><br>
+<div class="well" width="33%">
+  <h1 class="recip-edit-title"><%= @organization.name %></h1>
+<%= @organization.description %>
+<br>
+    <%= link_to "Add Recipient", "/#{@organization.slug}/recipients/new", class: "btn btn-success" %>
+</div>
+
+<h4><strong>MANAGE RECIPIENTS</strong></h4>
+<hr>
 <div class="row">
-  <div class="col-lg-8">
-    <% @organization.recipients.each do |recipient| %>
-    <div class="media">
-      <a class="pull-left" href="<%= "#{recipient_path(recipient.id)}" %>">
-        <img class="media-object recip-edit img-circle" src="<%= "#{recipient.image_path}" %>" style="width: 150px;height:150px;">
-      </a>
-      <div class="media-body">
-        <a href="<%= "#{recipient_path(recipient.id)}" %>"><h3 class="media-heading"><%= recipient.name %></a>
-          <br>
-          <small><%= recipient.country.name %></small></h4>
-          <h5><%= recipient.name %> <%= recipient.description %></h5>
-              <%= link_to "Edit", edit_recipient_path(recipient.id), class: "btn btn-labeled btn-info" %>
-              <%= link_to "Delete", recipient_path(recipient.id), class: "btn btn-warning", method: :delete, data: {confirm: 'Are you sure?'} %>
-          <hr style="margin:8px auto">
-        </div>
+  <% @organization.recipients.each do |recipient| %>
+  <div class="media">
+    <a class="pull-left" href="<%= "#{recipient_path(recipient.id)}" %>">
+      <img class="media-object recip-edit img-circle" src="<%= "#{recipient.image_path}" %>" style="width: 150px;height:150px;">
+    </a>
+    <div class="media-body">
+      <a href="<%= "#{recipient_path(recipient.id)}" %>"><h3 class="media-heading"><%= recipient.name %></a>
+        <br>
+        <small><%= recipient.country.name %></small></h4>
+        <h5><%= recipient.name %> <%= recipient.description %></h5>
+        <%= link_to "Edit", edit_recipient_path(recipient.id), class: "btn btn-labeled btn-info" %>
+        <%= link_to "Delete", recipient_path(recipient.id), class: "btn btn-warning", method: :delete, data: {confirm: 'Are you sure?'} %>
+        <hr style="margin:8px auto">
       </div>
-      <% end %>
     </div>
+    <% end %>
   </div>
+</div>
