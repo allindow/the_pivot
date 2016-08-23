@@ -1,4 +1,5 @@
 class Admin::DashboardController < Admin::BaseController
+  
   def index
     @fundings = Funding.all
     @status = @fundings.pluck(:status).uniq

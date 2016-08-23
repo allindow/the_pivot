@@ -49,5 +49,4 @@ class ApplicationController < ActionController::Base
   def countries
     Country.all
   end
-
 end

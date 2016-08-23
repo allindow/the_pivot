@@ -15,6 +15,10 @@ class Recipient < ActiveRecord::Base
     update_attribute(:retired, true)
   end
 
+  def has_funds?
+    amount_received.to_i != 0
+  end
+
   private
     def generate_slug
       self.slug = name.parameterize

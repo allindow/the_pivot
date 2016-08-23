@@ -40,5 +40,4 @@ class OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(:name, :description, :image_path, :slug)
   end
-
 end

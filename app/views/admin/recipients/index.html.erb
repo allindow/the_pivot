@@ -5,7 +5,7 @@
 <% @recipients.each do |recipient| %>
   <div class="container col-md-4 home-recipient-wrapper">
     <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
-    <em><%= link_to "Edit #{recipient.name}", edit_admin_recipient_path(recipient), class: "home-recipient-name" %></em></p>    
+    <em><%= link_to "Edit #{recipient.name}", edit_admin_recipient_path(recipient), class: "home-recipient-name" %></em></p>
     </div>
   </div>
 <% end %>

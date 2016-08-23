@@ -34,7 +34,7 @@ RSpec.feature "Org admin can add admin to their organization " do
     expect(current_path).to eq "/admin/homes-for-humanity/users"
 
     expect(page).to have_content("Admins in your Organization")
-    # expect(page).to have_content("You've added bill@example.com as an admin")
+    expect(page).to have_content("You've added bill@example.com as an admin")
     expect(page).to have_content("bill@example.com")
 
   end

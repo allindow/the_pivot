@@ -18,10 +18,6 @@ class FundingsController < ApplicationController
     end
   end
 
-  def fundings
-    @fundings = current_user.fundings
-  end
-
   def show
     @funding = Funding.find(params[:id])
   end

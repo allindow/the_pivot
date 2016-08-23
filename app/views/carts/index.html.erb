@@ -1,61 +1,58 @@
 <div class="cart-table">
-  <center><h1>Cart Summary</h1></center>
-  </br>
-
+  <center><h1>Cart Summary</h1></center></br>
   <div class="table-responsive">
     <table id="cart-table" class="col-sm-12 col-md-10 col-md-offset-1">
-      <%= raw(flash[:delete]) %>
       <thead>
-      <tbody>
-        <tr style="text-align: center">
-          <td>Recipient</td>
-          <td>Description</td>
-          <td>Loan Amount</td>
+        <tbody>
+          <tr style="text-align: center">
+            <td>Recipient</td>
+            <td>Description</td>
+            <td>Loan Amount</td>
+          </tr>
+        </thead>
+        <% @recipients.each do |recipient| %>
+        <tr>
+          <td class="col-md-2">
+            <a href='<%= organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %>'><img src='<%= recipient.image_path %>' style="width: 150px; height: 150px;"></a>
+          </td>
+          <td class="col-md-8">
+            <b><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %></b>
+            <br><br>
+            <p><%= recipient.name %> <%= recipient.description %></p>
+          </td>
+          <td class="col-md-2" style="text-align: center">
+            <%= link_to "-", cart_path(remove: recipient.id), method: :put, class: "btn btn-sm"  %>
+            <%= @cart.count_of(recipient.id) %>
+            <%= link_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-sm" %>
+            <br>
+            <%= link_to "Remove", cart_path(recipient_id: recipient.id), method: :delete, class: "remove-cart" %>
+          </td>
         </tr>
-      </thead>
-      <% @recipients.each do |recipient| %>
-      <tr>
-        <td class="col-md-2">
-          <a href='<%= organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %>'><img src='<%= recipient.image_path %>' style="width: 150px; height: 150px;"></a>
-        </td>
-        <td class="col-md-8">
-          <b><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %></b>
-          <br><br>
-          <p><%= recipient.description %></p>
-        </td>
-        <td class="col-md-2" style="text-align: center">
-          <%= link_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-sm" %>
-          <%= @cart.count_of(recipient.id) %>
-          <%= link_to "-", cart_path(remove: recipient.id), method: :put, class: "btn btn-sm"  %>
-          <br>
-          <%= link_to "Remove", cart_path(recipient_id: recipient.id), method: :delete, class: "remove-cart" %>
-        </td>
-      </tr>
-      <% end %>
-      <tr>
-        <td></td>
-        <td></td>
-        <td style="text-align: center">
-        <% if @cart %>
-          Total: <%= number_to_currency(@cart.total) %>
-        <% else %>
-          Total: $0.00
         <% end %>
-        <td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td style="text-align: center">
-          <% if registered_user? %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td style="text-align: center">
+            <% if @cart %>
+            Total: <%= number_to_currency(@cart.total) %>
+            <% else %>
+            Total: $0.00
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td style="text-align: center">
+            <% if registered_user? %>
             <%= button_to "Checkout", fundings_path(contents: session[:cart]), method: :create, class: "btn-checkout" %>
-          <% else %>
+            <% else %>
             <%= button_to "Login to Checkout", login_path, method: :get, class: "btn-checkout" %></br>
             <%= button_to "Register to Checkout", new_user_path, method: :get,  class: "btn-checkout" %>
-          <% end %>
-        <td>
-      </tr>
-    </tbody>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

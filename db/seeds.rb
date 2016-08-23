@@ -32,7 +32,19 @@ class Seed
     org_19 = Organization.create(name: "Feeding Families Farm Fresh", description: "Our mission is to feed families fresh produce to support and promote healthy living. Support local farmers make deliveries to families in need with seasonal crops straight from the ground.", status: 1, image_path: "../assets/freshfood.jpg")
     org_20 = Organization.create(name: "Childcare Everywhere", description: "We believe childcare should be affordable for everyone. Help provide funding for a childcare facility that so families can continue to work.", status: 1, image_path: "../assets/childcare.jpg")
   end
-end
+
+
+  def gender
+    ["women", "men"].sample
+  end
+
+  def org_without_women
+    Organization.where('name != ?', "Women International").sample
+  end
+
+  def women_int
+    Organization.find_by(name: "Women International")
+  end
 
   def gender
     ["women", "men"].sample
@@ -51,7 +63,7 @@ end
       48.times do |n|
         name = Faker::Name.name
         country.recipients << Recipient.create(name: name,
-        description: "#{name} is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
+        description: " is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
         amount_received: rand(0..800),
         image_path:"https://randomuser.me/api/portraits/#{gender}/#{rand(0..99)}.jpg",
         organization: org_without_women)
@@ -59,7 +71,7 @@ end
       2.times do |n|
         name = Faker::Name.name
         country.recipients << Recipient.create(name: name,
-        description: "#{name} is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
+        description: " is a #{Faker::Company.buzzword} individual in need of a #{Faker::Commerce.product_name}! Help make their dreams come true with your contribution.",
         amount_received: rand(0..800), image_path:"https://randomuser.me/api/portraits/women/#{rand(0..99)}.jpg",
         organization: women_int)
       end
@@ -100,5 +112,6 @@ end
     tommasina.roles << [registered, org_admin]
     sally.roles << [registered, org_admin]
   end
+end
 
 Seed.start
