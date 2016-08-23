@@ -7,7 +7,7 @@ class Seed
     generate_organizations
     generate_countries
     generate_recipients
-    generate_users
+    generate_roles
   end
 
   def generate_organizations
@@ -46,20 +46,8 @@ class Seed
     Organization.find_by(name: "Women International")
   end
 
-  def gender
-    ["women", "men"].sample
-  end
-
-  def org_without_women
-    Organization.where('name != ?', "Women International").sample
-  end
-
-  def women_int
-    Organization.find_by(name: "Women International")
-  end
-
   def generate_recipients
-    Country.all.each do |country|
+    ten_countries.each do |country|
       48.times do |n|
         name = Faker::Name.name
         country.recipients << Recipient.create(name: name,
@@ -89,28 +77,21 @@ class Seed
     Country.create(name:"Mexico")
     Country.create(name:"India")
     Country.create(name:"Kenya")
+    Country.create(name:"Micronesia")
+    Country.create(name:"Philippines")
+    Country.create(name:"Samoa")
+    Country.create(name:"Denmark")
+    Country.create(name:"Canada")
   end
 
-  def generate_users
+  def ten_countries
+    Country.all.shuffle.pop(10)
+  end
+
+  def generate_roles
     registered = Role.create(name: "registered_user")
     org_admin = Role.create(name: "org_admin")
     platform_admin = Role.create(name: "platform_admin")
-    women = Organization.find_by(name: "Women International")
-    village = Organization.find_by(name: "It Takes A Village")
-    green = Organization.find_by(name: "Green for Green Agriculture")
-    educare = Organization.find_by(name: "Educare")
-    health = Organization.find_by(name: "Health Now!")
-
-    angela = women.users.create!(username: "angela@example.com", password: "password")
-    caleb = village.users.create!(username: "caleb@example.com", password: "password")
-    lin = green.users.create!(username: "lin@example.com", password: "password")
-    tommasina = educare.users.create!(username: "tommasina@example.com", password: "password")
-    sally = health.users.create!(username: "sally@example.com", password: "password")
-    angela.roles << [registered, org_admin]
-    lin.roles << [registered, org_admin]
-    caleb.roles << [registered, org_admin]
-    tommasina.roles << [registered, org_admin]
-    sally.roles << [registered, org_admin]
   end
 end
 

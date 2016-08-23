@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Org admin can add recipients to organization " do
   scenario "org admin logs in and creates a new recipient" do
-
+    Country.create(name: "Guatemala")
     organization = Organization.create!(name:"Homes for Humanity", description: "We build homes", status: 1)
     user = organization.users.create(username: 'fiona@cat.com', password: 'password')
     role = Role.create(name: 'org_admin')
@@ -28,7 +28,7 @@ RSpec.feature "Org admin can add recipients to organization " do
 
     fill_in "Name", with: "Bill"
     fill_in "Description", with: "Bill also likes building huts"
-    fill_in "Country", with: "Guatemala"
+    select "Guatemala", from: "Country"
     fill_in "Image path", with: "http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg/revision/latest?cb=20081013140955"
     click_button "Create Recipient"
 
