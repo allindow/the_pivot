@@ -52,3 +52,16 @@
 .recipient-show {
   padding-left: 40px;
 }
+
+.recip-edit {
+ border:10px solid #eee;
+ transition: all 0.2s ease-in-out;
+}
+
+.recip-edit:hover {
+ border:2px solid #eee;
+ transform:rotate(360deg);
+ -ms-transform:rotate(360deg);
+ -webkit-transform:rotate(360deg);
+ -webkit-font-smoothing:antialiased;
+}
