@@ -20,3 +20,4 @@ coverage
 config/secrets.yml
 
 /spec_archive/*
+db/migrate
