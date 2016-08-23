@@ -18,5 +18,9 @@ RSpec.feature "org admin cannot register two orgs" do
     expect(current_path).to eq dashboard_path
 
     expect(page).to_not have_content("Register Organization")
+
+    visit new_organization_path
+
+    expect(current_path).to eq root_path
   end
 end
