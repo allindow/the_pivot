@@ -100,4 +100,5 @@ class Seed
     sally.roles << [registered, org_admin]
   end
 end
+
 Seed.start
