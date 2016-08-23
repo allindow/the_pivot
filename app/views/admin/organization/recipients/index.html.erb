@@ -9,7 +9,7 @@
 <hr>
 <div class="row">
   <% @organization.recipients.each do |recipient| %>
-  <div class="media">
+  <div class="media" id="<%= recipient.name.downcase %>">
     <a class="pull-left" href="<%= "#{recipient_path(recipient.id)}" %>">
       <img class="media-object recip-edit img-circle" src="<%= "#{recipient.image_path}" %>" style="width: 150px;height:150px;">
     </a>

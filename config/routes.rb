@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :recipients, param: :slug, only: [:show]
   end
 
-  get '/:organization_slug/dashboard', to: "organizations/dashboard#index"
+  get '/:organization_slug/dashboard', to: "organizations/dashboard#index", as: 'organization_dashboard'
 
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"

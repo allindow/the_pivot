@@ -20,12 +20,13 @@ RSpec.feature "Org admin can change recipients in an organization " do
     click_link "Manage Recipients"
 
     expect(current_path).to eq "/admin/cats-for-humanity/recipients"
-    expect(page).to have_content("Name: Ollie")
-    expect(page).to have_content("Description: Ollie needs a home")
+    expect(page).to have_link("Ollie")
+    expect(page).to have_content("Ollie needs a home")
 
-    expect(page).to have_link("Delete Ollie")
-
-    click_link "Delete Ollie"
+    within("#ollie") do
+      expect(page).to have_link("Delete")
+      click_link "Delete"
+    end
 
     expect(current_path).to eq "/admin/cats-for-humanity/recipients"
     expect(page).to_not have_content("Name: Ollie")
