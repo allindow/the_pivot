@@ -32,7 +32,7 @@ class Seed
     org_19 = Organization.create(name: "Feeding Families Farm Fresh", description: "Our mission is to feed families fresh produce to support and promote healthy living. Support local farmers make deliveries to families in need with seasonal crops straight from the ground.", status: 1, image_path: "../assets/freshfood.jpg")
     org_20 = Organization.create(name: "Childcare Everywhere", description: "We believe childcare should be affordable for everyone. Help provide funding for a childcare facility that so families can continue to work.", status: 1, image_path: "../assets/childcare.jpg")
   end
-  
+
   def gender
     ["women", "men"].sample
   end
