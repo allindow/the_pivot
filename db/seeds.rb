@@ -46,6 +46,18 @@ class Seed
     Organization.find_by(name: "Women International")
   end
 
+  def gender
+    ["women", "men"].sample
+  end
+
+  def org_without_women
+    Organization.where('name != ?', "Women International").sample
+  end
+
+  def women_int
+    Organization.find_by(name: "Women International")
+  end
+
   def generate_recipients
     Country.all.each do |country|
       48.times do |n|
