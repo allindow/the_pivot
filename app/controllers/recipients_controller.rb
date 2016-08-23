@@ -38,7 +38,6 @@ class RecipientsController < ApplicationController
   end
 
   def update
-    # require "pry"; binding.pry
     @recipient = Recipient.find(params[:id])
     @recipient.update_attributes(recipient_params)
     @recipient.image_path = "http://www.thecircle-net.com/images/costum/other/commingSoon.png" if params[:recipient][:image_path].blank?

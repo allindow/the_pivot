@@ -11,8 +11,9 @@
       <li>Country: <%= recipient.country.name %></li>
       <li><img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="..."></li>
     </ul>
-      <%= link_to "Edit #{recipient.name}", edit_recipient_path(recipient.id)%>
+      <%= link_to "Edit #{recipient.name}", edit_recipient_path(recipient.id) unless recipient.retired%>
       <%= link_to "Delete #{recipient.name}", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} unless recipient.has_funds?%>
-      <%= link_to "Deactivate", recipient_path(recipient.id), method: :put, data: {confirm: 'Are you sure?'} if recipient.has_funds? %>
+      <%= link_to "Deactivate", "/admin/#{recipient.organization.slug}/recipients/#{recipient.id}", method: :patch, data: {confirm: 'Are you sure?'} if recipient.has_funds? %>
+      <%= "#{recipient.name} is inactive" if recipient.retired%> <%= link_to "Reactivate", "/admin/#{recipient.organization.slug}/recipients/#{recipient.id}", method: :patch, data: {confirm: 'Are you sure?'} if recipient.retired %>
     <% end %>
   </div>

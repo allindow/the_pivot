@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :recipients, only: [:index, :edit, :update]
   end
 
+  patch '/admin/:organization_slug/recipients/:id', to: "admin/organization/recipients#update"
   get '/admin/:organization_slug/recipients', to: "admin/organization/recipients#index"
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"

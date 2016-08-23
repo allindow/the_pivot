@@ -17,8 +17,10 @@
       <div class="organization-title-list">
         <p align="right"><%= link_to recipient.organization.name, organization_path(slug: recipient.organization.slug) %></p>
       </div>
-      <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
-      <%= render partial: "shared/recipients_details", locals: { recipient: recipient } %>
+      <% unless recipient.retired %>
+        <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
+        <%= render partial: "shared/recipients_details", locals: { recipient: recipient } %>
+      <% end %>
     </div>
   </div>
 <% end %>
