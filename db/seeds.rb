@@ -33,7 +33,6 @@ class Seed
     org_20 = Organization.create(name: "Childcare Everywhere", description: "We believe childcare should be affordable for everyone. Help provide funding for a childcare facility that so families can continue to work.", status: 1, image_path: "../assets/childcare.jpg")
   end
 
-
   def gender
     ["women", "men"].sample
   end
