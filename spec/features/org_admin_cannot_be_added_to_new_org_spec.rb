@@ -3,14 +3,11 @@ require 'rails_helper'
 RSpec.feature "Org admin cannot be added to a new org" do
   scenario "org admin fails to add an existing org admin" do
     org_role = Role.create(name: 'org_admin')
-    reg_role = Role.create(name: 'registered_user')
-    reg_user = User.create(username: "bill@example.com", password: "password")
+    org_user_1 = User.create(username: "bill@example.com", password: "password")
     organization = Organization.create!(name:"Homes for Humanity", description: "We build homes", status: 1)
-    user = organization.users.create(username: 'fiona@cat.com', password: 'password')
-    user.roles << org_role
-    user.roles << reg_role
-    reg_user.roles << reg_role
-    reg_user.roles << org_role
+    org_user_2 = organization.users.create(username: 'fiona@cat.com', password: 'password')
+    org_user_1.roles << org_role
+    org_user_2.roles << org_role
 
     visit login_path
     fill_in 'Username', with: 'fiona@cat.com'
