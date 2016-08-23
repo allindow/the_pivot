@@ -13,5 +13,6 @@
     </ul>
       <%= link_to "Edit #{recipient.name}", edit_recipient_path(recipient.id)%>
       <%= link_to "Delete #{recipient.name}", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} unless recipient.has_funds?%>
+      <%= link_to "Deactivate", recipient_path(recipient.id), method: :put, data: {confirm: 'Are you sure?'} if recipient.has_funds? %>
     <% end %>
   </div>
