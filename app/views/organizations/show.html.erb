@@ -1,4 +1,4 @@
-<h1 class="page-organization-title"><%= @organization.name %></h1>
+<h1 class="page-organization-title"><%= link_to @organization.name, "/#{@organization.slug}" %></h1>
 
 
 <h1 class="page-organization-title"><%= @organization.description %></h1>
