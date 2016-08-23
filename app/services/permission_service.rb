@@ -29,7 +29,7 @@ attr_reader :user
     def org_admin_permissions(controller, action)
       return true if controller == "sessions"
       return true if controller == "recipients"
-      return true if controller == "organizations"
+      return true if controller == "organizations" && action.in?(%w(index show update))
       return true if controller == "fundings"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"

@@ -3,7 +3,7 @@
   <em><%= recipient.name %> <%= recipient.description %></em></p>
   <%= form_tag("/carts", method: "post") do %>
     <%= hidden_field_tag :recipient_id, recipient.id %>
-    <%= select_tag(:loan_amount, options_for_select([20, 30, 40, 50, 60, 70, 80, 90, 100])) %>
+    <div style="float: left; width: auto;"><%= select_tag :loan_amount, options_for_select(lend_amounts), {class: 'form-control'}  %></div>
     <%= submit_tag "Lend", class: "btn btn-recipient" %>
     <br><br>
   <% end %>
