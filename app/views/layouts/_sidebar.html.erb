@@ -15,7 +15,7 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="countries">
-              <% countries.each do |country| %>
+              <% countries_with_recipients.each do |country| %>
               <li><%= link_to country.name, country_needs_path(country_slug: country.slug) %></li>
               <% end %>
             </ul>
