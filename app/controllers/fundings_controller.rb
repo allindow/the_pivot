@@ -19,7 +19,13 @@ class FundingsController < ApplicationController
   end
 
   def show
-    @funding = Funding.find(params[:id])
+    if current_platform_admin?
+      @funding = Funding.find(params[:id])
+    elsif current_user_order?
+      @funding = current_user.fundings.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   private
@@ -36,5 +42,9 @@ class FundingsController < ApplicationController
 
   def change_funding_status
     @funding.update_attributes(status: "paid")
+  end
+
+  def current_user_order?
+    current_user.fundings.exists? && current_user.fundings.find(params[:id]) rescue nil
   end
 end

@@ -12,10 +12,12 @@ RSpec.feature "Registered user can create an organization" do
 
     visit login_path
 
+
     fill_in 'Username', with: 'omar@gmail.com'
     fill_in 'Password', with: 'password'
-    click_button "Login"
+    click_button 'Login'
 
+    visit root_path
     click_link("Register Organization")
 
     expect(current_path).to eq(new_organization_path)
