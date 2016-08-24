@@ -14,8 +14,7 @@ RSpec.feature "Platform admin views all fundings" do
 
     visit platform_dashboard_index_path
     expect(page).to have_link("Logout")
-    expect(page).to have_link("My Organization")
-    expect(page).to have_link("My Account")
-
+    expect(page).to have_link("Manage Organizations")
+    expect(page).to have_link("View All Fundings")
   end
 end
