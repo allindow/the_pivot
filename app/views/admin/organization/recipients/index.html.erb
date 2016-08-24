@@ -20,6 +20,8 @@
         <h5><%= recipient.name %> <%= recipient.description %></h5>
         <%= link_to "Edit", edit_recipient_path(recipient.id), class: "btn btn-labeled btn-info" %>
         <%= link_to "Delete", recipient_path(recipient.id), class: "btn btn-warning", method: :delete, data: {confirm: 'Are you sure?'} %>
+        <%= link_to "Deactivate", "/admin/#{recipient.organization.slug}/recipients/#{recipient.id}", method: :patch, data: {confirm: 'Are you sure?'} if recipient.has_funds? %>
+        <%= "#{recipient.name} is inactive" if recipient.retired%> <%= link_to "Reactivate", "/admin/#{recipient.organization.slug}/recipients/#{recipient.id}", method: :patch, data: {confirm: 'Are you sure?'} if recipient.retired %>
         <hr style="margin:8px auto">
       </div>
     </div>
