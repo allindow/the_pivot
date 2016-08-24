@@ -10,7 +10,6 @@ class Platform::OrganizationsController < ApplicationController
       @organization.users.first.roles << Role.find_by(name: "org_admin")
     elsif params[:name] == "denied"
       @organization.deny_organization_status
-      # @organization.users.first.update_attributes(organization_id: 000)
     elsif params[:name] == "deactivated"
       @organization.deactivate_organization_status
     end
