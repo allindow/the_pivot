@@ -10,14 +10,10 @@ RSpec.feature "Organization admin can edit recipients" do
     country = Country.create(name:"Ghana")
     recipient = organization.recipients.create(name:"Bob", description:"Loves building huts", country_id: country.id, image_path: "https://robohash.org/Bob")
 
-    visit login_path
-    fill_in 'Username', with: 'fiona@cat.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    expect(current_path).to eq(dashboard_path)
-
-    click_link "My Organization"
+    visit organization_dashboard_path(organization_slug: user.organization.slug)
+    
     click_link "Manage Recipients"
 
     expect(page).to have_content("Bob")
