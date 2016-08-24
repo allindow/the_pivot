@@ -1,8 +1,8 @@
 class Admin::Organization::UsersController < ApplicationController
 
   def index
-    @organization = Organization.find_by(slug: params[:organization_slug])
-    @admins = @organization.users
+      @organization = Organization.find_by(slug: params[:organization_slug])
+      @admins = @organization.users
   end
 
   def new
