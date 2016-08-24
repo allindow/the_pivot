@@ -68,7 +68,6 @@ attr_reader :user
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
       return true if controller == "country/recipients"
-      return true if controller == "api/v1/progress"
     end
 
 end
