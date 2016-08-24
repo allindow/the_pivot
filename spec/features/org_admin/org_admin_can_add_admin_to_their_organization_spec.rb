@@ -12,13 +12,9 @@ RSpec.feature "Org admin can add admin to their organization " do
     user.roles << reg_role
     reg_user.roles << reg_role
 
-    visit root_path
-    click_link 'Login'
-    fill_in 'Username', with: 'fiona@cat.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    click_link "My Organization"
+    visit organization_dashboard_path(organization_slug: user.organization.slug)
 
     click_link "Manage Admins"
 

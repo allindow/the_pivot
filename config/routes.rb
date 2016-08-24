@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     resources :charges, only: [:new, :create]
   end
 
+  namespace :platform do
+    resources :dashboard, only: [:index]
+  end
+
   namespace :admin do
     resources :dashboard, only: [:index, :edit, :update, :new, :create]
     resources :recipients, only: [:index, :edit, :update]

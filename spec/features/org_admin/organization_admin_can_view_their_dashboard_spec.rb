@@ -8,14 +8,11 @@ RSpec.feature "Organization admin can view their org dashboard" do
     role = Role.create(name: 'org_admin')
     user.roles << role
 
-    visit root_path
-    click_link 'Login'
-    fill_in 'Username', with: 'fiona@cat.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit organization_dashboard_path(organization_slug: user.organization.slug)
 
     expect(User.last.roles.pluck(:name)).to include('org_admin')
-    expect(current_path).to eq(dashboard_path)
     expect(page).to have_link("My Organization")
 
     click_link "My Organization"

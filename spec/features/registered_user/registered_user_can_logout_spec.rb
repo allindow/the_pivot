@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Registered user can logout" do
   scenario "when logged in" do
-    User.create(username: "angela@example.com", password: "password")
+    user = User.create(username: "angela@example.com", password: "password")
 
     visit '/login'
     fill_in 'Username', with: 'angela@example.com'

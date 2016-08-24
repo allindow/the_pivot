@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    username "mystring@mystring.com"
+    username
     password "MyString"
   end
 
@@ -32,6 +32,17 @@ FactoryGirl.define do
     country
   end
 
+  factory :funding do
+    total_price 25
+    user
+  end
+
+  factory :recipient_funding do
+    recipient
+    funding
+    microloan_amount 25
+  end
+
   sequence :description do |n|
     "Description_#{n}"
   end
@@ -42,5 +53,9 @@ FactoryGirl.define do
 
   sequence :name do |n|
     "Name_#{n}"
+  end
+
+  sequence :username do |n|
+    "myString#{n}@example.com"
   end
 end
