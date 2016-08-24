@@ -16,6 +16,7 @@ attr_reader :user
     def platform_admin_permissions(controller, action)
       return true if controller == "platform/dashboard"
       return true if controller == "platform/fundings"
+      return true if controller == "platform/organizations"
       return true if controller == "sessions"
       return true if controller == "users"
       return true if controller == "recipients"

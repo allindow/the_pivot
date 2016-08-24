@@ -1,8 +1,14 @@
 class OrganizationsController < ApplicationController
 
   def show
-    @organization = Organization.find_by(slug: params[:slug])
-    @recipients = @organization.recipients
+    organizations = Organization.active_only
+    @organization = organizations.find_by(slug: params[:slug])
+    if @organization
+      @recipients = @organization.recipients
+    else
+      flash[:failure] = "Can't find what you're looking for"
+      redirect_to dashboard_path
+    end
   end
 
   def new
