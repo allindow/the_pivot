@@ -7,7 +7,10 @@ RSpec.feature "Organization admin can edit organization name and description" do
     role = Role.create(name: 'org_admin')
     user.roles << role
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit '/login'
+    fill_in 'Username', with: 'fiona@cat.com'
+    fill_in 'Password', with: 'password'
+    click_button 'Login'
 
     visit organization_dashboard_path(organization_slug: user.organization.slug)
 

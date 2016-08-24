@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       if current_platform_admin?
-        redirect_to '/admin/dashboard'
+        redirect_to '/platform/dashboard'
       elsif session[:cart]
         redirect_to '/cart'
       else

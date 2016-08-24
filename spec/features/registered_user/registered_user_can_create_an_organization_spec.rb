@@ -12,7 +12,10 @@ RSpec.feature "Registered user can create an organization" do
 
     visit login_path
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    fill_in 'Username', with: 'omar@gmail.com'
+    fill_in 'Password', with: 'password'
+    click_button 'Login'
 
     visit root_path
     click_link("Register Organization")
