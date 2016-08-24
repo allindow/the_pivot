@@ -5,6 +5,7 @@ RSpec.feature "Registered user can add to cart" do
     user = create(:user)
     recipient = create(:recipient)
     organization = recipient.organization
+    organization.update_attributes(status: "active")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
