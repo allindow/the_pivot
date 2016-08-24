@@ -6,8 +6,6 @@ RSpec.feature "Platform admin views all fundings" do
     plat = create(:user)
     role = Role.create(name: 'platform_admin')
     plat.roles << role
-    visit platform_dashboard_index_path
-    expect(page).to have_content "Couldn't find what you're looking for!"
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(plat)
 
