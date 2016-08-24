@@ -3,7 +3,7 @@
   <div id="admin-account">
   <% @organizations.each do |organization| %>
     <div class="container col-md-4 home-recipient-wrapper" id="<%= organization.slug %>">
-        <h3><%= link_to organization.name, "/#{organization.slug}" %></h3>
+        <h3><%= link_to organization.name, "/#{organization.slug}" %></h3> <%= link_to "Add Admin", new_platform_organization_user_path(organization_slug: organization.slug) %>
         <%= organization.status.capitalize %>
         <%= link_to "Edit", edit_platform_organization_path(organization) %>
         <% if organization.status == "pending" %>
