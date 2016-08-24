@@ -22,14 +22,14 @@ RSpec.feature "Platform admin can change status of orgs" do
 
     expect(page).to have_content("Hovels for Humanity")
     expect(page).to have_content("Pending")
-    expect(page).to have_button("Activate")
-    expect(page).to have_button("Deny")
+    expect(page).to have_link("Activate")
+    expect(page).to have_link("Deny")
     expect(page).to_not have_content("Deactivate")
 
-    click_button("Activate")
+    click_link("Activate")
 
     expect(page).to have_content("Active")
-    expect(page).to have_button("Deactivate")
+    expect(page).to have_link("Deactivate")
     expect(page).to_not have_content("Pending")
 
     expect(reg_user.roles.pluck(:name)).to include("org_admin")
@@ -59,11 +59,11 @@ RSpec.feature "Platform admin can change status of orgs" do
 
     expect(page).to have_content("Cats for Humanity")
     expect(page).to have_content("Pending")
-    expect(page).to have_button("Activate")
-    expect(page).to have_button("Deny")
+    expect(page).to have_link("Activate")
+    expect(page).to have_link("Deny")
     expect(page).to_not have_content("Deactivate")
 
-    click_button("Deny")
+    click_link("Deny")
 
     expect(page).to have_content("Denied")
     expect(page).to_not have_button("Activate")
@@ -98,14 +98,14 @@ RSpec.feature "Platform admin can change status of orgs" do
 
     expect(page).to have_content("Dogs for Humanity")
     expect(page).to have_content("Active")
-    expect(page).to have_button("Deactivate")
-    expect(page).to_not have_button("Deny")
-    expect(page).to_not have_button("Activate")
+    expect(page).to have_link("Deactivate")
+    expect(page).to_not have_link("Deny")
+    expect(page).to_not have_link("Activate")
 
-    click_button("Deactivate")
+    click_link("Deactivate")
 
     expect(page).to have_content("Inactive")
-    expect(page).to have_button("Activate")
+    expect(page).to have_link("Activate")
     expect(page).to_not have_content("Pending")
     expect(page).to_not have_content("Denied")
 

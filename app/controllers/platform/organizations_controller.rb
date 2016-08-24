@@ -5,14 +5,13 @@ class Platform::OrganizationsController < ApplicationController
 
   def update
     @organization = Organization.find(params[:id])
-    if params[:name] == "activated"
-      @organization.activate_organization_status
-      @organization.users.first.roles << Role.find_by(name: "org_admin")
-    elsif params[:name] == "denied"
-      @organization.deny_organization_status
-    elsif params[:name] == "deactivated"
-      @organization.deactivate_organization_status
-    end
+    @organization.update_attributes(name: params[:organization][:name]) if params[:organization]
+    @organization.update_attributes(description: params[:organization][:description]) if params[:organization]
+    @organization.update_status(params[:status])
     redirect_to platform_organizations_path
+  end
+  
+  def edit
+    @organization = Organization.find(params[:id])
   end
 end
