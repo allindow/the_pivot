@@ -7,7 +7,7 @@ attr_reader :user
 
   def allow?(controller, action)
     return platform_admin_permissions(controller, action) if user.platform_admin?
-    return org_admin_permissions(controller, action) if user.org_admin?
+    return org_admin_permissions(controller, action) if user.org_admin? 
     return registered_user_permissions(controller, action) if user.registered_user?
     return guest_permissions(controller, action)
   end
@@ -30,11 +30,11 @@ attr_reader :user
     def org_admin_permissions(controller, action)
       return true if controller == "sessions"
       return true if controller == "recipients"
-      return true if controller == "organizations"
+      return true if controller == "organizations" && action.in?(%w(index show update))
       return true if controller == "fundings"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
-      return true if controller == "organizations/dashboard"
+      return true if controller == "organizations/dashboard" 
       return true if controller == "country/recipients"
       return true if controller == "admin/recipients"
       return true if controller == "users"
