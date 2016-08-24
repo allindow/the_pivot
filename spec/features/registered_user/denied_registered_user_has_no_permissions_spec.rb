@@ -15,6 +15,8 @@ RSpec.feature 'Registered user who has applied for an organization' do
     
     expect(page).to have_content('Status: Pending')
   
+    org.deny_organization_status
+    
     visit dashboard_path
     
     expect(page).to have_content('Status: Denied')

@@ -24,6 +24,17 @@ class Organization < ActiveRecord::Base
   def funds_raised
     recipients.sum(:amount_received).to_i
   end
+  
+  def update_status(status)
+    if status == "activated"
+      activate_organization_status
+      users.first.roles << Role.find_by(name: "org_admin") if users.first
+    elsif status == "denied"
+      deny_organization_status
+    elsif status == "deactivated"
+      deactivate_organization_status
+    end
+  end
 
   private
     def generate_slug

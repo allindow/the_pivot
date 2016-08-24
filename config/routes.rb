@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :platform do
     resources :dashboard, only: [:index]
     resources :fundings, only: [:index]
-    resources :organizations, only: [:index, :update]
+    resources :organizations, only: [:index, :update, :edit]
   end
 
   namespace :admin do

@@ -1,12 +1,19 @@
-<% @organizations.each do |organization| %>
-  <%= organization.name %>
-  <%= organization.status.capitalize %>
-  <% if organization.status == "pending" %>
-    <%= button_to "Activate", platform_organization_path(organization, name: "activated"), method: :put %>
-    <%= button_to "Deny", platform_organization_path(organization, name: "denied"), method: :put %>
-  <% elsif organization.status == "inactive"%>
-    <%= button_to "Activate", platform_organization_path(organization, name: "activated"), method: :put %>
-  <% else %>
-    <%= button_to "Deactivate", platform_organization_path(organization, name: "deactivated"), method: :put %>
+  <%= render partial: "shared/platform_dashboard" %>
+<h3>Manage Organizations</h3>
+  <div id="admin-account">
+  <% @organizations.each do |organization| %>
+    <div class="container col-md-4 home-recipient-wrapper" id="<%= organization.slug %>">
+        <h3><%= link_to organization.name, "/#{organization.slug}" %></h3>
+        <%= organization.status.capitalize %>
+        <%= link_to "Edit", edit_platform_organization_path(organization) %>
+        <% if organization.status == "pending" %>
+          <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+          <%= link_to "Deny", platform_organization_path(organization, status: "denied"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+        <% elsif organization.status == "inactive"%>
+          <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+        <% else %>
+          <%= link_to "Deactivate", platform_organization_path(organization, status: "deactivated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+        <% end %>
+      </div>
   <% end %>
-<% end %>
+</div>
