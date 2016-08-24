@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :platform do
     resources :dashboard, only: [:index]
     resources :fundings, only: [:index]
+    resources :recipients, only: [:index]
     resources :organizations, only: [:index, :update, :edit]
     namespace :organization do
       resources :users, param: :organization_slug, only: [:new]
