@@ -23,6 +23,12 @@ class Recipient < ActiveRecord::Base
     amount_received.to_i != 0
   end
 
+  def self.active_only
+    all.select do |recipient|
+      recipient.organization.status == "active"
+    end
+  end
+
   private
     def generate_slug
       self.slug = name.parameterize
