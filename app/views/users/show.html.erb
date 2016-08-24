@@ -6,4 +6,7 @@
     
     <% if current_user.organization %>
       <h3> <%= current_user.organization.name %> Status: <%= current_user.organization.status.capitalize %> </h3>
+      <% if current_user.organization.status == "denied" %>
+        <h3>Please feel free to submit another organization application.</h3>
+      <% end %>
     <% end %>
