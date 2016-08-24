@@ -27,7 +27,7 @@ RSpec.feature "Registered user can create an organization" do
     fill_in "Description", with: 'We protect cats and their humans.'
     click_button ("Submit Organization Application")
 
-    expect(current_path).to eq("/save-the-cats/dashboard")
+    expect(current_path).to eq("/dashboard")
     expect(page).to have_content("Status: Pending")
     expect(page).to_not have_content("Manage Team")
   end
