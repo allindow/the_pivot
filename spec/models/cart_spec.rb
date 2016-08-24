@@ -11,5 +11,4 @@ RSpec.describe Cart, type: :model do
     empty_cart = Cart.new({})
     expect(empty_cart.contents).to be_truthy
   end
-
 end
