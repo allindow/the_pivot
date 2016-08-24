@@ -9,5 +9,4 @@ class Admin::Organization::UsersController < ApplicationController
     @organization = Organization.find_by(slug: params[:organization_slug])
     @user = @organization.users.new
   end
-
 end
