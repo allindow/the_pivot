@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.roles << Role.create(name: "registered_user")
+      @user.roles << Role.find_or_create_by(name: "registered_user")
       session[:user_id] = @user.id
       redirect_to dashboard_path(@user)
       flash.now[:sucess] = "You have successfully created an account!"
@@ -33,7 +33,11 @@ class UsersController < ApplicationController
       user.roles << role
       user.update!(organization_id: organization.id)
       flash[:success] = "You've added #{user.username} as an admin"
-      redirect_to "/admin/#{organization.slug}/users"
+      if current_user.platform_admin?
+        redirect_to platform_organizations_path
+      else
+        redirect_to "/admin/#{organization.slug}/users"
+      end
     elsif user.org_admin?
       flash[:failure] = "Cannot add user"
       redirect_to "/admin/#{organization.slug}/users/new"
