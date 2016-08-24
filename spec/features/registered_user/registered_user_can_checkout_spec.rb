@@ -39,11 +39,11 @@ RSpec.feature "Registered user can checkout" do
     expect(page).to have_button("Checkout")
 
     click_button("Checkout")
-    expect(current_path).to eq(funding_path(1))
+    expect(current_path).to eq(funding_path(Funding.last))
     expect(page).to have_content("Total Lent: $20")
     expect(page).to have_content("Bob")
     expect(page).to have_content("Funding created on: ")
-    expect(page).to have_content("Funding 1 Summary")
+    expect(page).to have_content("Funding #{Funding.last.id} Summary")
     expect(page).to have_content("Current status: Awaiting payment")
     expect(page).to have_link("My Fundings")
 

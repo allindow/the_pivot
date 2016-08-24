@@ -9,12 +9,9 @@ RSpec.feature "Org admin cannot be added to a new org" do
     org_user_1.roles << org_role
     org_user_2.roles << org_role
 
-    visit login_path
-    fill_in 'Username', with: 'fiona@cat.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Login'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(org_user_2)
 
-    click_link "My Organization"
+    visit organization_dashboard_path(organization_slug: org_user_2.organization.slug)
 
     click_link "Manage Admins"
 
