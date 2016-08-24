@@ -8,11 +8,13 @@ RSpec.feature "Platform admin views all fundings" do
     plat.roles << role
 
     visit platform_dashboard_index_path
-    expect(response.status).to eq(404)
+    expect(page).to have_content "Couldn't find what you're looking for!"
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(plat)
 
     visit platform_dashboard_index_path
+
+    expect(page).to have_content("Recipients have received")
     expect(page).to have_link("Logout")
     expect(page).to have_link("Manage Organizations")
     expect(page).to have_link("View All Fundings")

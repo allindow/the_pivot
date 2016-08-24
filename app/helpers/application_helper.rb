@@ -9,6 +9,10 @@ module ApplicationHelper
     end
   end
 
+  def all_funds_raised
+    Recipient.sum(:amount_received).to_i
+  end
+
   def lend_amounts
     [20, 30, 40, 50, 60, 70, 80, 90, 100]
   end

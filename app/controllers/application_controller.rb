@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def authorize!
     unless authorize?
       redirect_to root_url
-      flash.now[:warning] = "Couldn't find what you're looking for!"
+      flash[:warning] = "Couldn't find what you're looking for!"
     end
   end
 
