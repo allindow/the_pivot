@@ -17,7 +17,6 @@ RSpec.feature "Org admin can reactivate recipient" do
     click_link "My Organization"
     click_link "Manage Recipients"
 
-    expect(page).to have_content("Bob is inactive")
     expect(page).to have_link("Reactivate")
 
     expect(page).to have_content("Reactivate")
