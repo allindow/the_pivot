@@ -1,0 +1,8 @@
+<% @organizations.each do |organization| %>
+  <%= organization.name %>
+  <% organization.recipients.each do |recipient|  %>
+    <ul>
+      <li><%= recipient.name %></li>
+    </ul>
+  <% end %>
+<% end %>
