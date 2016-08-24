@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :fundings, only: [:index]
     resources :organizations, only: [:index, :update, :edit]
+    namespace :organization do
+      resources :users, param: :organization_slug, only: [:new]
+    end
   end
 
   namespace :admin do

@@ -6,14 +6,19 @@
         <h3><%= link_to organization.name, "/#{organization.slug}" %></h3>
         <%= organization.status.capitalize %>
         <%= link_to "Edit", edit_platform_organization_path(organization) %>
+        <%= link_to "Add Admin", new_platform_organization_user_path(organization_slug: organization.slug) %>
         <% if organization.status == "pending" %>
           <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
           <%= link_to "Deny", platform_organization_path(organization, status: "denied"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
         <% elsif organization.status == "inactive"%>
           <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
         <% else %>
+        <% organization.users.each do |user| %>
+          <ul>
+            <li><%= user.username %></li>
+          </ul>
+        <% end %>
           <%= link_to "Deactivate", platform_organization_path(organization, status: "deactivated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
         <% end %>
       </div>
-  <% end %>
-</div>
+
