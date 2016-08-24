@@ -17,7 +17,7 @@ RSpec.feature "Platform admin views all fundings" do
     expect(page).to have_link("View All Fundings")
   end
 
-  xscenario "they view all fundings" do
+  scenario "they view all fundings" do
     2.times { create(:recipient_funding) }
     plat = create(:user)
     role = Role.create(name: 'platform_admin')
@@ -27,16 +27,15 @@ RSpec.feature "Platform admin views all fundings" do
 
     click_link "View All Fundings"
 
-    expect(current_path).to eq 'platform/fundings'
-    expect(page).to have_link('Funding 1')
-    expect(page).to have_link('Funding 2')
+    expect(current_path).to eq platform_fundings_path
+    expect(page).to have_link("Funding #{Funding.first.id}")
+    expect(page).to have_link("Funding #{Funding.last.id}")
 
-    click_link "Funding 1"
+    click_link "Funding #{Funding.first.id}"
 
-    expect(current_path).to eq 'platform/fundings/1'
+    expect(current_path).to eq "/fundings/#{Funding.first.id}"
     expect(page).to have_content(Funding.first.total_price)
-    expect(page).to have_content(Funding.first.recipient.first.name)
-    expect(page).to have_content(Funding.first.recipients.first.organization)
-    expect(page).to have_content(Funding.first.recipient_funding.first.microloan_amount)
+    expect(page).to have_content(Funding.first.recipients.first.name)
+    expect(page).to have_content(Funding.first.recipient_fundings.first.microloan_amount)
   end
 end

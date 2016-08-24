@@ -9,6 +9,10 @@ module ApplicationHelper
     end
   end
 
+  def any_fundings?
+    Funding.exists?
+  end
+
   def all_funds_raised
     Recipient.sum(:amount_received).to_i
   end
@@ -27,5 +31,6 @@ module ApplicationHelper
 
   def registered_user?
     current_user && current_user.registered_user?
-  end 
+  end
+
 end
