@@ -1,12 +1,17 @@
 <% @organizations.each do |organization| %>
   <%= organization.name %>
-  <%= organization.status.capitalize %>
+  <%= organization.status.capitalize %> <%= link_to "Add Admin", new_platform_organization_user_path(organization_slug: organization.slug) %>
   <% if organization.status == "pending" %>
     <%= button_to "Activate", platform_organization_path(organization, name: "activated"), method: :put %>
     <%= button_to "Deny", platform_organization_path(organization, name: "denied"), method: :put %>
   <% elsif organization.status == "inactive"%>
     <%= button_to "Activate", platform_organization_path(organization, name: "activated"), method: :put %>
   <% else %>
+    <% organization.users.each do |user| %>
+      <ul>
+        <li><%= user.username %></li>
+      </ul>
+    <% end %>
     <%= button_to "Deactivate", platform_organization_path(organization, name: "deactivated"), method: :put %>
   <% end %>
 <% end %>
