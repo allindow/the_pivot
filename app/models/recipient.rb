@@ -15,6 +15,10 @@ class Recipient < ActiveRecord::Base
     update_attribute(:retired, true)
   end
 
+  def activate
+    update_attribute(:retired, false)
+  end
+
   def has_funds?
     amount_received.to_i != 0
   end

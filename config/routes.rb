@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :recipients, only: [:index, :edit, :update]
   end
 
+  patch '/admin/:organization_slug/recipients/:id', to: "admin/organization/recipients#update"
   get '/admin/:organization_slug/recipients', to: "admin/organization/recipients#index"
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
     resources :recipients, param: :slug, only: [:show]
   end
 
-  get '/:organization_slug/dashboard', to: "organizations/dashboard#index"
+  get '/:organization_slug/dashboard', to: "organizations/dashboard#index", as: 'organization_dashboard'
 
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"

@@ -16,7 +16,8 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     if @organization.save
-      redirect_to "/#{@organization.slug}/dashboard"
+      current_user.update_attributes(organization_id: @organization.id)
+      redirect_to "/dashboard"
       flash[:success] = "You have submitted your organization application. We'll be in touch once we review it."
     else
       flash[:failure] = "Invalid Information"
