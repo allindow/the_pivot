@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :fundings, only: [:index]
     resources :organizations, only: [:index, :update]
     resources :recipients, only: [:index]
+    namespace :organization do
+      resources :users, param: :organization_slug, only: [:new]
+    end
   end
 
   namespace :admin do
