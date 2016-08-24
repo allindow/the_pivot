@@ -1,10 +1,16 @@
 class RecipientsController < ApplicationController
   def index
-    @recipients = Recipient.all
+    @recipients = Recipient.active_only
   end
 
   def show
     @recipient = Recipient.find(params[:id])
+    if Recipient.active_only.include?(@recipient)
+      @recipient
+    else
+      redirect_to dashboard_path
+      flash[:failure] = "Can't find what you're looking for"
+    end
   end
 
   def create

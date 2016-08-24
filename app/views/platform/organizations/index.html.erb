@@ -4,7 +4,7 @@
   <% if organization.status == "pending" %>
     <%= button_to "Activate", platform_organization_path(organization, name: "activated"), method: :put %>
     <%= button_to "Deny", platform_organization_path(organization, name: "denied"), method: :put %>
-  <% elsif organization.status == "denied"%>
+  <% elsif organization.status == "inactive"%>
     <%= button_to "Activate", platform_organization_path(organization, name: "activated"), method: :put %>
   <% else %>
     <%= button_to "Deactivate", platform_organization_path(organization, name: "deactivated"), method: :put %>

@@ -6,15 +6,15 @@ class Organization < ActiveRecord::Base
   enum status: %w(pending active inactive denied)
 
   def activate_organization_status
-    organization.update_attributes(status: 1)
+    update_attributes(status: 1)
   end
 
-  def inactivate_organization_status
-    organization.update_attributes(status: 2)
+  def deactivate_organization_status
+    update_attributes(status: 2)
   end
 
   def deny_organization_status
-    organization.update_attributes(status: 3)
+    update_attributes(status: 3)
   end
 
   def self.active_only
