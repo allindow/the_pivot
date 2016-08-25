@@ -12,6 +12,7 @@ h1 {
 .home-link a {
   color: $top-nav-color;
   text-decoration: none;
+  font-family: 'Nobile', sans-serif;
 }
 
 .page-title {
@@ -35,10 +36,12 @@ h1 {
 .mission-text{
   text-align: center;
   color: $btn-color;
-  width: 600px;
+  width: 800px;
 }
 .page-subtitle {
   text-align: center;
+  color: #17110e;
+  width: 800px;
 }
 
 .page-edit {
@@ -67,4 +70,12 @@ h1 {
 .not-found-title {
   color: $btn-text-color;
   font-size: 2em;
+}
+
+.green {
+  color: #01aa1f;
+}
+
+.left {
+  text-align: left;
 }

@@ -24,7 +24,7 @@ RSpec.feature "platform admin can add new org admin to existing org" do
     expect(page).to have_content("Active")
     expect(page).to have_link("Add Admin")
 
-    click_link "Add Admin"
+    first(:link, "Add Admin").click
 
     expect(current_path).to eq new_platform_organization_user_path
 
