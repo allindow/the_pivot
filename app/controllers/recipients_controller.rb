@@ -25,9 +25,6 @@ class RecipientsController < ApplicationController
       @recipient = @country.recipients.create(recipient_params.merge(organization: @organization))
       check_for_image_path
       check_if_recipient_saved
-    else
-      flash[:failure] = "Invalid information"
-      redirect_to "/#{@organization.slug}/recipients/new"
     end
   end
 
@@ -43,8 +40,8 @@ class RecipientsController < ApplicationController
      if @recipient.save
       redirect_to recipient_path
     else
-      render :edit
       flash[:notice] = "Invalid"
+      render :edit
     end
   end
 
