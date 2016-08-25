@@ -1,4 +1,4 @@
-  <%= render partial: "shared/platform_dashboard" %>
+<%= render partial: "shared/platform_dashboard" %>
 <h3>Manage Organizations</h3>
   <div id="admin-account">
   <% @organizations.each do |organization| %>
@@ -13,10 +13,12 @@
         <% elsif organization.status == "inactive"%>
           <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
         <% else %>
-        <% organization.users.each do |user| %>
-          <ul>
-            <li><%= user.username %></li>
-          </ul>
+          <% organization.users.each do |user| %>
+            <ul id="users">
+              <li>
+                <%= user.username %><%= link_to "Edit", edit_user_path(id: user.id) %>
+              </li>
+            </ul>
         <% end %>
           <%= link_to "Deactivate", platform_organization_path(organization, status: "deactivated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
         <% end %>

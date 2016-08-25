@@ -26,24 +26,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    organization = Organization.find_by(slug: params[:organization_slug])
-    role = Role.find_or_create_by(name: "org_admin")
-    user = User.find_by(username: params[:user][:username])
-    if user && user.org_admin? == false
-      user.roles << role
-      user.update!(organization_id: organization.id)
-      flash[:success] = "You've added #{user.username} as an admin"
-      if current_user.platform_admin?
-        redirect_to platform_organizations_path
-      else
-        redirect_to "/admin/#{organization.slug}/users"
-      end
-    elsif user.org_admin?
+    user = User.find(params[:id])
+    if current_user.platform_admin?
+      user.update_attributes(username: params[:user][:username], password: params[:user][:password])
+      redirect_to platform_organizations_path
+    else
       flash[:failure] = "Cannot add user"
       redirect_to "/admin/#{organization.slug}/users/new"
-    else
-      flash.now[:failure] = "Could not find user: #{params[:user][:username]}"
-      render :new
     end
   end
 
@@ -64,7 +53,11 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-private
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  private
 
   def user_params
     params.require(:user).permit(:username, :password)
