@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :recipients
   resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
-  resources :users, only: [:new, :create, :show, :destroy]
+  resources :users, only: [:new, :create, :show, :destroy, :edit, :update]
+  resources :users
   resources :fundings, only: [:index, :create, :show, :new, :create]
 
   namespace :country, path: ":country_slug", as: :country do
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
     resources :recipients, only: [:index]
     resources :organizations, only: [:index, :update, :edit]
     namespace :organization do
-      resources :users, param: :organization_slug, only: [:new]
+      resources :users, param: :organization_slug, only: [:new, :update]
     end
   end
 
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
   get '/admin/:organization_slug/recipients', to: "admin/organization/recipients#index"
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"
+  patch '/admin/:organization_slug/users', to: "admin/organization/users#update"
   patch '/users', to: "users#update"
   get '/:organization_slug/recipients/new', to: "organizations/recipients#new"
 

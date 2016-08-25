@@ -22,7 +22,6 @@ RSpec.feature "Org admin can add admin to their organization " do
     expect(page).to have_content("Admins in your Organization")
 
     click_link "Add Admin"
-
     fill_in "Username", with: "bill@example.com"
 
     click_button "Add Admin"
