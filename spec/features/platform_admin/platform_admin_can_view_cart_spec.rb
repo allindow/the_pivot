@@ -10,6 +10,6 @@ RSpec.feature "platform admin can view cart" do
 
     visit cart_path
 
-    expect(page).to have_content("Cart Summary")
+    expect(page).to have_content("Your contribution can make a difference. Help recipients today!")
   end
 end
