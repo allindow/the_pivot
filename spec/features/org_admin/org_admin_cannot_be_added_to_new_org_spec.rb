@@ -21,8 +21,8 @@ RSpec.feature "Org admin cannot be added to a new org" do
 
     click_button "Add Admin"
 
-    expect(current_path).to eq "/admin/#{organization.slug}/users/new"
+    expect(current_path).to eq "/admin/#{organization.slug}/users"
 
-    expect(page).to have_content("Cannot add user")
+    expect(page).to have_content("Could not add user")
   end
 end

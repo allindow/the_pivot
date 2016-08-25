@@ -1,6 +1,8 @@
 <div class="home-recipient-wrapper">
-  <em><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug), class: "home-recipient-name" %></em></p>
-  <em><%= recipient.name %> <%= recipient.description %></em></p>
+  <strong>
+    <%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug), class: "home-recipient-name" %></p>
+  </strong>
+  <%= recipient.name %> <%= recipient.description %></p>
   <%= form_tag("/carts", method: "post") do %>
     <%= hidden_field_tag :recipient_id, recipient.id %>
     <div style="float: left; width: auto;"><%= select_tag :loan_amount, options_for_select(lend_amounts), {class: 'form-control'}  %></div>

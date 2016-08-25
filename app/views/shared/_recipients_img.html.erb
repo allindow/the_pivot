@@ -1,7 +1,9 @@
 <div class="col-md-4 home-recipient-img media">
-  <% if recipient.image_path %>  
-    <img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="...">
+  <% if recipient.image_path %>
+    <a href="<%= recipient.organization.slug %>/recipients/<%= recipient.slug %>">
+      <img class="media img-index" src="<%= "#{recipient.image_path}" %>" alt="...">
+    </a>
   <% else %>
-    <img class="media img-index" src="<%="../assets/#{recipient.name}.png" %>" alt="...">
+    <img class="media img-index" src="<%="http://www.thecircle-net.com/images/costum/other/commingSoon.png" %>" alt="...">
   <% end %>
 </div>
