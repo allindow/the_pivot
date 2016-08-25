@@ -1,3 +1,3 @@
-class Funding::ChargesController < Funding::BaseController
+class Funding::BaseController < ApplicationController
 
-end  
+end
