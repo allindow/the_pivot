@@ -1,8 +1,10 @@
 <% @organizations.each do |organization| %>
-  <%= organization.name %>
-  <% organization.recipients.each do |recipient|  %>
-    <ul>
-      <li><%= recipient.name %></li>
-    </ul>
+  <div id="<%= organization.slug %>">
+    <%= organization.name %>
+    <% organization.recipients.each do |recipient|  %>
+      <ul>
+        <li><%= recipient.name %> <%= link_to "Edit", edit_platform_recipient_path(recipient.id) %> </li>
+      </ul>
+    <% end %>
   <% end %>
-<% end %>
+</div>
