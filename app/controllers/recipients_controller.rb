@@ -9,7 +9,11 @@ class RecipientsController < ApplicationController
     if Recipient.active_only.include?(@recipient)
       @recipient
     else
-      redirect_to dashboard_path
+      if current_user
+        redirect_to dashboard_path
+      else
+        redirect_to organizations_path
+      end
       flash[:failure] = "Can't find what you're looking for"
     end
   end
@@ -31,9 +35,6 @@ class RecipientsController < ApplicationController
     @recipient.delete
     params.delete("id")
     redirect_to(:back)
-  end
-
-  def edit
   end
 
   def update

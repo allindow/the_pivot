@@ -22,4 +22,15 @@ RSpec.feature "Guest User Sees Recipient Details" do
     expect(page).to have_content(organization.recipients.first.description)
     expect(page).to have_content(organization.name)
   end
+
+  scenario "user tries to visit recipient from inactive organization" do
+    organization = create(:organization, status: 2)
+    organization.recipients << create(:recipient)
+
+    visit recipient_path(organization.recipients.first)
+
+    expect(current_path).to eq organizations_path
+
+    expect(page).to have_content("Can't find what you're looking for")
+  end
 end
