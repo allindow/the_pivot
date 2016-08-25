@@ -40,10 +40,6 @@ class FundingsController < ApplicationController
     @funding.assign_total_price
   end
 
-  def change_funding_status
-    @funding.update_attributes(status: "paid")
-  end
-
   def current_user_order?
     current_user.fundings.exists? && current_user.fundings.find(params[:id]) rescue nil
   end
