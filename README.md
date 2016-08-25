@@ -42,15 +42,15 @@ navigate to your local host, and enjoy!
 
 ### Creating a platform admin
 
-If you've set up your database, the roles of registered_user, org_admin, and platform_admin should have been created. You can confirm in the rails console:
-```$ rails console```
+If you've set up your database, the roles of registered_user, org_admin, and platform_admin should have been created. You can confirm in the rails console:<br />
+```$ rails console```<br />
 ```$ Role.all```
 
-in the console, you'll then run the following:
+in the console, you'll then run the following:<br />
 
-```$ user = User.create!(username: "platform@admin.com", password: "password")```
-```$ user.roles << Role.find(1)```
-```$ user.roles << Role.find(3)```
+```$ user = User.create!(username: "platform@admin.com", password: "password")```<br />
+```$ user.roles << Role.find(1)```<br />
+```$ user.roles << Role.find(3)```<br />
 
 
 Contributors:
