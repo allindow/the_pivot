@@ -1,0 +1,11 @@
+<h1>Edit <%= @user.username %></h1>
+
+<%= form_for(@user, url: {action: "update", params: {id: @user.id}}) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+<br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+<br><br>
+  <%= f.submit "Save", class: "btn btn-info" %>
+<% end %>

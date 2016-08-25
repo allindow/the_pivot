@@ -1,15 +1,3 @@
-# As a logged in platform admin,
-# When I am on the homepage, and I click a cause,
-# on the cause's show page, I see a pencil which I can click to edit the photo or description of a cause. 
-# and when I click the pencil,
-# I should see a picture upload button,
-# and I should see a form to edit information,
-# and when I type in a different category name and/or description
-# and I click on "update",
-# I should be taken back to the cause show page,
-# I should see a flash message saying "<> Updated!",
-# and I should see the updated information
-
 require 'rails_helper'
 
 RSpec.feature "Platform admin can see organization details" do

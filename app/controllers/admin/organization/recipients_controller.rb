@@ -1,5 +1,4 @@
 class Admin::Organization::RecipientsController < ApplicationController
-
   def index
     @organization = Organization.find_by(slug: params[:organization_slug])
     @recipients = @organization.recipients
@@ -11,24 +10,15 @@ class Admin::Organization::RecipientsController < ApplicationController
 
   def update
     @recipient = current_user.organization.recipients.find(params[:id])
-    if @recipient.retired
-      @recipient.activate
-    else
-      @recipient.retire
-    end
+    @recipient.toggle_status
     if @recipient.save
-      if @recipient.retired
-        flash[:success] = "#{@recipient.name} is inactive"
-      else
-        flash[:success] = "#{@recipient.name} has been reactivated"
-      end
+      flash[:succes] = @recipient.status_message
       redirect_to "/admin/#{@recipient.organization.slug}/recipients"
     else
       flash[:failure] = "Something went wrong"
       redirect_to "/admin/#{@recipient.organization.slug}/recipients"
     end
   end
-
 
   private
 
