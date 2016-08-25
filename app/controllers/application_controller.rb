@@ -1,14 +1,27 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-  before_action :set_cart
+  protect_from_forgery with: :null_session
+  before_action :set_cart,
+                :authorize!
   helper_method :recipient_organizations,
                 :recipient,
                 :current_user,
                 :current_platform_admin?,
                 :find_recipient,
-                :non_admin?
+                :non_admin?,
+                :current_org_admin?
+
+  def authorize!
+    unless authorize?
+      redirect_to root_url
+      flash[:warning] = "Couldn't find what you're looking for!"
+    end
+  end
+
+  def authorize?
+    PermissionService.new(current_user).allow?(params[:controller], params[:action])
+  end
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -23,9 +36,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_platform_admin?
-    current_user && current_user.role == 1
-  end
-
+    current_user && current_user.roles.exists?(name: "platform_admin")
+  end  
+  
   def find_recipient(name)
     Recipient.find_by(name: name)
   end
@@ -37,5 +50,8 @@ class ApplicationController < ActionController::Base
   def countries
     Country.all
   end
-
+  
+  def current_org_admin?(params)
+    current_user.organization.slug == params if current_user.organization
+  end   
 end

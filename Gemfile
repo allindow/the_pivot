@@ -13,6 +13,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'rails_12factor'
+gem "responders"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -28,7 +30,12 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'turbolinks'
 gem 'faker'
 gem 'stripe'
+gem 'figaro'
 gem 'email_validator', require: 'email_validator/strict'
+gem 'rails_12factor'
+gem 'font-awesome-sass', '~> 4.6.2'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

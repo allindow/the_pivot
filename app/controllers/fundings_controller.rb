@@ -2,7 +2,7 @@ class FundingsController < ApplicationController
   helper_method :fundings
 
   def index
-    fundings
+    @fundings = current_user.fundings
   end
 
   def create
@@ -18,12 +18,14 @@ class FundingsController < ApplicationController
     end
   end
 
-  def fundings
-    @fundings = current_user.fundings
-  end
-
   def show
-    @funding = Funding.find(params[:id])
+    if current_platform_admin?
+      @funding = Funding.find(params[:id])
+    elsif current_user_order?
+      @funding = current_user.fundings.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   private
@@ -31,13 +33,14 @@ class FundingsController < ApplicationController
   def create_funding
     @funding = current_user.fundings.create
     params[:contents].each do |key, value|
-      @funding.creatures_fundings.create(creature_id: key, quantity: value)
+      @funding.recipient_fundings.create(recipient_id: key, microloan_amount: value)
+      @funding.update_recipient_total(key, value)
     end
     session[:cart].clear
     @funding.assign_total_price
   end
 
-  def change_funding_status
-    @funding.update_attributes(status: "paid")
+  def current_user_order?
+    current_user.fundings.exists? && current_user.fundings.find(params[:id]) rescue nil
   end
 end

@@ -2,11 +2,18 @@ require 'faker'
 
 
 FactoryGirl.define do
+  factory :user_role do
+    user nil
+    role nil
+  end
+  factory :role do
+    name "MyString"
+  end
 
-  # factory :user do
-  #   username "MyString"
-  #   password "MyString"
-  # end
+  factory :user do
+    username
+    password "MyString"
+  end
 
   factory :organization do
     name
@@ -25,6 +32,17 @@ FactoryGirl.define do
     country
   end
 
+  factory :funding do
+    total_price 25
+    user
+  end
+
+  factory :recipient_funding do
+    recipient
+    funding
+    microloan_amount 25
+  end
+
   sequence :description do |n|
     "Description_#{n}"
   end
@@ -35,5 +53,9 @@ FactoryGirl.define do
 
   sequence :name do |n|
     "Name_#{n}"
+  end
+
+  sequence :username do |n|
+    "myString#{n}@example.com"
   end
 end

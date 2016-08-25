@@ -1,0 +1,13 @@
+<% @organizations.each do |organization| %>
+  <div id="<%= organization.slug %>">
+    <%= organization.name %>
+    <% organization.recipients.each do |recipient|  %>
+      <ul>
+        <div id="<%= recipient.name %>">
+          <li><%= recipient.name %> <%= link_to "Edit", edit_platform_recipient_path(recipient.id) %> <%= link_to "Delete", recipient_path(recipient.id), method: :delete, data: {confirm: 'Are you sure?'} unless recipient.has_funds? %> </li>
+        </div>
+      </ul>
+    <% end %>
+  </div>
+  <% end %>
+

@@ -1,0 +1,12 @@
+  <%= render partial: "shared/platform_dashboard" %>
+<h2>All Fundings</h2>
+
+<% if any_fundings? %>
+  <ul class="col-md-4 list-group">
+    <% @fundings.each do |funding| %>
+      <li class="list-group-item"><%= link_to "Funding #{funding.id}", funding_path(funding) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  No fundings have been made.
+<% end %>

@@ -2,18 +2,18 @@
 
 .btn-checkout {
   text-align: center;
-  border: 1px solid $pink-color;
+  border: 1px solid $blue-color;
   border-radius: 3px;
-  background-color: $pink-color;
+  background-color: $blue-color;
   color: $btn-text-color;
 }
 
-.btn.btn-success,
-.btn.btn-danger {
-  background-color: transparent;
-  border: 1px solid $primary-color;
-  color: $primary-color;
-}
+// .btn.btn-success,
+// .btn.btn-danger {
+//   background-color: transparent;
+//   border: 1px solid $primary-color;
+//   color: $primary-color;
+// }
 
 .btn.btn-red {
   background-color: $btn-remove-color;
@@ -21,12 +21,12 @@
   color: $btn-text-color;
 }
 
-.btn.btn-danger,
-.btn.btn-success {
-  margin-top: 5px;
-  padding-bottom: 0;
-  padding-top: 0;
-}
+// .btn.btn-danger,
+// .btn.btn-success {
+//   margin-top: 5px;
+//   padding-bottom: 0;
+//   padding-top: 0;
+// }
 
 #cart-table {
   border: 1px;

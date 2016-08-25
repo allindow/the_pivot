@@ -16,7 +16,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import url(https://fonts.googleapis.com/css?family=Lato);
 @import "general";
 @import "organization";
 @import "navbar";
@@ -26,3 +26,6 @@
 @import "organization";
 @import "user";
 @import "admin_dashboard";
+@import "progress_bar";
+@import "font-awesome-sprockets";
+@import "font-awesome";

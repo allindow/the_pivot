@@ -1,20 +1,17 @@
 <h2>Funding <%= funding.id %> Summary</h2>
-<table class="table">
+<table class="table col-md-3">
   <tr>
     <th>Recipient</th>
-    <th>Quantity</th>
-    <th>Price</th>
+    <th>Loan Amount</th>
   </tr>
-  <% funding.funding_details.each do |key, value| %>
+  <% funding.recipient_fundings.each do |funding| %>
     <tr>
-      <th><%= link_to key, recipient_path(find_recipient(key)) %></th>
-      <th><%= value.last %></th>
-      <th><%= number_to_currency(value.first) %></th>
+      <td><%= link_to funding.recipient.name, organizations_recipient_path(organization_slug: funding.recipient.organization.slug, slug: funding.recipient.slug) %></td>
+      <td><%= number_to_currency(funding.microloan_amount.to_i) %></td>
     </tr>
   <% end %>
   <tr>
-    <th><strong>Total</strong></th>
-    <th></th>
-    <th><strong><%= number_to_currency(funding.total_price) %></strong></th>
+    <td></td>
+    <td>Total Lent: <strong><%= number_to_currency(funding.total_price) %></strong></td>
   </tr>
 </table>

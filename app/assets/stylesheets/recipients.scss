@@ -9,8 +9,7 @@
 
 .home-recipient-wrapper {
   padding-right: 20px;
-  margin-bottom: 50px;
-  padding-bottom: 40px;
+  margin-bottom: 60px;
   margin-top: 30px;
   max-height: 400px;
 }
@@ -25,6 +24,7 @@
 .home-recipient-img {
   height: 250px;
   width: 320px;
+  margin-top: 0;
 }
 
 .home-recipient-name {
@@ -34,6 +34,7 @@
 .btn-recipient {
   background-color: transparent;
   border: 1px solid $btn-color;
+  border-radius: 3px;
   color: $btn-color;
 }
 
@@ -51,4 +52,24 @@
 
 .recipient-show {
   padding-left: 40px;
+}
+
+.recip-edit {
+ border:10px solid #eee;
+ transition: all 0.2s ease-in-out;
+}
+
+.recip-edit:hover {
+ border:2px solid #eee;
+ transform:rotate(360deg);
+ -ms-transform:rotate(360deg);
+ -webkit-transform:rotate(360deg);
+ -webkit-font-smoothing:antialiased;
+}
+
+.recip-edit-title {
+  font-family: "Lato", "Open Sans", Arial;
+  font-weight: bolder;
+  font-size: 3em;
+  text-transform: uppercase;
 }

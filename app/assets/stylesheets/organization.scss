@@ -6,14 +6,11 @@
 
 .btn-organization-recipient {
   background-color: $organization-color;
-  border: 1px solid $grey-color;
   color: $organization-text-color;
 }
 
-
 .btn-organization-recipient:hover {
   background-color: $btn-color;
-  border: 1px solid $btn-color;
   color: $btn-hover;
 }
 
@@ -29,4 +26,19 @@
 
 .carousel-inner {
   font-size: 30px;
+  font-family: 'Nobile', sans-serif;
+}
+
+.home-organization-wrapper {
+  padding-right: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  max-height: 400px;
+}
+
+#down-chevron {
+  font-size: 80px;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
 }

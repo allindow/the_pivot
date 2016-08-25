@@ -1,0 +1,22 @@
+<body class="login">
+
+<div class="form-horizontal">
+
+  <%= form_for(@user, url: "/admin/#{@organization.slug}/users", method: :patch) do |f| %>
+    <div class="form-group">
+      <%= f.label :username, { :class => "col-sm-4 form-label" } %>
+      <div class="col-sm-4">
+        <%= f.text_field :username %>
+      </div>
+    </div>
+
+    <%= hidden_field_tag :organization_slug, @organization.slug %>
+    <div class="col-sm-10">
+      <center>
+      <%= f.submit "Add Admin", { class: "btn-recipient" } %>
+    </center>
+    </div>
+  <% end %>
+
+</div>
+</body>

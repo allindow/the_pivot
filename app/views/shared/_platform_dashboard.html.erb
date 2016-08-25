@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs" role="navigation">
+  <li id="user-info" class="user-tab"><%= link_to "Manage Organizations", "/platform/organizations" if platform_admin? %></li>
+  <li id="user-fundings" class="user-tab"><%= link_to "View All Fundings", "/platform/fundings" if platform_admin? %></li>
+  <li id="user-fundings" class="user-tab"><%= link_to "Manage Recipients", "/platform/recipients" if platform_admin? %></li>
+</ul>

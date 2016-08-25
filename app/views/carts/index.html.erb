@@ -1,61 +1,83 @@
-<div class="cart-table">
-  <center><h1>Cart Summary</h1></center>
-  </br>
+<% if @cart.contents.empty? %>
+  <body>
+    <div class="well">
+      <center><h1>Your cart is empty.</h1>
+      <br>
+      <%= link_to "Your contribution can make a difference.  Help recipients today!", recipients_path, class: "btn btn-lg btn-primary"%></center>
+    </div>
+  </body>
+<% else %>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-md-10">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><h4>Recipient</h4></th>
+                            <th><h4>Description</h4></th>
+                            <th class="text-right"><h4>Microloan Amount</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-  <div class="table-responsive">
-    <table id="cart-table" class="col-sm-12 col-md-10 col-md-offset-1">
-      <%= raw(flash[:delete]) %>
-      <thead>
-      <tbody>
-        <tr style="text-align: center">
-          <td>Recipient</td>
-          <td>Description</td>
-          <td>Loan Amount</td>
-        </tr>
-      </thead>
-      <% @recipients.each do |recipient| %>
-      <tr>
-        <td class="col-md-2">
-          <a href='<%= recipient_path(recipient.id) %>'><img src='<%= recipient.image_path %>' style="width: 150px; height: 150px;"></a>
-        </td>
-        <td class="col-md-8">
-          <b><%= link_to recipient.name, recipient_path(recipient.id) %></b>
-          <br><br>
-          <p><%= recipient.description %></p>
-        </td>
-        <td class="col-md-2" style="text-align: center">
-          <%= link_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-sm" %>
-          <%= @cart.count_of(recipient.id) %>
-          <%= link_to "-", cart_path(remove: recipient.id), method: :put, class: "btn btn-sm"  %>
-          <br>
-          <%= link_to "Remove", cart_path(recipient_id: recipient.id), method: :delete, class: "remove-cart" %>
-        </td>
-      </tr>
-      <% end %>
-      <tr>
-        <td></td>
-        <td></td>
-        <td style="text-align: center">
-        <% if @cart %>
-          Total: <%= number_to_currency(@cart.total) %>
-        <% else %>
-          Total: $0.00
-        <% end %>
-        <td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td style="text-align: center">
-          <% if current_user %>
-            <%= button_to "Checkout", fundings_path(contents: session[:cart]), method: :create, class: "btn-checkout" %>
-          <% else %>
-            <%= button_to "Login to Checkout", login_path, method: :get, class: "btn-checkout" %></br>
-            <%= button_to "Register to Checkout", new_user_path, method: :get,  class: "btn-checkout" %>
-          <% end %>
-        <td>
-      </tr>
-    </tbody>
-    </table>
-  </div>
-</div>
+                      <% @recipients.each do |recipient| %>
+                        <tr>
+                          <td class="col-sm-2 col-md-2">
+                            <div class="media">
+                              <a href='<%= organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %>'><img src='<%= recipient.image_path %>' style="width: 80px; height: 80px;"></a>
+                            </div>
+                          </td>
+                          <td class="col-sm-6 col-md-8">
+                            <div class="media-body">
+                                <h4 class="media-heading"><%= link_to recipient.name, organizations_recipient_path(organization_slug: recipient.organization.slug, slug: recipient.slug) %></h4>
+                                <h5 class="media-heading"><%= recipient.description %></h5>
+                            </div>
+                          </td>
+                            <td class="col-sm-4 col-md-4" style="text-align: center">
+                              <%= link_to "-", cart_path(remove: recipient.id), method: :put, class: "btn btn-sm" %>
+                              <%= @cart.count_of(recipient.id) %>
+                              <%= link_to "+", cart_path(add: recipient.id), method: :put, class: "btn btn-sm" %>
+                              <br>
+                              <%= link_to "Remove", cart_path(recipient_id: recipient.id), method: :delete, class: "remove-cart" %>
+                            </td>
+                        </tr>
+                        <% end %>
+
+
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right">
+                              <strong>
+                                <h3>
+                                <% if @cart %>
+                                  Total: <%= number_to_currency(@cart.total) %>
+                                <% else %>
+                                  Total: $0.00
+                                  <% end %>
+                                </h3>
+                              </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td class="text-right">
+                              <%= link_to "Continue Lending", recipients_path, class: "btn btn-info" %>
+                            </td>
+                            <td class="text-right">
+                              <% if registered_user? || org_admin? %>
+                                <%= button_to "Checkout", fundings_path(contents: session[:cart]), method: :create, class: "btn btn-success" %>
+                              <% else %>
+                                <%= button_to "Login to Checkout", login_path, method: :get, class: "btn btn-info" %></br>
+                                <%= button_to "Register to Checkout", new_user_path, method: :get,  class: "btn btn-primary" %>
+                              <% end %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+      </div>
+    </div>
+    <% end %>
+  </body>
