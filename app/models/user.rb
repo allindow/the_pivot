@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def registered_user?
     roles.exists?(name: "registered_user")
   end
+  
+  def register_role
+    roles << Role.find_or_create_by(name: "registered_user")
+  end
 end
