@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     roles.exists?(name: "registered_user")
   end
 
+  def not_org_admin?
+    self && self.org_admin? == false
+  end
+
   def register_role
     roles << Role.find_or_create_by(name: "registered_user")
   end
