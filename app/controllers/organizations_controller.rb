@@ -17,6 +17,7 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations = Organization.active_only
+    @recipients = Recipient.all
   end
 
   def create

@@ -32,6 +32,9 @@ gem 'stripe'
 gem 'figaro'
 gem 'email_validator', require: 'email_validator/strict'
 gem 'rails_12factor'
+gem 'font-awesome-sass', '~> 4.6.2'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -46,7 +46,7 @@ class Seed
   end
 
   def generate_recipients
-    ten_countries.each do |country|
+    Countries.each do |country|
       48.times do |n|
         name = Faker::Name.name
         country.recipients << Recipient.create(name: name,
@@ -81,10 +81,6 @@ class Seed
     Country.create(name:"Samoa")
     Country.create(name:"Denmark")
     Country.create(name:"Canada")
-  end
-
-  def ten_countries
-    Country.all.shuffle.pop(10)
   end
 
   def generate_roles

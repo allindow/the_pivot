@@ -24,7 +24,9 @@ RSpec.feature 'Platform admin can edit org admin' do
     expect(page).to have_content('Homes for Humanity')
     expect(page).to have_link('Edit')
 
-    click_link 'Edit'
+    within '#users' do
+      click_link 'Edit'
+    end
 
     expect(current_path).to eq(edit_user_path(user.id))
     fill_in 'Username', with: 'sarah@example.com'
