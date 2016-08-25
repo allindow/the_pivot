@@ -25,7 +25,15 @@ class User < ActiveRecord::Base
   def not_org_admin?
     self && self.org_admin? == false
   end
-    
+
+  def register_role
+    roles << Role.find_or_create_by(name: "registered_user")
+  end
+
+  def not_org_admin?
+    self && self.org_admin? == false
+  end
+
   def promote_to_org_admin(org)
     self.roles << Role.find_by(name: "org_admin")
     self.update!(organization_id: org.id)

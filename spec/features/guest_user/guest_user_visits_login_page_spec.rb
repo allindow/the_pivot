@@ -20,5 +20,16 @@ RSpec.feature "Guest User Registers Account" do
     expect(page).to have_content 'Welcome angela@example.com!'
     expect(page).to have_link 'My Account'
   end
-
+  
+  scenario "they cannot register a new account" do
+    visit login_path
+    click_link "Become a Lender"
+    
+    fill_in 'Username', with: 'angela@example.com'
+    fill_in 'Password', with: ''
+    click_on 'Create Account'
+    
+    expect(current_path).to eq(new_user_path)
+    expect(page).to have_content("Invalid Information")
+  end
 end
