@@ -24,6 +24,7 @@ attr_reader :user
       return true if controller == "users"
       return true if controller == "recipients"
       return true if controller == "organizations"
+      return true if controller == "organizations/recipients"
       return true if controller == "fundings"
       return true if controller == "carts"
     end
