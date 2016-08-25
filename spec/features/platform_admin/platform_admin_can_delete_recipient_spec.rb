@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Platform admin can click to edit recipient details" do
-  scenario "platform admin can edit recipients" do
+RSpec.feature "Platform admin can click to delete recipient" do
+  scenario "platform admin can delete recipients" do
     org = Organization.create!(name:"Walls for the World", description: "We build walls for neighbors", status: 1)
     country = Country.create(name:"Germany")
     rec = org.recipients.create(name: "Fiona", description: "I need more kibble.", image_path: "http://www.google.com", country_id: country.id )
@@ -18,23 +18,12 @@ RSpec.feature "Platform admin can click to edit recipient details" do
     
     click_link "Manage Recipients"
     
-    click_link "Edit"
-    
-    expect(org.recipients.first.name).to eq("Fiona")
-    expect(page).to have_content("Update")
-    
-    fill_in 'Name', with: 'Hungry Hippo'
-    fill_in 'Description', with: 'I need food to eat, please.'
-    fill_in 'Image path', with: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Hippo_Indigestion.jpg'
-    click_button 'Update'
-    
-    expect(current_path).to eq(platform_recipients_path)
-    
-    visit dashboard_path
+    within("#Fiona") do
+      click_link "Delete"
+    end
     
     visit '/walls-for-the-world'
-    expect(page).to have_content('Hungry Hippo')
-    expect(page).to have_content('I need food to eat, please.')
-    expect(page).to have_css(:img)
+    expect(page).to_not have_content('Fiona')
+    expect(page).to_not have_content('I need more kibble')
   end  
 end
