@@ -12,7 +12,6 @@ RSpec.feature "Registered user can create an organization" do
 
     visit login_path
 
-
     fill_in 'Username', with: 'omar@gmail.com'
     fill_in 'Password', with: 'password'
     click_button 'Login'
@@ -32,5 +31,28 @@ RSpec.feature "Registered user can create an organization" do
     expect(current_path).to eq("/dashboard")
     expect(page).to have_content("Status: Pending")
     expect(page).to_not have_content("Manage Team")
+  end
+
+  scenario 'they do not submit valid information to create an org' do
+    user = User.create!(username: 'omar@gmail.com', password: 'password')
+    role = Role.create!(name: "registered_user")
+    user.roles << role
+
+    expect(User.last.roles.pluck(:name)).to include("registered_user")
+
+    visit login_path
+
+    fill_in 'Username', with: 'omar@gmail.com'
+    fill_in 'Password', with: 'password'
+    click_button 'Login'
+
+    visit root_path
+    click_link("Register Organization")
+
+    fill_in "Name", with: ''
+    fill_in "Description", with: 'We protect cats and their humans.'
+    click_button ("Submit Organization Application")
+
+    expect(page).to have_content("Invalid information.")
   end
 end
