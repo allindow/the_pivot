@@ -18,6 +18,8 @@ All users are able to create accounts with a unique username and email address. 
 
 Several features were implemented which were not part of the core curriculum. These include accepting payment from a third-party source. Paypal inclusion was attempted initially, but Stripe lasted as the chosen method for third-party payment validation. The use of jQuery to allow real-time updating of features without page refreshing was added where it seemed sensible, such as the fuzzy finder search bar on the All Recipients page. 
 
+Additionally, after exploring setting up a progress bar with AJAX and an API endpoint, we implemented a jQuery progress bar which reflects the live total amount received by each recipient.
+
 ### Usage
 
 To run this application on your local host,
