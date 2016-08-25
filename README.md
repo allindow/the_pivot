@@ -20,7 +20,7 @@ Several features were implemented which were not part of the core curriculum. Th
 
 Additionally, after exploring setting up a progress bar with AJAX and an API endpoint, we implemented a jQuery progress bar which reflects the live total amount received by each recipient.
 
-### Usage
+## Usage
 
 To run this application on your local host,
 
@@ -38,7 +38,21 @@ run your server
 
 ```$ rails s```
 
-navigate to your local host, and enjoy!
+navigate to localhost:3000 and enjoy!
+
+### Setting up a Platform Admin
+
+The roles of registered_user, org_admin, and platform_admin were created when you seeded the database. You can run 
+```$ rails console
+   $ Role.all```
+to see the roles.
+
+To set up a platform admin, run the following from the rails console
+```$ user = User.create(username: "platform@example.com", password: "password")
+   $ user.roles << Role.find(1)
+   $ user.roles << Role.find(2)```
+   
+this assigns the platform admin the roles of registered user and platform admin.
 
 
 Contributors:
