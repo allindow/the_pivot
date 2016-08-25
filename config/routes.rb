@@ -27,11 +27,6 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin do
-    resources :dashboard, only: [:index, :edit, :update, :new, :create]
-    resources :recipients, only: [:index, :edit, :update]
-  end
-
   patch '/admin/:organization_slug/recipients/:id', to: "admin/organization/recipients#update"
   get '/admin/:organization_slug/recipients', to: "admin/organization/recipients#index"
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"

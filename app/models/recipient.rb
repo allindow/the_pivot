@@ -29,8 +29,24 @@ class Recipient < ActiveRecord::Base
     end
   end
 
+  def toggle_status
+    self.retired ? self.activate : self.retire
+  end
+
+  def status_message
+    self.retired ? inactive_message : reactivated_message
+  end
+
   private
     def generate_slug
       self.slug = name.parameterize
+    end
+
+    def inactive_message
+      "#{self.name} is inactive"
+    end
+
+    def reactivated_message
+      "#{self.name} has been reactivated"
     end
 end
