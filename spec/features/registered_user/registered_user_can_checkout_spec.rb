@@ -49,7 +49,7 @@ RSpec.feature "Registered user can checkout" do
 
   end
 
-  scenario "user tries to checkout with empty cart" do
+  scenario "they cannot see checkout option if cart is empty" do
     user = User.create!(username: 'angela@example.com', password: 'password')
     role = Role.create!(name: "registered_user")
     user.roles << role
@@ -58,10 +58,10 @@ RSpec.feature "Registered user can checkout" do
 
     visit cart_path
 
-    click_button("Checkout")
+    expect(page).to_not have_button("Checkout")
 
     expect(current_path).to eq cart_path
 
-    expect(page).to have_content("Your cart is empty")
+    expect(page).to have_content("Your cart is empty.")
   end
 end
