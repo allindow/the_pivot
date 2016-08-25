@@ -46,7 +46,7 @@ class Seed
   end
 
   def generate_recipients
-    Countries.each do |country|
+    Country.all.each do |country|
       48.times do |n|
         name = Faker::Name.name
         country.recipients << Recipient.create(name: name,
