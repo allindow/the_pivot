@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Guest user can view recipients by country" do
-    scenario "when they visit the homepage" do
+  scenario "when they visit the homepage" do
     country1 = Country.create!(name: "Ghana")
     country2 = Country.create!(name: "Japan")
     organization = Organization.create(name: "Hope for Veterans")
@@ -14,11 +14,10 @@ RSpec.feature "Guest user can view recipients by country" do
     click_on "Ghana"
 
     expect(current_path).to eq '/ghana/needs'
-
-      expect(page).to have_content("Haysha")
-      expect(page).to have_content("need a sewing machine")
-      expect(page).to have_content("Hope for Veterans")
-      expect(page).to have_content("Kaya")
-      expect(page).to have_content("want a restaurant")
+    expect(page).to have_content("Haysha")
+    expect(page).to have_content("need a sewing machine")
+    expect(page).to have_content("Hope for Veterans")
+    expect(page).to have_content("Kaya")
+    expect(page).to have_content("want a restaurant")
   end
 end

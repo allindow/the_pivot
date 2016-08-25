@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "Organization admin can edit recipients" do
   scenario "they can go to the Edit page for a recipient" do
-
     organization = Organization.create!(name:"Homes for Humanity", description: "We build homes", status: 1)
     user = organization.users.create(username: 'fiona@cat.com', password: 'password')
     role = Role.create(name: 'org_admin')
@@ -55,7 +54,6 @@ RSpec.feature "Organization admin can edit recipients" do
     fill_in "Description", with: "Loves building yurts"
 
     click_button "Save"
-
 
     expect(current_path).to eq recipient_path(recipient)
     expect(page).to have_content("Invalid")

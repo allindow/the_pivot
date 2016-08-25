@@ -20,5 +20,4 @@ RSpec.feature "Guest User Registers Account" do
     expect(page).to have_content 'Welcome angela@example.com!'
     expect(page).to have_link 'My Account'
   end
-
 end
