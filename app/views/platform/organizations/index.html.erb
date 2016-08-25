@@ -9,7 +9,9 @@
   <% else %>
     <% organization.users.each do |user| %>
       <ul>
-        <li><%= user.username %></li>
+        <li><%= user.username %>
+          <%= link_to "Edit", edit_user_path(id: user.id) %>
+        </li>
       </ul>
     <% end %>
     <%= button_to "Deactivate", platform_organization_path(organization, name: "deactivated"), method: :put %>

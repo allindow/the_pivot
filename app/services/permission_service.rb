@@ -25,6 +25,7 @@ attr_reader :user
       return true if controller == "fundings"
       return true if controller == "carts"
       return true if controller == "organizations/recipients"
+      return true if controller == "organizations/users"
       return true if controller == "country/recipients"
       return true if controller == "admin/recipients"
       return true if controller == "admin/dashboard"
@@ -40,7 +41,7 @@ attr_reader :user
       return true if controller == "organizations/dashboard"
       return true if controller == "country/recipients"
       return true if controller == "admin/recipients"
-      return true if controller == "users"
+      return true if controller == "users" #add restrictions here
       return true if controller == "admin/organization/recipients"
       return true if controller == "admin/organization/users"
     end

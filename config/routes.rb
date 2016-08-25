@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :recipients
   resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
-  resources :users, only: [:new, :create, :show, :destroy]
+  # resources :users, only: [:new, :create, :show, :destroy, :edit, :update]
+  resources :users
   resources :fundings, only: [:index, :create, :show, :new, :create]
 
   namespace :country, path: ":country_slug", as: :country do
