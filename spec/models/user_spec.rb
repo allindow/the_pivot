@@ -14,4 +14,10 @@ RSpec.describe User, type: :model do
     expect(user1).to_not be_valid
     expect(user2).to be_valid
   end
+
+  it "it has no roles by default" do
+    user = User.new
+    expect(user.roles).to be_empty
+  end
+
 end

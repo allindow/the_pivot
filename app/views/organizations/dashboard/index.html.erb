@@ -1,6 +1,6 @@
 <h2> <%= @organization.name%> Status Page </h2>
 <h3> Status: <%= @organization.status.capitalize %></h3>
-
+<h3 class="mission-text green left">Your recipients have received $<%= number_with_delimiter(@organization.funds_raised, :delimiter => ',') %> total!</h4>
 <ul class="nav nav-tabs" role="navigation">
   <li id="user-info" class="user-tab"><%= link_to "Manage Organization", "/#{@organization.slug}/dashboard" if org_admin? %></li>
   <li id="user-fundings" class="user-tab"><%= link_to "Manage Admins", "/admin/#{@organization.slug}/users" if org_admin? %></li>
@@ -29,7 +29,7 @@
     <div class="form-group">
       <%= f.label :image_path, { :class => "col-sm-4 form-label" } %>
       <div class="col-sm-8">
-        <%= f.password_field :image_path %>
+        <%= f.text_field :image_path %>
       </div>
     </div>
 

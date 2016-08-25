@@ -1,8 +1,4 @@
-<em><h1 class="page-title">Lending Hands</h1></em>
-<em><h2 class="page-subtitle">All Recipients</h2></em>
-<% if current_platform_admin? %>
-  <h4><%= link_to "Manage Recipients", admin_recipients_path %></h4>
-<% end %>
+<h2 class="page-title">All Recipients</h2>
 </br>
 
 <div class="search-bar">
@@ -17,8 +13,10 @@
       <div class="organization-title-list">
         <p align="right"><%= link_to recipient.organization.name, organization_path(slug: recipient.organization.slug) %></p>
       </div>
-      <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
-      <%= render partial: "shared/recipients_details", locals: { recipient: recipient } %>
+      <% unless recipient.retired %>
+        <%= render partial: "shared/recipients_img", locals: { recipient: recipient } %>
+        <%= render partial: "shared/recipients_details", locals: { recipient: recipient } %>
+      <% end %>
     </div>
   </div>
 <% end %>

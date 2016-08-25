@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+if(document.getElementById("myBar")) {
   function move(progress_amount) {
     var elem = document.getElementById("myBar");
     var progress = (progress_amount/1000) * 100
@@ -23,4 +24,5 @@ $(document).ready(function(){
   }
 
   move(progress);
+};
 });

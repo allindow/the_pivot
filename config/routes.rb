@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :recipients
   resources :organizations, only: [:new, :create, :index]
   resources :carts, only: [:create]
-  resources :users, only: [:new, :create, :show, :destroy]
+  resources :users, only: [:new, :create, :show, :destroy, :edit, :update]
+  resources :users
   resources :fundings, only: [:index, :create, :show, :new, :create]
 
   namespace :country, path: ":country_slug", as: :country do
@@ -16,14 +17,21 @@ Rails.application.routes.draw do
     resources :charges, only: [:new, :create]
   end
 
-  namespace :admin do
-    resources :dashboard, only: [:index, :edit, :update, :new, :create]
+  namespace :platform do
+    resources :dashboard, only: [:index]
+    resources :fundings, only: [:index]
     resources :recipients, only: [:index, :edit, :update]
+    resources :organizations, only: [:index, :update, :edit]
+    namespace :organization do
+      resources :users, param: :organization_slug, only: [:new, :update]
+    end
   end
 
+  patch '/admin/:organization_slug/recipients/:id', to: "admin/organization/recipients#update"
   get '/admin/:organization_slug/recipients', to: "admin/organization/recipients#index"
   get '/admin/:organization_slug/users', to: "admin/organization/users#index"
   get '/admin/:organization_slug/users/new', to: "admin/organization/users#new"
+  patch '/admin/:organization_slug/users', to: "admin/organization/users#update"
   patch '/users', to: "users#update"
   get '/:organization_slug/recipients/new', to: "organizations/recipients#new"
 
@@ -31,7 +39,7 @@ Rails.application.routes.draw do
     resources :recipients, param: :slug, only: [:show]
   end
 
-  get '/:organization_slug/dashboard', to: "organizations/dashboard#index"
+  get '/:organization_slug/dashboard', to: "organizations/dashboard#index", as: 'organization_dashboard'
 
   post "/login", to: "sessions#create"
   get "/login", to: "sessions#new"

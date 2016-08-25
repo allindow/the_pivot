@@ -9,12 +9,13 @@ class ApplicationController < ActionController::Base
                 :current_user,
                 :current_platform_admin?,
                 :find_recipient,
-                :non_admin?
+                :non_admin?,
+                :current_org_admin?
 
   def authorize!
     unless authorize?
       redirect_to root_url
-      flash.now[:warning] = "Couldn't find what you're looking for!"
+      flash[:warning] = "Couldn't find what you're looking for!"
     end
   end
 
@@ -35,9 +36,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_platform_admin?
-    current_user && current_user.roles.include?("platform_admin")
-  end
-
+    current_user && current_user.roles.exists?(name: "platform_admin")
+  end  
+  
   def find_recipient(name)
     Recipient.find_by(name: name)
   end
@@ -49,4 +50,8 @@ class ApplicationController < ActionController::Base
   def countries
     Country.all
   end
+  
+  def current_org_admin?(params)
+    current_user.organization.slug == params if current_user.organization
+  end   
 end
