@@ -48,4 +48,20 @@ RSpec.feature "Registered user can checkout" do
     expect(page).to have_link("My Fundings")
 
   end
+
+  scenario "user tries to checkout with empty cart" do
+    user = User.create!(username: 'angela@example.com', password: 'password')
+    role = Role.create!(name: "registered_user")
+    user.roles << role
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit cart_path
+
+    click_button("Checkout")
+
+    expect(current_path).to eq cart_path
+
+    expect(page).to have_content("Your cart is empty")
+  end
 end
