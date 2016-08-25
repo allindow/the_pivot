@@ -1,25 +1,46 @@
-# Alicorn Adoption
+# Lending Hands 
 
 ### Introduction
 
-Alicorn Adoption was conceived as a final project for the Little Shop of Orders Assignment in module 2 of the Turing School curriculum. The site serves as a storefront to adopt mythical creatures in the wild. A user can browse through creatures and add them to a shopping cart. They can view creatures by category or search by name. The creatures in a cart persist over the user's browsing session. When a user checks out, they are prompted to create an account or log in. Payment is completed via Stripe. 
+[Lending Hands](http://lendinghands.herokuapp.com/) is a Turing School of Software & Design project called The Pivot for Module 3. The goal of the project was to transform a simple e-commerce store into a multitenancy store. [Lending Hands](http://lendinghands.herokuapp.com/), a microlending platform, was pivoted from [Alicorn Adoption](http://alicorn-adoption.herokuapp.com/) which is a mythical creature adoption site. 
+
+[Alicorn Adoption Repo](https://github.com/roscalabrin/alicorn_adoption)
 
 ### Features
 
-Alicorn Adoption displays several topics which were covered during the Turing Module 2 curriculum. These include MVC architecture using Rails, database transactions and logic operations using ActiveRecord, user authorization, user authentication, and building a functional shopping cart for single browsing sessions.
+Lending Hands includes MVC architecture using Rails, database transactions and logic operations using ActiveRecord, user authorization, user authentication, a functional shopping cart for single browsing sessions, Stripe integration, multitenancy, and different levels of authorization (registered user, organization admin, platform admin), and Javascript methods.
 
-The site uses different controllers for users based on their admin privileges. This allows for a variety of methods to be restricted based on user status. Admins, for example, can add more creatures to the site. They can retire creatures which are no longer able to be adopted. They can also modify their own information, and delete their account if they choose. 
+The site uses different controllers for users based on their role, allowing for different levels of authorization and use. 
 
-All users are able to create accounts with a unique username and email address. Current admins may assign other users to be admins. Regardless of user type, users are able to see all their past orders. All visitors and users can fill a shopping cart with creatures to adopt, but only registered and logged-in users are allowed to check out. 
-
-### Build Process
-
-The site was built according to user stories which were revealed over the course of three different client meetings. This resulted in a code base which required many changes in the course of development. Database migrations, controller changes, and styling adjustments were commonplace throughout the assignment. Good Git workflow across the team members was encouraged and judged as part of the evaluation criteria. 
+All users are able to create accounts with a unique username and email address. Organization admins may assign other users to be co-admins with their organization. Platform admins can view all fundings. All visitors and users can fill a shopping cart with microloans, but only registered and logged-in users are allowed to check out. 
 
 ### Extensions
 
-Several features were implemented which were not part of the core curriculum. These include accepting payment from a third-party source. Paypal inclusion was attempted initially, but Stripe lasted as the chosen method for third-party payment validation. Playing music on the site was a minor add-on feature. Lastly, the use of jQuery to allow real-time updating of features without page refreshing was added where it seemed sensible. One example of this is the real-time updating of creature search results on the root path.
+Several features were implemented which were not part of the core curriculum. These include accepting payment from a third-party source. Paypal inclusion was attempted initially, but Stripe lasted as the chosen method for third-party payment validation. The use of jQuery to allow real-time updating of features without page refreshing was added where it seemed sensible, such as the fuzzy finder search bar on the All Recipients page. 
 
-### Conclusion
+### Usage
 
-This project provided avenues to so much learning. Please enjoy browsing and building on the work and ideas. 
+To run this application on your local host,
+
+```$ git clone git@github.com:allindow/the_pivot.git```
+
+then bundle
+
+```$ bundle install```
+
+set up your database
+
+```$ rake db:drop db:create db:migrate db:seed```
+
+run your server
+
+```$ rails s```
+
+navigate to your local host, and enjoy!
+
+
+Contributors:
+* [Tommasina Miller](https://github.com/chompasina)
+* [Angela Lindow](https://github.com/allindow)
+* [Lin McCartney](https://github.com/lcmccartney)
+* [Caleb Cowen](https://github.com/Caleb9193)
