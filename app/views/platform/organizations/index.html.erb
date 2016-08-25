@@ -2,26 +2,23 @@
 <h3>Manage Organizations</h3>
   <div id="admin-account">
   <% @organizations.each do |organization| %>
-    <div class="container col-md-4 home-recipient-wrapper" id="<%= organization.slug %>">
-        <h3><%= link_to organization.name, "/#{organization.slug}" %></h3> <%= link_to "Add Admin", new_platform_organization_user_path(organization_slug: organization.slug) %>
-        <%= organization.status.capitalize %>
-        <%= link_to "Edit", edit_platform_organization_path(organization) %>
-        <%= link_to "Add Admin", new_platform_organization_user_path(organization_slug: organization.slug) %>
-        <% if organization.status == "pending" %>
-          <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
-          <%= link_to "Deny", platform_organization_path(organization, status: "denied"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
-        <% elsif organization.status == "inactive"%>
-          <%= link_to "Activate", platform_organization_path(organization, status: "activated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+    <div class="container col-md-4 home-organization-wrapper" id="<%= organization.slug %>">
+        <h3><%= link_to organization.name, "/#{organization.slug}" %></h3> 
+        <p><%= organization.status.capitalize %> </p>
+        <%= link_to "Edit Organization", edit_platform_organization_path(organization), class: "btn btn-organization-recipient btn-organization-recipient:hover" %> <br>
+        <%= link_to "Add Admin", new_platform_organization_user_path(organization_slug: organization.slug), class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+        <% if organization.pending? %>
+          <%= render partial: 'layouts/platform_pending', locals: { organization: organization } %>
+        <% elsif organization.inactive? %>
+          <%= render partial: 'layouts/platform_inactive', locals: { organization: organization } %>  
         <% else %>
-          <% organization.users.each do |user| %>
-            <ul id="users">
-              <li>
-                <%= user.username %><%= link_to "Edit", edit_user_path(id: user.id) %>
-              </li>
-            </ul>
-        <% end %>
           <%= link_to "Deactivate", platform_organization_path(organization, status: "deactivated"), method: :put, class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
-        <% end %>
+          <% organization.users.each do |user| %>
+            <div id="users"><br>
+                <%= link_to "Edit Admin #{user.username}", edit_user_path(id: user.id), class: "btn btn-organization-recipient btn-organization-recipient:hover" %>
+            </div>
+        <% end %>  
+      <% end %>
       </div>
   <% end %>
 </div>
