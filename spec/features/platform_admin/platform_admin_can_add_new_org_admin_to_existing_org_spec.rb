@@ -30,7 +30,6 @@ RSpec.feature "platform admin can add new org admin to existing org" do
 
     fill_in "Username", with: 'omar@example.com'
     click_button "Add Admin"
-
     expect(current_path).to eq platform_organizations_path
 
     expect(page).to have_content("Hovels for Humanity")

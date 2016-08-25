@@ -2,7 +2,7 @@
 
 <div class="form-horizontal">
 
-  <%= form_for(@user, url: "/users", method: :patch) do |f| %>
+  <%= form_for(@user, url: "/admin/#{@organization.slug}/users", method: :patch) do |f| %>
     <div class="form-group">
       <%= f.label :username, { :class => "col-sm-4 form-label" } %>
       <div class="col-sm-4">
