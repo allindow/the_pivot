@@ -19,17 +19,14 @@ attr_reader :user
       return true if controller == "platform/organizations"
       return true if controller == "platform/recipients"
       return true if controller == "platform/organization/users"
+      return true if controller == "admin/organization/users"
       return true if controller == "sessions"
       return true if controller == "users"
       return true if controller == "recipients"
       return true if controller == "organizations"
+      return true if controller == "organizations/recipients"
       return true if controller == "fundings"
       return true if controller == "carts"
-      return true if controller == "organizations/recipients"
-      return true if controller == "organizations/users"
-      return true if controller == "country/recipients"
-      return true if controller == "admin/recipients"
-      return true if controller == "admin/dashboard"
     end
 
     def org_admin_permissions(controller, action)

@@ -9,7 +9,11 @@ class RecipientsController < ApplicationController
     if Recipient.active_only.include?(@recipient)
       @recipient
     else
-      redirect_to dashboard_path
+      if current_user
+        redirect_to dashboard_path
+      else
+        redirect_to organizations_path
+      end
       flash[:failure] = "Can't find what you're looking for"
     end
   end
@@ -21,9 +25,6 @@ class RecipientsController < ApplicationController
       @recipient = @country.recipients.create(recipient_params.merge(organization: @organization))
       check_for_image_path
       check_if_recipient_saved
-    else
-      flash[:failure] = "Invalid information"
-      redirect_to "/#{@organization.slug}/recipients/new"
     end
   end
 
@@ -33,17 +34,14 @@ class RecipientsController < ApplicationController
     redirect_to(:back)
   end
 
-  def edit
-  end
-
   def update
     @recipient.update_attributes(recipient_params)
     check_for_image_path
      if @recipient.save
       redirect_to recipient_path
     else
-      render :edit
       flash[:notice] = "Invalid"
+      render :edit
     end
   end
 
